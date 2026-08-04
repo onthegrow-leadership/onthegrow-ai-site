@@ -1,0 +1,54 @@
+name: Deploy to AWS Amplify
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: amplify-deploy
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-2
+  APP_ID: d144i82z7jj6d1
+  BRANCH: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Package site
+        run: zip -r site.zip index.html favicon.svg
+
+      - name: Create deployment
+        id: create
+        run: |
+          out=$(aws amplify create-deployment --app-id "$APP_ID" --branch-name "$BRANCH")
+          echo "job_id=$(echo "$out" | jq -r .jobId)" >> "$GITHUB_OUTPUT"
+          echo "upload_url=$(echo "$out" | jq -r .zipUploadUrl)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        run: curl -sf -H "Content-Type: application/zip" --upload-file site.zip "${{ steps.create.outputs.upload_url }}"
+
+      - name: Start deployment
+        run: aws amplify start-deployment --app-id "$APP_ID" --branch-name "$BRANCH" --job-id "${{ steps.create.outputs.job_id }}"
+
+      - name: Wait for success
+        run: |
+          for i in $(seq 1 30); do
+            status=$(aws amplify get-job --app-id "$APP_ID" --branch-name "$BRANCH" --job-id "${{ steps.create.outputs.job_id }}" --query 'job.summary.status' --output text)
+            echo "status: $status"
+            [ "$status" = "SUCCEED" ] && exit 0
+            [ "$status" = "FAILED" ] && exit 1
+            sleep 10
+          done
+          echo "timed out" && exit 1
