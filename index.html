@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnTheGrow.ai™ — Every Leader Gets a Coach in the Room</title>
+<meta name="description" content="AI doesn't fix leadership. It scales it. OnTheGrow.ai is the leadership operating system for the AI era — the GROWTH™ Execution Model, installed, governed, and reinforced daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --teal:#39989e; --teal-hi:#75cbc4; --purple:#6B529E; --blush:#f9eff6;
+    --deep:#36294f; --onyx:#333333; --white:#ffffff; --ink:#2b2b2b;
+    --muted:#6f6a7a; --line:#e8e2ee;
+    --grad:linear-gradient(120deg,var(--teal-hi) 0%,var(--teal) 35%,var(--purple) 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Work Sans',Arial,sans-serif;color:var(--ink);background:var(--white);
+       font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--teal-hi);color:var(--deep)}
+  h1,h2,h3{line-height:1.15;text-wrap:balance;color:var(--onyx)}
+  h1{font-weight:300;font-size:clamp(2.4rem,5.4vw,4.2rem);letter-spacing:-.01em}
+  h2{font-weight:300;font-size:clamp(1.8rem,3.6vw,2.7rem)}
+  h3{font-weight:600;font-size:1.15rem}
+  p{max-width:64ch}
+  a{color:var(--purple)}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+  .dark .eyebrow{color:var(--teal-hi)}
+  b,strong{font-weight:600}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .navlinks{display:flex;gap:28px;align-items:center}
+  .navlinks a{font-size:.92rem;font-weight:500;color:var(--onyx);text-decoration:none}
+  .navlinks a:hover{color:var(--purple)}
+  .btn{display:inline-block;padding:13px 26px;border-radius:6px;font-weight:600;font-size:.95rem;
+       text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(54,41,79,.25)}
+  .btn-primary{background:var(--purple);color:#fff}
+  .btn-ghost{border:1.5px solid var(--teal-hi);color:var(--white);background:transparent}
+  .btn-teal{background:var(--teal);color:#fff}
+  @media(max-width:820px){.navlinks a:not(.btn){display:none}}
+
+  /* wordmark */
+  .wordmark{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .wm-text{font-size:1.14rem;letter-spacing:.02em;color:var(--onyx);white-space:nowrap}
+  .wm-text .w1{font-weight:300}.wm-text .w2{font-weight:400}.wm-text .w3{font-weight:600}
+  .wm-text .wai{font-weight:600;color:var(--teal)}
+  .dark .wm-text{color:#fff}.dark .wm-text .wai{color:var(--teal-hi)}
+
+  /* hero */
+  .hero{background:var(--deep);color:#efeaf6;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='110' viewBox='0 0 96 110'%3E%3Cpath d='M48 4 86 26v44L48 92 10 70V26Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:96px 110px}
+  .hero-in{position:relative;padding:110px 0 96px;max-width:880px}
+  .hero h1{color:#fff;margin:18px 0 8px}
+  .hero h1 .accent{font-weight:600;background:linear-gradient(100deg,var(--teal-hi),#b9a7e8);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{font-size:1.16rem;font-weight:300;color:#cfc6e0;margin:22px 0 36px;max-width:56ch}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .hero-note{font-size:.85rem;color:#a99cc4;margin-top:18px}
+
+  /* stat band */
+  .stats{background:var(--blush);border-bottom:1px solid var(--line)}
+  .stats-in{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;padding:54px 0 12px}
+  .stat{text-align:center;padding:0 12px}
+  .stat .num{font-size:2.6rem;font-weight:600;color:var(--deep);font-variant-numeric:tabular-nums}
+  .stat .num span{color:var(--teal)}
+  .stat .lbl{font-size:.88rem;color:var(--muted);font-weight:500}
+  .prov{text-align:center;font-size:.82rem;color:var(--muted);padding:10px 24px 40px;font-style:italic}
+
+  section{padding:96px 0}
+  .sec-head{max-width:760px;margin-bottom:56px}
+  .sec-head h2 strong{font-weight:600}
+  .lede{font-size:1.12rem;color:var(--muted);margin-top:18px}
+
+  /* thesis */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .pillar{border-top:3px solid;padding-top:22px}
+  .pillar.obs{border-color:var(--teal)}
+  .pillar.com{border-color:var(--purple)}
+  .pillar h3{margin-bottom:10px}
+  .pillar .tag{font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:14px}
+  .pillar.obs .tag{color:var(--teal)}.pillar.com .tag{color:var(--purple)}
+  .callout{margin-top:64px;background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;
+    font-size:1.28rem;font-weight:300;position:relative;overflow:hidden}
+  .callout strong{color:#fff;font-weight:600}
+  .callout::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 4 90 27v46L50 96 10 73V27Z' fill='none' stroke='%2375cbc4' stroke-width='2'/%3E%3C/svg%3E");
+    background-size:contain;background-repeat:no-repeat}
+
+  /* growth grid */
+  .growth{background:var(--blush)}
+  .ggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+  .gcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 26px;
+    transition:transform .18s ease,box-shadow .18s ease}
+  .gcard:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(54,41,79,.10)}
+  .gletter{width:52px;height:58px;display:grid;place-items:center;margin-bottom:18px;position:relative}
+  .gletter svg{position:absolute;inset:0}
+  .gletter span{position:relative;font-weight:600;font-size:1.35rem;color:var(--deep)}
+  .gcard h3{margin-bottom:8px}
+  .gcard .std{color:var(--muted);font-size:.97rem;margin-bottom:16px}
+  .gcard .gate{font-size:.9rem;font-style:italic;color:var(--purple);border-left:3px solid var(--teal-hi);
+    padding-left:14px;line-height:1.5}
+  .gate-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);
+    display:block;margin-bottom:4px;font-style:normal}
+
+  /* product */
+  .product{background:var(--deep);color:#e9e3f2}
+  .product h2,.product h3{color:#fff}
+  .product .lede{color:#bdb0d6}
+  .prod-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+  @media(max-width:960px){.prod-grid{grid-template-columns:1fr}}
+  .feat{display:flex;gap:18px;margin-bottom:30px}
+  .feat .dot{flex:none;width:12px;height:12px;border-radius:50%;background:var(--grad);margin-top:9px}
+  .feat p{color:#cfc6e0;font-size:.98rem}
+  .feat h3{font-size:1.05rem;margin-bottom:4px}
+  /* prep card mock */
+  .prep{background:#fff;color:var(--ink);border-radius:16px;padding:30px 30px 26px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);max-width:430px;margin-left:auto}
+  @media(max-width:960px){.prep{margin:0 auto}}
+  .prep .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .prep .ph .t{font-weight:600;font-size:.95rem;color:var(--deep)}
+  .prep .ph .badge{font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#fff;background:var(--teal);
+    border-radius:99px;padding:4px 10px}
+  .prep .row{border-top:1px solid var(--line);padding:12px 0}
+  .prep .row .k{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:3px}
+  .prep .row .v{font-size:.9rem;line-height:1.5}
+  .prep .carry{background:var(--blush);border-radius:8px;padding:12px 14px;font-size:.86rem;margin-top:8px;
+    border-left:3px solid var(--purple)}
+  .prep .carry b{color:var(--purple)}
+
+  /* constitution */
+  .consti .cols{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line)}
+  @media(max-width:760px){.consti .cols{grid-template-columns:1fr}}
+  .consti .col{padding:36px 40px}
+  .consti .col.ai{background:var(--blush)}
+  .consti .col.hu{background:var(--deep);color:#e9e3f2}
+  .consti .col h3{margin-bottom:18px}
+  .consti .col.hu h3{color:#fff}
+  .consti ul{list-style:none}
+  .consti li{padding:9px 0;border-bottom:1px solid rgba(107,82,158,.14);font-size:.97rem}
+  .consti .col.hu li{border-color:rgba(255,255,255,.12);color:#cfc6e0}
+  .consti li b{font-weight:600}
+  .consti .col.hu li b{color:#fff}
+
+  /* journey */
+  .journey .jgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+  .jcard{border:1px solid var(--line);border-radius:12px;padding:34px 32px;background:#fff}
+  .jcard .step{font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+  .jcard h3{margin:10px 0 12px;font-size:1.3rem;font-weight:600}
+  .jcard p{font-size:.96rem;color:var(--muted)}
+  .jcard .price{margin-top:18px;font-weight:600;color:var(--deep);font-size:.92rem}
+
+  /* founder */
+  .founder{background:var(--blush)}
+  .founder-in{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;max-width:960px}
+  @media(max-width:760px){.founder-in{grid-template-columns:1fr}}
+  .fmark{width:120px;height:136px}
+  .founder blockquote{font-size:1.3rem;font-weight:300;color:var(--deep);margin-bottom:18px}
+  .founder .who{font-size:.92rem;color:var(--muted)}
+  .founder .who b{color:var(--onyx)}
+
+  /* cta */
+  .cta{background:var(--deep);color:#fff;text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='110' viewBox='0 0 96 110'%3E%3Cpath d='M48 4 86 26v44L48 92 10 70V26Z' fill='none' stroke='%2375cbc4' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:96px 110px}
+  .cta-in{position:relative;max-width:760px;margin:0 auto}
+  .cta h2{color:#fff;margin-bottom:18px}
+  .cta p{margin:0 auto 34px;color:#cfc6e0}
+  .cta .fine{font-size:.85rem;color:#a99cc4;margin-top:20px}
+
+  footer{background:var(--onyx);color:#b9b3c4;padding:52px 0;font-size:.88rem}
+  .foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  footer .tag{color:#8f88a0;margin-top:6px}
+  footer a{color:var(--teal-hi);text-decoration:none}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.gcard:hover{transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top" aria-label="OnTheGrow.ai home">
+      <svg width="58" height="34" viewBox="0 0 58 34" fill="none" aria-hidden="true">
+        <path d="M14 2 25 8.5v13L14 28 3 21.5v-13Z" stroke="#39989e" stroke-width="2.2" fill="none"/>
+        <path d="M33 6 44 12.5v13L33 32 22 25.5v-13Z" stroke="#6B529E" stroke-width="2.2" fill="none"/>
+        <path d="M10.5 13.5h7L14 18.5Z" fill="#6B529E"/>
+        <path d="M29.5 17.5h7L33 22.5Z" fill="#39989e"/>
+      </svg>
+      <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wai">.AI</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#thesis">The Thesis</a>
+      <a href="#growth">The Model</a>
+      <a href="#product">The Product</a>
+      <a href="#journey">How It Works</a>
+      <a class="btn btn-primary" href="https://www.onthegrowleadership.com/contact-us">Book the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero dark" id="top">
+  <div class="wrap hero-in">
+    <span class="eyebrow">Leadership as Infrastructure™</span>
+    <h1>AI doesn't fix leadership.<br><span class="accent">It scales it.</span></h1>
+    <p class="sub">The strong and the broken alike — faster, at scale, and on the record. Your managers are already leading with AI in the room. The question is whether your leadership system can govern what it scales.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-teal" href="https://www.onthegrowleadership.com/contact-us">Book the Assessment</a>
+      <a class="btn btn-ghost" href="#thesis">Read the thesis</a>
+    </div>
+    <p class="hero-note">$2,500 · up to 8 leaders · two weeks · no documents required from your organization</p>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-in">
+      <div class="stat reveal"><div class="num">+45<span>%</span></div><div class="lbl">Overall engagement</div></div>
+      <div class="stat reveal"><div class="num">+32<span>%</span></div><div class="lbl">Leader effectiveness</div></div>
+      <div class="stat reveal"><div class="num">−27<span>%</span></div><div class="lbl">Turnover</div></div>
+      <div class="stat reveal"><div class="num">9</div><div class="lbl">Consecutive quarters of EBITDA improvement</div></div>
+    </div>
+    <p class="prov">Results Liz Corey delivered as Chief Human Resources Officer, installing this same system inside PE-backed companies. Not projections — a track record.</p>
+  </div>
+</div>
+
+<section id="thesis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The Thesis</span>
+      <h2>The gap between your strategy and your results is almost always a <strong>leadership gap.</strong></h2>
+      <p class="lede">In most organizations, leadership quality depends on which manager an employee happens to get — fifteen leaders running fifteen different standards for expectations, feedback, and accountability. Training doesn't fix it: awareness decays in thirty days, and the environment wins. A missing system can only be fixed by installing one.</p>
+    </div>
+    <div class="split">
+      <div class="pillar obs reveal">
+        <span class="tag">What AI platforms build</span>
+        <h3>Observation architectures</h3>
+        <p>Agents observe, predict, and recommend. They know who's overworked, what the telemetry says, where the risk sits. Every process terminates in information — and knowledge doesn't execute. Every recommendation ever produced has lived or died in the same place: a conversation.</p>
+      </div>
+      <div class="pillar com reveal">
+        <span class="tag">What OnTheGrow builds</span>
+        <h3>A commitment architecture</h3>
+        <p>Align, decide, commit, develop. Every consequential conversation ends in an owned action — a name, a date, a consequence — and a leader who grew from having it. The agents feed the reflection. GROWTH™ produces what agents structurally cannot: agreement, ownership, courage, and growth.</p>
+      </div>
+    </div>
+    <div class="callout reveal">
+      <strong>Leadership inconsistency has a balance sheet.</strong> It shows up as turnover, missed commitments, and decisions that don't hold — and AI is now amplifying every one of your leadership standards separately, at machine speed, with your leaders' names attached.
+    </div>
+  </div>
+</section>
+
+<section class="growth" id="growth">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The GROWTH™ Execution Model</span>
+      <h2>One framework. Every conversation. <strong>Real results.</strong></h2>
+      <p class="lede">Six steps that structure every consequential conversation in a business — from a CEO's planning session to a frontline manager's Thursday 1:1. Each step ends at a human gate: the question asked out loud before AI-assisted work ships.</p>
+    </div>
+    <div class="ggrid">
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/><defs><linearGradient id="gg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#75cbc4"/><stop offset="1" stop-color="#6B529E"/></linearGradient></defs></svg><span>G</span></div>
+        <h3>Goal</h3>
+        <p class="std">Define success before execution begins. AI surfaces criteria and precedent; the human sets intent.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Did a human define success before AI touched the work?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>R</span></div>
+        <h3>Reflection</h3>
+        <p class="std">Surface what is actually true, not what is assumed. AI supplies data; the human interrogates it.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Has this output been interrogated, or accepted?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>O</span></div>
+        <h3>Options</h3>
+        <p class="std">Explore real alternatives before committing. AI generates paths; the decision stays human-made.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Were real alternatives weighed before committing?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>W</span></div>
+        <h3>What's Next</h3>
+        <p class="std">Every action gets a named owner, a date, and a consequence. AI drafts the plan; a human owns it.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Who signed this — and will they answer for it?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>T</span></div>
+        <h3>Tactic</h3>
+        <p class="std">Name where this will be hardest — and plan for that moment before it arrives. AI stress-tests the plan; the human owns the contingency.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Has the hardest moment been named and planned — or will we improvise at machine speed?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>H</span></div>
+        <h3>Habits</h3>
+        <p class="std">Repetition and rhythm make the standard permanent — and the person grows from keeping it. This step is OnTheGrow.ai™.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Is the standard installed in the rhythm, or living in memory?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product dark" id="product">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">OnTheGrow.ai™</span>
+      <h2>Every leader gets a <strong style="color:#75cbc4">coach in the room.</strong></h2>
+      <p class="lede">Executives pay $500 an hour for what your managers get on every calendar: a partner that preps each 1:1 against the GROWTH™ standard, remembers every commitment, and surfaces the patterns nobody else will name.</p>
+    </div>
+    <div class="prod-grid">
+      <div>
+        <div class="feat reveal"><div class="dot"></div><div>
+          <h3>It prepares you</h3>
+          <p>The prep card arrives the night before — the agenda, the open commitments, the pattern worth knowing. You walk in ready instead of winging it.</p>
+        </div></div>
+        <div class="feat reveal"><div class="dot"></div><div>
+          <h3>It remembers for you</h3>
+          <p>Every commitment carries forward. Your people feel remembered; nothing slips into the dark between meetings.</p>
+        </div></div>
+        <div class="feat reveal"><div class="dot"></div><div>
+          <h3>It holds your standard</h3>
+          <p>Evidence separated from assumption. Every action owned by a name and a date. The hard moment rehearsed before it arrives.</p>
+        </div></div>
+        <div class="feat reveal"><div class="dot"></div><div>
+          <h3>It knows what it shouldn't do</h3>
+          <p>It will never own your goal, make your decision, or ship unsigned work — and anything that deserves a person is routed to one, warmly, with nothing retained. Restraint isn't a limitation. It's the product's soul.</p>
+        </div></div>
+      </div>
+      <div class="prep reveal" aria-label="Example preparation card">
+        <div class="ph"><span class="t">Thursday 9:00 — 1:1 with Marcus</span><span class="badge">PREP CARD</span></div>
+        <div class="row"><div class="k">Goal</div><div class="v">Re-align on the migration timeline — and find out what's behind two missed check-ins.</div></div>
+        <div class="row"><div class="k">Open commitments</div><div class="v">Vendor escalation (due Tue — <b>open</b>) · Test plan draft (done ✓)</div></div>
+        <div class="row"><div class="k">Tactic — the hard moment</div><div class="v">If he says "it's fine" — name the pattern gently, and ask what you're not seeing.</div></div>
+        <div class="carry"><b>Carry-forward:</b> Three weeks ago you committed to giving Marcus more autonomy on vendor calls. The last two agendas say otherwise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="consti" id="constitution">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The GROWTH™ AI Harness</span>
+      <h2>The leadership <strong>constitution</strong> for the AI era.</h2>
+      <p class="lede">Analysts agree: companies will tune their AI systems with rubrics and constitutions that govern how decisions get made. Almost no one can say what that constitution contains. Ours is written, versioned, installable — and enforced in software, not in a policy PDF.</p>
+    </div>
+    <div class="cols reveal">
+      <div class="col ai">
+        <h3>AI accelerates</h3>
+        <ul>
+          <li><b>Surfaces</b> criteria, context, and precedent</li>
+          <li><b>Summarizes</b> data and finds the patterns</li>
+          <li><b>Generates</b> options and models the tradeoffs</li>
+          <li><b>Drafts</b> the plan, the message, the follow-ups</li>
+          <li><b>Stress-tests</b> the plan before it meets reality</li>
+          <li><b>Reinforces</b> the standard, every day</li>
+        </ul>
+      </div>
+      <div class="col hu">
+        <h3>Humans own</h3>
+        <ul>
+          <li><b>Intent</b> — success is defined by a person</li>
+          <li><b>Truth</b> — output is interrogated, not accepted</li>
+          <li><b>Decisions</b> — AI-informed, never AI-made</li>
+          <li><b>Ownership</b> — a name, a date, a consequence</li>
+          <li><b>Courage</b> — the hard conversation, held with grace</li>
+          <li><b>The standard</b> — defined by humans, kept by rhythm</li>
+        </ul>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:28px;font-size:1.05rem"><b>We build the leader, not the verdict.</b> The system develops the decider and never makes the decision — which is exactly why the leaders who use it get stronger, and the enterprises that install it can trust it.</p>
+  </div>
+</section>
+
+<section class="journey" id="journey" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>Measure. Install. <strong>Sustain.</strong></h2>
+    </div>
+    <div class="jgrid">
+      <div class="jcard reveal">
+        <span class="step">01 — Measure</span>
+        <h3>Leadership Intelligence Assessment™</h3>
+        <p>Evidence, not surveys: how your leaders actually operate with AI in the loop. Your Leadership Intelligence Index™, six gate readings, your variance — and its cost in dollars. No documents required from your organization. Ever.</p>
+        <p class="price">$2,500 · up to 8 leaders · two weeks</p>
+      </div>
+      <div class="jcard reveal">
+        <span class="step">02 — Install</span>
+        <h3>GROWTH™ Installation</h3>
+        <p>One operating standard wired into the conversations you already run — 1:1s, reviews, planning rhythms. The executive team goes first. Time cost near zero: the standard enters meetings already on the calendar.</p>
+        <p class="price">Founding-client terms available</p>
+      </div>
+      <div class="jcard reveal">
+        <span class="step">03 — Sustain</span>
+        <h3>OnTheGrow.ai™</h3>
+        <p>The coach in the room, every day: prep, memory, carry-forward, and the aggregate consistency picture for the CHRO. Programs decay in thirty days. Infrastructure holds — and now you can prove it.</p>
+        <p class="price">Per-leader seats · enterprise knowledge tier</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="founder">
+  <div class="wrap founder-in">
+    <svg class="fmark reveal" viewBox="0 0 100 114" fill="none" aria-hidden="true">
+      <defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#75cbc4"/><stop offset=".5" stop-color="#39989e"/><stop offset="1" stop-color="#6B529E"/></linearGradient></defs>
+      <path d="M50 4 92 28v58L50 110 8 86V28Z" stroke="url(#fm)" stroke-width="3.4"/>
+      <path d="M50 26 71 38v24L50 74 29 62V38Z" stroke="url(#fm)" stroke-width="2.6"/>
+      <path d="M50 4v22M92 28 71 38M92 86 71 62M50 110V74M8 86l21-24M8 28l21 10" stroke="url(#fm)" stroke-width="2.2"/>
+    </svg>
+    <div>
+      <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure — rather than aspiration — are the ones whose strategies will survive contact with the AI era."</blockquote>
+      <p class="who reveal"><b>Liz Corey</b> — Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard — and results were the only argument that counted.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta dark">
+  <div class="wrap cta-in">
+    <span class="eyebrow">Founding Clients</span>
+    <h2>Two weeks from now, <strong style="color:#75cbc4">you'll know.</strong></h2>
+    <p>How many different leadership standards your company is actually running. Which human gates are open. What it's costing you — in dollars. And exactly what to do in the next ninety days.</p>
+    <a class="btn btn-teal" href="https://www.onthegrowleadership.com/contact-us">Book the Assessment — $2,500</a>
+    <p class="fine">Founding installation terms for a limited number of organizations — with a contractual 90-day measurement and a working guarantee behind it.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <span class="wm-text" style="color:#fff"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wai" style="color:#75cbc4">.AI</span></span>
+      <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One framework. Every conversation. Real results.</p>
+    </div>
+    <div style="text-align:right">
+      <p><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
+      <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    for (const e of entries) if (e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
