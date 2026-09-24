@@ -37,7 +37,9 @@ jobs:
           echo "upload_url=$(echo "$out" | jq -r .zipUploadUrl)" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifact
-        run: curl -sf -H "Content-Type: application/zip" --upload-file site.zip "${{ steps.create.outputs.upload_url }}"
+        run: >
+          curl -sf -H "Content-Type: application/zip"
+          --upload-file site.zip "${{ steps.create.outputs.upload_url }}"
 
       - name: Start deployment
         run: aws amplify start-deployment --app-id "$APP_ID" --branch-name "$BRANCH" --job-id "${{ steps.create.outputs.job_id }}"
