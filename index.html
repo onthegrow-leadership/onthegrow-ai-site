@@ -41,8 +41,8 @@
   nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .navlinks{display:flex;gap:28px;align-items:center}
-  .navlinks a{font-size:.92rem;font-weight:500;color:var(--onyx);text-decoration:none}
+  .navlinks{display:flex;gap:20px;align-items:center}
+  .navlinks a{font-size:.88rem;font-weight:500;color:var(--onyx);text-decoration:none;white-space:nowrap}
   .navlinks a:hover{color:var(--purple)}
   .btn{display:inline-block;padding:13px 26px;border-radius:6px;font-weight:600;font-size:.95rem;
        text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
@@ -300,6 +300,35 @@
   /* platform extras */
   .early-badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);background:var(--teal-hi);border-radius:99px;padding:5px 14px;margin:6px 0 14px}
 
+  /* about foundations */
+  .northstar{background:var(--deep);text-align:center;position:relative;overflow:hidden}
+  .northstar::before{content:"";position:absolute;inset:0;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='110' viewBox='0 0 96 110'%3E%3Cpath d='M48 4 86 26v44L48 92 10 70V26Z' fill='none' stroke='%2375cbc4' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:96px 110px}
+  .northstar .wrap{position:relative}
+  .northstar .line{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:300;color:#fff;max-width:none;margin-top:14px}
+  .vp{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  @media(max-width:860px){.vp{grid-template-columns:1fr;gap:48px}}
+  .vp .v{font-size:1.25rem;font-weight:300;color:var(--ink);margin-top:14px;max-width:none}
+  .vp .v b{font-weight:600}
+  .ggsec{background:var(--blush)}
+  .ggcards{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  @media(max-width:860px){.ggcards{grid-template-columns:1fr}}
+  .ggcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:36px 38px}
+  .ggcard h3{font-size:1.5rem;margin-bottom:8px}
+  .ggcard .leadline{font-weight:600;color:var(--deep);margin-bottom:10px}
+  .ggcard .shows{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin:18px 0 8px}
+  .ggcard ul{list-style:none}
+  .ggcard li{padding:7px 0;border-bottom:1px solid var(--line);font-size:.97rem}
+  .ggcard li:last-child{border-bottom:none}
+  .lens{text-align:center;margin-top:56px}
+  .lens .big{font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:600;color:var(--deep);max-width:none}
+  .lens .small{font-size:1rem;color:var(--muted);margin-top:10px;max-width:none}
+  .ourmark{text-align:center}
+  .ourmark .sec-head{margin:0 auto 36px}
+  .ourmark .mline{margin:0 auto;max-width:none;font-size:1.12rem;color:var(--muted)}
+  .ourmark img{width:130px;height:auto;margin:40px auto 0;display:inline-block}
+
   /* reveal */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
   .reveal.on{opacity:1;transform:none}
@@ -324,6 +353,7 @@
       <a href="#method">The Method</a>
       <a href="#work">Work With Us</a>
       <a href="#about">About</a>
+      <a href="/resources/">Resources</a>
       <a class="btn btn-primary" href="/readiness/">Take the Amplifier Test</a>
     </div>
   </div>
@@ -735,6 +765,88 @@
     <div>
       <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
       <p class="who reveal"><b>Liz Corey</b>, Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
+    </div>
+  </div>
+</section>
+
+<section class="northstar dark">
+  <div class="wrap">
+    <span class="eyebrow">Our North Star</span>
+    <p class="line reveal">Everyone deserves to be led well.</p>
+  </div>
+</section>
+
+<section id="values">
+  <div class="wrap">
+    <div class="vp">
+      <div class="reveal">
+        <span class="eyebrow">Our Values</span>
+        <p class="v"><b>Leadership That Lifts™</b> is how we lead.</p>
+        <p class="v"><b>Grace + Grit™</b> is how we behave.</p>
+        <p class="v"><b>GROWTH™</b> is how we scale it.</p>
+        <p class="v"><b>Client Dedication</b> is how we partner.</p>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Our Pledge</span>
+        <p class="v">We build up.</p>
+        <p class="v">We speak truth.</p>
+        <p class="v">We put people first and let technology serve them.</p>
+        <p class="v">We grow people, and results follow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ggsec" id="grace-grit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The Competencies</span>
+      <h2>Grace + Grit™:<br><strong>The Competencies Behind Leadership That Lifts™</strong></h2>
+      <p class="lede">Leadership that lifts requires both Grace and Grit, held at the same time.</p>
+    </div>
+    <div class="ggcards">
+      <div class="ggcard reveal">
+        <h3>Grace</h3>
+        <p class="leadline">Grace governs how leadership is delivered.</p>
+        <p>It creates trust, dignity, and psychological safety so people can think clearly, speak honestly, and grow.</p>
+        <p class="shows">Grace shows up as:</p>
+        <ul>
+          <li>Psychological safety and respect</li>
+          <li>Empathy and active listening</li>
+          <li>Clarity without judgment</li>
+        </ul>
+      </div>
+      <div class="ggcard reveal">
+        <h3>Grit</h3>
+        <p class="leadline">Grit governs what leadership produces.</p>
+        <p>It ensures execution through clarity, ownership, and disciplined follow-through.</p>
+        <p class="shows">Grit shows up as:</p>
+        <ul>
+          <li>Clear expectations and standards</li>
+          <li>Courageous truth-telling</li>
+          <li>Ownership and follow-through</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lens reveal">
+      <p class="big">Too much grace creates drift. Too much grit creates friction.</p>
+      <p class="small">Leadership systems that engineer both reduce risk and accelerate results.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ourmark" id="our-mark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Mark</span>
+      <h2>More than a logo.<br><strong>It represents modern leadership.</strong></h2>
+    </div>
+    <div class="reveal">
+      <p class="mline">The form points upward because leadership lifts.</p>
+      <p class="mline">It expands outward because growth spreads.</p>
+      <p class="mline">Its edges reflect grit. Its glow reflects grace.</p>
+      <p class="mline">This symbol embodies our North Star: everyone deserves to be led well.</p>
+      <img src="assets/otg-mark.png" alt="The OnTheGrow Leadership hexagon mark" width="337" height="400">
     </div>
   </div>
 </section>
