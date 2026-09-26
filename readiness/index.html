@@ -427,6 +427,7 @@ $("reportForm").addEventListener("submit", async (e) => {
     company: $("company").value.trim(),
     talkRequest: $("talk").checked
   };
+  if ($("talk").checked) body.resource = "talk request";
   const btn = $("sendBtn");
   btn.disabled = true; btn.textContent = "Sending";
   try {
