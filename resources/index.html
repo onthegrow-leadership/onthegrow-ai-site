@@ -120,7 +120,7 @@
     <div class="rescard">
       <span class="eyebrow">The Book</span>
       <h2>AI Will Scale Good Leadership. And Bad Leadership.</h2>
-      <p class="body">A two-page summary of the book's thesis and method. Publishing fall 2026.</p>
+      <p class="body">A two-page summary of the book's thesis and method. Publishing Fall 2026.</p>
       <form class="resform" id="summaryForm" novalidate>
         <input type="email" name="email" placeholder="you@company.com" aria-label="Email for the book summary" required>
         <button class="btn" type="submit" id="summaryBtn">Send me the summary</button>
@@ -129,6 +129,21 @@
       <div class="form-ok" id="summaryOk">
         <a class="btn" href="/book-summary.pdf" download>Download the summary (PDF)</a>
         <p class="note">The summary is yours. You can ask us to delete your record any time.</p>
+      </div>
+    </div>
+
+    <div class="rescard" style="margin-top:20px">
+      <span class="eyebrow">The Evidence Brief</span>
+      <h2>14 Chapters, 14 Independent Findings</h2>
+      <p class="body">Recent research from McKinsey, BCG, Accenture, EY, IBM, PwC, and Harvard Business Review, paired with each chapter of the book.</p>
+      <form class="resform" id="briefForm" novalidate>
+        <input type="email" name="email" placeholder="you@company.com" aria-label="Email for the evidence brief" required>
+        <button class="btn" type="submit" id="briefBtn">Send me the brief</button>
+        <p class="form-err" id="briefErr"></p>
+      </form>
+      <div class="form-ok" id="briefOk">
+        <a class="btn" href="/evidence-brief.pdf" download>Download the brief (PDF)</a>
+        <p class="note">The brief is yours. You can ask us to delete your record any time.</p>
       </div>
     </div>
   </div>
@@ -195,32 +210,38 @@ FORBES.forEach(([date, title, summary, url]) => {
   grid.appendChild(card);
 });
 
-document.getElementById("summaryForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const err = document.getElementById("summaryErr");
-  err.style.display = "none";
-  const email = e.target.email.value.trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-    err.textContent = "That email doesn't look complete. Check it and try again.";
-    err.style.display = "block";
-    return;
-  }
-  const btn = document.getElementById("summaryBtn");
-  btn.disabled = true; btn.textContent = "Sending";
-  try {
-    const res = await fetch(WEBHOOK_URL, {method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({tag:"book-launch-notify", resource:"book-summary", email:email,
-        source:"onthegrow.ai/resources", submittedAt:new Date().toISOString()})});
-    if (!res.ok) throw new Error("bad response");
-    e.target.style.display = "none";
-    document.getElementById("summaryOk").style.display = "block";
-  } catch(_) {
-    err.textContent = "Something went wrong on our end. Email liz@onthegrowleadership.com and we will send the summary directly.";
-    err.style.display = "block";
-  } finally {
-    btn.disabled = false; btn.textContent = "Send me the summary";
-  }
-});
+// One gate per resource card: posts to the webhook, then reveals the download on screen.
+function wireGate(formId, okId, errId, btnId, resource, noun){
+  document.getElementById(formId).addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const err = document.getElementById(errId);
+    err.style.display = "none";
+    const email = e.target.email.value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      err.textContent = "That email doesn't look complete. Check it and try again.";
+      err.style.display = "block";
+      return;
+    }
+    const btn = document.getElementById(btnId);
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Sending";
+    try {
+      const res = await fetch(WEBHOOK_URL, {method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({tag:"book-launch-notify", resource:resource, email:email,
+          source:"onthegrow.ai/resources", submittedAt:new Date().toISOString()})});
+      if (!res.ok) throw new Error("bad response");
+      e.target.style.display = "none";
+      document.getElementById(okId).style.display = "block";
+    } catch(_) {
+      err.textContent = "Something went wrong on our end. Email liz@onthegrowleadership.com and we will send the " + noun + " directly.";
+      err.style.display = "block";
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+}
+wireGate("summaryForm", "summaryOk", "summaryErr", "summaryBtn", "book-summary", "summary");
+wireGate("briefForm", "briefOk", "briefErr", "briefBtn", "evidence-brief", "brief");
 </script>
 </body>
 </html>
