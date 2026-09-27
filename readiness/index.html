@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Amplifier Assessment | OnTheGrow Leadership</title>
-<meta name="description" content="What will AI scale on your team? Sixteen statements. Four minutes. No email required to see your score.">
+<meta name="description" content="What will AI scale on your team? Twelve statements. Three minutes. No email required to see your score.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,9 +50,9 @@
 
   .progress{height:3px;background:rgba(255,255,255,.14);border-radius:99px;overflow:hidden;margin-bottom:14px}
   .progress i{display:block;height:100%;background:var(--teal-hi);width:0;transition:width .25s ease}
-  .qmeta{display:flex;justify-content:space-between;align-items:baseline;font-size:.82rem;color:var(--faint);margin-bottom:6px}
+  .qmeta{display:flex;justify-content:space-between;align-items:baseline;font-size:.82rem;color:var(--faint);margin-bottom:30px;gap:12px;flex-wrap:wrap}
   .qmeta .sect{font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-hi)}
-  .sect-tag{font-size:.92rem;font-style:italic;color:var(--faint);margin-bottom:28px;min-height:1.5em}
+  .qmeta .sect.context{color:var(--faint);letter-spacing:.08em;text-transform:none;font-style:italic}
 
   .question{font-weight:400;font-size:clamp(1.2rem,3.4vw,1.5rem);line-height:1.4;color:#fff;margin-bottom:34px;max-width:36em}
   .opts{display:flex;flex-direction:column;gap:12px;list-style:none}
@@ -67,28 +67,32 @@
 
   .scoreline{font-size:.95rem;color:var(--dim);margin-bottom:8px}
   .scoreline b{color:#fff;font-size:1.5rem;font-weight:600}
-  .dgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:28px 0 6px;max-width:600px}
-  @media(max-width:560px){.dgrid{grid-template-columns:repeat(2,1fr)}}
-  .dtile{border-radius:8px;padding:14px 10px;text-align:center;font-size:.85rem;font-weight:600;letter-spacing:.04em}
-  .dtile.ok{background:var(--ok);color:#fff}
-  .dtile.warn{background:var(--warn);color:var(--deep)}
-  .dtile.risk{background:var(--risk);color:#fff}
-  .readout{font-size:1.08rem;color:var(--dim);margin-top:26px;max-width:46ch}
+  .gbars{margin:28px 0 6px;max-width:520px;display:flex;flex-direction:column;gap:10px}
+  .gbar{border-radius:8px;padding:13px 18px;font-size:.9rem;font-weight:600;letter-spacing:.04em}
+  .gbar.ok{background:var(--ok);color:#fff}
+  .gbar.warn{background:var(--warn);color:var(--deep)}
+  .gbar.risk{background:var(--risk);color:#fff}
+  .readout{font-size:1.08rem;color:var(--dim);margin-top:26px;max-width:48ch}
   .readout b{color:#fff}
-  .zeroline{font-size:1rem;color:var(--teal-hi);margin-top:16px;max-width:44ch}
-  .stage-link{margin-top:20px}
-  .stage-link a{color:var(--teal-hi)}
-  .decode{margin-top:30px;border-left:3px solid var(--teal-hi);padding-left:18px}
-  .decode p{color:var(--dim);max-width:46ch}
-  .decode .btn{margin-top:14px}
-  .teamline{margin-top:28px;font-size:.98rem;color:var(--dim);max-width:52ch}
+  .flags{margin-top:26px;max-width:52ch}
+  .flags .k{font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--risk);margin-bottom:8px}
+  .flag{border-left:3px solid var(--risk);padding:6px 0 6px 14px;margin-bottom:10px;color:var(--dim);font-size:.98rem}
+  .zeroline{font-size:1rem;color:var(--teal-hi);margin-top:20px;max-width:48ch}
+  .closing{margin-top:34px;max-width:50ch}
+  .closing .big{font-size:1.15rem;font-weight:600;color:#fff}
+  .closing .small{font-size:.95rem;color:var(--faint);margin-top:8px}
   .result-block{margin-top:28px}
   .result-block .k{font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-hi);margin-bottom:6px}
   .result-block p{color:var(--dim)}
   .result-block p b{color:#fff;font-weight:600}
+  .result-block a{color:var(--teal-hi)}
   .dims{list-style:none;margin-top:6px}
   .dims li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 0;font-size:.95rem;color:var(--dim);max-width:420px}
   .dims li b{color:#fff;font-variant-numeric:tabular-nums}
+  .decode{margin-top:30px;border-left:3px solid var(--teal-hi);padding-left:18px}
+  .decode p{color:var(--dim);max-width:46ch}
+  .decode .btn{margin-top:14px}
+  .teamline{margin-top:28px;font-size:.98rem;color:var(--dim);max-width:52ch}
 
   .capture{margin-top:44px;border:1px solid var(--line);border-radius:12px;padding:32px 30px;background:rgba(255,255,255,.04)}
   .capture h2{font-size:1.3rem;font-weight:400;margin-bottom:10px}
@@ -139,8 +143,8 @@
       <p class="subhead">What will AI scale on your team?</p>
       <div class="rule"></div>
       <p class="dim">A leader is anyone who directs the work of someone else, human or AI. Title does not matter.</p>
-      <p class="dim" style="margin-top:14px">Rate each statement about your organization. Answer for what you could show someone today. Not what you plan. Not what you believe.</p>
-      <p style="margin-top:18px"><b>Sixteen statements. Four minutes. No email required to see your score.</b></p>
+      <p class="dim" style="margin-top:14px">Rate each statement about your organization. Answer for what you could prove today. Not what you plan. Not what you believe.</p>
+      <p style="margin-top:18px"><b>Twelve statements. Three minutes. No email required to see your score.</b></p>
       <p style="margin-top:34px"><button class="btn" id="startBtn">Start the assessment</button></p>
       <p class="faint" style="margin-top:44px;max-width:64ch"><b>Privacy.</b> Your answers are recorded anonymously to improve the assessment. Your email is only stored if you request the full report. We keep that record for 24 months or until you ask us to delete it. Write to liz@onthegrowleadership.com any time for a copy or deletion. We never sell your data.</p>
     </section>
@@ -149,7 +153,6 @@
     <section id="quiz" class="hidden">
       <div class="progress"><i id="bar"></i></div>
       <div class="qmeta"><span class="sect" id="qSection"></span><span id="qCount"></span></div>
-      <p class="sect-tag" id="qTagline"></p>
       <h1 class="question" id="qText"></h1>
       <ul class="opts" id="qOpts"></ul>
       <button class="backlink" id="backBtn">Back</button>
@@ -158,21 +161,23 @@
     <!-- Result -->
     <section id="result" class="hidden">
       <span class="eyebrow">Your result</span>
-      <p class="scoreline">Score: <b id="rScore"></b> of 48</p>
+      <p class="scoreline">Score: <b id="rScore"></b> of 36</p>
       <h1 id="rState"></h1>
-      <div class="dgrid" id="dgrid"></div>
+      <div class="gbars" id="gbars"></div>
       <p class="readout"><b id="rGapFree"></b> <span id="rReadout"></span></p>
-      <p class="zeroline" id="rZero"></p>
-      <p class="stage-link">Your starting stage in the method: <a id="rStageLink" href="/#method"></a></p>
-      <div class="decode">
-        <p>This is where a Decode engagement starts: a knowledge audit and your first agent job descriptions.</p>
-        <a class="btn" href="https://calendly.com/liz-onthegrowleadership">Talk with us</a>
+      <div class="flags hidden" id="rFlags">
+        <p class="k">Critical flags</p>
+        <div id="rFlagList"></div>
       </div>
-      <p class="teamline">The real finding is the gap between how your leaders answer. Have your leadership team take the assessment with the same company name, and we will compare the results with you.</p>
+      <p class="zeroline" id="rZero"></p>
+      <div class="closing">
+        <p class="big">Your readiness is not how much AI you've deployed. It is what happens when you multiply the organization you already have.</p>
+        <p class="small">AI is the amplifier. Leadership is the infrastructure.</p>
+      </div>
 
       <div class="capture" id="capture">
         <h2>Want the full report?</h2>
-        <p class="sub">Scores on all five parts, the first move for your weakest part, and the matching book chapters.</p>
+        <p class="sub">All four group scores, every flag explained, the first move for your weakest group, and the matching book chapters.</p>
         <form id="reportForm" novalidate>
           <div class="field">
             <label for="email">Email</label>
@@ -193,17 +198,30 @@
       <!-- Full report, revealed after email -->
       <div id="fullReport" class="hidden">
         <div class="result-block">
-          <p class="k">Your part scores</p>
+          <p class="k">Your group scores</p>
           <ul class="dims" id="rDims"></ul>
+        </div>
+        <div class="result-block hidden" id="rFlagsGatedWrap">
+          <p class="k">Your critical flags</p>
+          <div id="rFlagsGated"></div>
+        </div>
+        <div class="result-block">
+          <p class="k">Where the book covers it</p>
+          <p class="dim" id="rChapter"></p>
         </div>
         <div class="result-block">
           <p class="k">The first move</p>
           <p class="dim" id="rMove"></p>
         </div>
         <div class="result-block">
-          <p class="k">Where the book covers it</p>
-          <p class="dim" id="rChapter"></p>
+          <p class="k">One ask</p>
+          <p class="dim"><a id="rAsk" href="#"></a></p>
         </div>
+        <div class="decode">
+          <p>This is where a Decode engagement starts: a knowledge audit and your first agent job descriptions.</p>
+          <a class="btn" href="https://calendly.com/liz-onthegrowleadership">Talk with us</a>
+        </div>
+        <p class="teamline">The real finding is the gap between how your leaders answer. Have your leadership team take the assessment with the same company name, and we will compare the results with you.</p>
       </div>
 
       <div class="result-ctas">
@@ -229,64 +247,68 @@
 // Go High Level inbound webhook. All submissions carry a `tag` field to branch on.
 const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/CH6hbzpcMHz9c8FHItiO/webhook-trigger/f12f0892-5189-44b2-8548-f5aa301a5a7a";
 
-const SECTIONS = ["Decode","Redesign","Amplify","Embed","Execute"];
-const TAGLINES = [
-  "See the work before you touch the technology.",
-  "Decide what humans and AI should each do.",
-  "Scale the system without scaling what is broken.",
-  "Turn new ways of working into the way work gets done.",
-  "Put the operating model to work."
-];
+const GROUPS = ["Truth","Work","Ownership","Leaders"];
 
-// One scale for every statement. "I don't know" is index 3 and feeds the don't-know count.
-const SCALE = [["True, and I could show you",3],["Mostly true",1],["Not true",0],["I don't know",0]];
+// One scale for every statement. "We've never asked" is index 3 and feeds the blind-spot count.
+const SCALE = [["True, and we can prove it",3],["True in spots",1],["Not yet true",0],["We've never asked",0]];
 
-// s: part index, or null for the unscored segmentation question.
-// Parts carry three statements each, Amplify carries four.
+// s: group index, or null for the unscored context question.
+// Groups: Truth statements 1 and 2, Work 3 through 7, Ownership 8 through 10, Leaders 11 and 12.
 const QUESTIONS = [
   {s:null, q:"Where is your organization with AI today?",
    o:[["Not yet"],["Individual use, no policy"],["Pilots underway"],["In production"],["Agents deployed"]]},
-  {s:0, q:"Every policy in our organization exists in one version, and someone has confirmed it in the last year.", o:SCALE},
-  {s:0, q:"We could show, on one page, where the hours actually go in our largest function.", o:SCALE},
-  {s:0, q:"Every piece of software that acts on its own in our organization has a named human owner and a written job.", o:SCALE},
-  {s:1, q:"For the roles with the most people in them, every task is written down and marked human, AI-assisted, automated, or agent work.", o:SCALE},
-  {s:1, q:"We decide what AI is allowed to do based on what happens if it gets it wrong, not on what the tool can do.", o:SCALE},
-  {s:1, q:"For every rule our systems apply automatically, we can name who defined it, who checks it, and who answers when it is wrong.", o:SCALE},
-  {s:2, q:"Our leaders who work with AI have shown, on real work, that they can catch a confident error, override it, and explain why.", o:SCALE},
-  {s:2, q:"Where AI agents do ongoing work, each one reports to a named leader, and that leader is accountable for the agent's results the same way as for their people's.", o:SCALE},
-  {s:2, q:"Our leaders run 1:1s, feedback, and follow-through to the same written standard.", o:SCALE},
-  {s:2, q:"When a person and an AI tool hand work to each other, the goal, what done means, and who is accountable are written down.", o:SCALE},
-  {s:3, q:"When a policy changes, one named person owns updating every place it lives.", o:SCALE},
-  {s:3, q:"When AI takes over entry-level work, we have rebuilt how new people learn the job.", o:SCALE},
-  {s:3, q:"When we move to one standard, one policy, or one version of the truth, it gets done rather than stalled.", o:SCALE},
-  {s:4, q:"One named functional leader owns job and organizational design, and that work happens before AI tools are chosen.", o:SCALE},
-  {s:4, q:"HR, IT, finance, and the business each have a defined role in every AI decision.", o:SCALE},
-  {s:4, q:"We have a 90-day AI plan with named owners, measured by business results, not adoption.", o:SCALE}
+  {s:0, q:"The policies AI relies on have a clear source of truth, a named owner, and a date someone last verified them.", o:SCALE},
+  {s:0, q:"When people disagree about which policy, process, or source is correct, we know who has the authority to resolve it.", o:SCALE},
+  {s:1, q:"For our highest-volume work, we can show where the hours go.", o:SCALE},
+  {s:1, q:"Before AI touches a job, we look at the work task by task and decide what stays human, what a person does with a machine, and what a machine may do alone.", o:SCALE},
+  {s:1, q:"We decide what AI may do by what happens if it is wrong, not by what the tool can do.", o:SCALE},
+  {s:1, q:"When AI frees capacity, we decide on purpose where those hours go.", o:SCALE},
+  {s:1, q:"When AI takes over entry-level work, we redesign how new people learn the judgment that work used to teach.", o:SCALE},
+  {s:2, q:"For rules our systems apply automatically, we can name who defined them, who checks them, and who answers when they are wrong.", o:SCALE},
+  {s:2, q:"Every AI system that acts on its own has a named human owner and written boundaries.", o:SCALE},
+  {s:2, q:"A named leader owns work and role design before AI technology decisions are made.", o:SCALE},
+  {s:3, q:"Leaders who use AI have caught a confident error on real work, overridden it, and explained why.", o:SCALE},
+  {s:3, q:"Expectations, feedback, accountability, and follow-through do not depend on which leader an employee happens to get.", o:SCALE}
 ];
 
 const STATES = [
-  {min:38, name:"Ready to scale", stage:"amplify", stageName:"Amplify"},
-  {min:25, name:"Scale with conditions", stage:"redesign", stageName:"Redesign"},
-  {min:13, name:"Fix before you scale", stage:"decode", stageName:"Decode"},
-  {min:0, name:"Not visible enough to scale", stage:"decode", stageName:"Decode"}
+  {min:29, name:"Ready to scale"},
+  {min:19, name:"Scale with conditions"},
+  {min:10, name:"Fix before you scale"},
+  {min:0, name:"Not visible enough to scale"}
 ];
 
+// Critical flags fire when their statement scores 0 (either zero answer).
+const FLAGS = {
+  5:"You are granting AI authority based on what it can do, not what it costs when it is wrong.",
+  9:"Software is acting in your organization with no one accountable for it.",
+  10:"Do not buy the next tool until work design has an owner.",
+  11:"Your leaders have not yet proven they can catch AI when it is confidently wrong.",
+  12:"AI will amplify every version of leadership you have, including the ones you would not choose."
+};
+const CROSS_CHECK = "A written standard you cannot see in an override is still a lottery.";
+
 const GAPS = [
-  {readout:"You cannot yet see the work AI is about to touch. Policies disagree, hours are unmeasured, or software is acting without an owner.",
-   move:"Make one answer true for your ten most-asked questions, then list every tool that acts on its own and put a name beside it.",
-   ch:"Chapters 1 through 4"},
-  {readout:"Work is moving to AI without a decision about who, or what, should do it.",
-   move:"A task inventory for one of your largest roles, with each task marked by the cost of being wrong.",
-   ch:"Chapters 5 through 8"},
-  {readout:"You are about to scale leaders who have not proven they can lead people and agents together.",
-   move:"Before the next rollout, confirm every leader can catch a confident error, override it, and explain why, and give every agent a named leader.",
-   ch:"Chapters 9 through 11"},
-  {readout:"New ways of working are not sticking. Standards stall, policies drift, and new people are losing the work they used to learn on.",
-   move:"Name the one standard that keeps stalling, and ask who benefits from leaving it unclear.",
-   ch:"Chapters 12 and 13"},
-  {readout:"AI decisions have no operating model. Tools arrive before design, and success is measured by adoption.",
-   move:"Name the functional leader who owns work design, and build a 90-day plan measured by business results.",
-   ch:"Chapter 14"}
+  {readout:"AI will inherit your knowledge exactly as it stands: the outdated version, the contradiction, and the argument nobody has settled.",
+   partline:"This is Decode, chapters 1 through 4.",
+   move:"Pick your ten most-asked questions and make one answer true everywhere, with a name beside it.",
+   ask:"Send us one policy that lives in two places. We will show you what AI will do with it.",
+   askSubject:"The Amplifier Assessment: Truth"},
+  {readout:"You cannot redesign work you have not seen, and AI is about to move it anyway.",
+   partline:"This is Redesign, chapters 5 through 8.",
+   move:"A task inventory for one high-volume role, with hours, and a decision for each task about what a machine may do alone.",
+   ask:"Send us one job description for a high-volume role. We will show you which tasks a machine will take first.",
+   askSubject:"The Amplifier Assessment: Work"},
+  {readout:"Systems and software are making decisions nobody owns.",
+   partline:"This is Redesign and Decode, chapters 4 and 7.",
+   move:"List every rule and tool that acts on its own and put one name beside each, then name who owns work design before the next purchase.",
+   ask:"Name one tool in your organization that already acts on its own. We will show you what its owner needs to decide.",
+   askSubject:"The Amplifier Assessment: Ownership"},
+  {readout:"AI will scale every version of leadership you have.",
+   partline:"This is Amplify, chapters 9 through 11.",
+   move:"Before the next rollout, confirm every leader can catch a confident error and explain the override, and put one standard under every leader.",
+   ask:"Send us one AI-drafted review or one override from the last 30 days. We will show you what it reveals.",
+   askSubject:"The Amplifier Assessment: Leaders"}
 ];
 
 let current = 0;
@@ -302,9 +324,16 @@ const show = id => {
 function renderQuestion(){
   const item = QUESTIONS[current];
   $("bar").style.width = (current / QUESTIONS.length * 100) + "%";
-  $("qSection").textContent = item.s === null ? "Before we score" : SECTIONS[item.s];
-  $("qTagline").textContent = item.s === null ? "" : TAGLINES[item.s];
-  $("qCount").textContent = (item.s === null ? "Question " : "Statement ") + (current === 0 ? "1 of 17" : current + " of 16");
+  const sect = $("qSection");
+  if (item.s === null){
+    sect.textContent = "First, a little context (not scored)";
+    sect.className = "sect context";
+    $("qCount").textContent = "";
+  } else {
+    sect.textContent = GROUPS[item.s];
+    sect.className = "sect";
+    $("qCount").textContent = "Statement " + current + " of 12";
+  }
   $("qText").textContent = item.q;
   const ul = $("qOpts");
   ul.innerHTML = "";
@@ -327,18 +356,31 @@ function renderQuestion(){
 }
 
 function totals(){
-  const secTotals = [0,0,0,0,0], secCounts = [0,0,0,0,0];
-  let total = 0, dontKnow = 0;
+  const secTotals = [0,0,0,0], secCounts = [0,0,0,0];
+  let total = 0, blindSpots = 0;
   QUESTIONS.forEach((item, i) => {
     if (item.s === null) return;
     const pts = answers[i] === null ? 0 : item.o[answers[i]][1];
     total += pts;
-    if (answers[i] === 3) dontKnow += 1;
+    if (answers[i] === 3) blindSpots += 1;
     secTotals[item.s] += pts;
     secCounts[item.s] += 1;
   });
   const secAvgs = secTotals.map((t, i) => t / secCounts[i]);
-  return {total, secAvgs, dontKnow};
+  return {total, secAvgs, blindSpots};
+}
+
+function statementPoints(n){
+  // statement n is QUESTIONS[n]; unanswered counts as 0
+  return answers[n] === null ? 0 : QUESTIONS[n].o[answers[n]][1];
+}
+
+function firedFlags(){
+  return Object.keys(FLAGS).map(Number).filter(n => statementPoints(n) === 0);
+}
+
+function crossCheckFires(){
+  return statementPoints(12) === 3 && statementPoints(11) === 0;
 }
 
 function stateFor(total){
@@ -348,7 +390,7 @@ function stateFor(total){
 function gapFor(secAvgs){
   let idx = 0;
   for (let i = 1; i < secAvgs.length; i++){
-    if (secAvgs[i] < secAvgs[idx]) idx = i; // ties keep the earlier dimension, per method order
+    if (secAvgs[i] < secAvgs[idx]) idx = i; // ties keep the earlier group, in Truth, Work, Ownership, Leaders order
   }
   return idx;
 }
@@ -357,20 +399,29 @@ function colorFor(avg){
   return avg >= 2 ? "ok" : avg >= 1 ? "warn" : "risk";
 }
 
+function barColor(groupIndex, avg, flags){
+  let c = colorFor(avg);
+  // The statement 10 flag caps the Ownership bar at yellow.
+  if (groupIndex === 2 && flags.includes(10) && c === "ok") c = "warn";
+  return c;
+}
+
 function payloadBase(){
-  const {total, secAvgs, dontKnow} = totals();
+  const {total, secAvgs, blindSpots} = totals();
   const st = stateFor(total);
   const gi = gapFor(secAvgs);
+  const flags = firedFlags();
   const p = {
     source: "onthegrow.ai/readiness",
     submittedAt: new Date().toISOString(),
     aiToday: answers[0] === null ? "" : QUESTIONS[0].o[answers[0]][0],
     score: total,
-    dontKnowCount: dontKnow,
+    blindSpotCount: blindSpots,
+    flags: flags,
     resultState: st.name,
-    biggestGap: SECTIONS[gi]
+    biggestGap: GROUPS[gi]
   };
-  SECTIONS.forEach((name, i) => { p["avg_" + name.toLowerCase()] = Math.round(secAvgs[i] * 100) / 100; });
+  GROUPS.forEach((name, i) => { p["avg_" + name.toLowerCase()] = Math.round(secAvgs[i] * 100) / 100; });
   let n = 0;
   QUESTIONS.forEach((item, i) => {
     if (item.s === null) return;
@@ -378,7 +429,7 @@ function payloadBase(){
     p["q" + n] = answers[i] === null ? "" : item.o[answers[i]][0];
     p["q" + n + "_points"] = answers[i] === null ? 0 : item.o[answers[i]][1];
   });
-  return {p, st, gi, secAvgs, total, dontKnow};
+  return {p, st, gi, secAvgs, total, blindSpots, flags};
 }
 
 function postWebhook(body){
@@ -387,42 +438,67 @@ function postWebhook(body){
     .then(res => { if (!res.ok) throw new Error("bad response"); });
 }
 
+function flagLines(flags){
+  const lines = flags.map(n => FLAGS[n]);
+  if (crossCheckFires()) lines.push(CROSS_CHECK);
+  return lines;
+}
+
 function renderResult(){
-  const {p, st, gi, secAvgs, total, dontKnow} = payloadBase();
+  const {p, st, gi, secAvgs, total, blindSpots, flags} = payloadBase();
   $("bar").style.width = "100%";
   $("rScore").textContent = total;
   $("rState").textContent = st.name;
-  const dg = $("dgrid");
-  dg.innerHTML = "";
-  SECTIONS.forEach((name, i) => {
-    const t = document.createElement("div");
-    t.className = "dtile " + colorFor(secAvgs[i]);
-    t.textContent = name;
-    dg.appendChild(t);
+  const gb = $("gbars");
+  gb.innerHTML = "";
+  GROUPS.forEach((name, i) => {
+    const bar = document.createElement("div");
+    bar.className = "gbar " + barColor(i, secAvgs[i], flags);
+    bar.textContent = name;
+    gb.appendChild(bar);
   });
-  $("rGapFree").textContent = SECTIONS[gi] + ".";
+  $("rGapFree").textContent = GROUPS[gi] + ".";
   $("rReadout").textContent = GAPS[gi].readout;
+  const lines = flagLines(flags);
+  $("rFlags").classList.toggle("hidden", lines.length === 0);
+  const fl = $("rFlagList");
+  fl.innerHTML = "";
+  lines.forEach(t => {
+    const d = document.createElement("p");
+    d.className = "flag";
+    d.textContent = t;
+    fl.appendChild(d);
+  });
   const z = $("rZero");
-  if (dontKnow > 0){
-    z.textContent = "You answered 'I don't know' " + dontKnow + (dontKnow === 1 ? " time. That is 1 place" : " times. That is " + dontKnow + " places") + " AI will act where you cannot see.";
+  if (blindSpots > 0){
+    z.textContent = "You've never asked " + blindSpots + " of these questions. The risk is not what you scored low. It is what you've never examined.";
     z.style.display = "";
   } else {
     z.style.display = "none";
   }
-  const sl = $("rStageLink");
-  sl.textContent = st.stageName;
-  sl.href = "/#" + st.stage;
-  // full report content, revealed only after email
+  // gated report content, revealed only after email
   const dims = $("rDims");
   dims.innerHTML = "";
-  SECTIONS.forEach((name, i) => {
+  GROUPS.forEach((name, i) => {
     const li = document.createElement("li");
     const label = document.createElement("span"); label.textContent = name;
     const val = document.createElement("b"); val.textContent = (Math.round(secAvgs[i] * 10) / 10) + " of 3";
     li.appendChild(label); li.appendChild(val); dims.appendChild(li);
   });
+  $("rFlagsGatedWrap").classList.toggle("hidden", lines.length === 0);
+  const fg = $("rFlagsGated");
+  fg.innerHTML = "";
+  lines.forEach(t => {
+    const d = document.createElement("p");
+    d.className = "flag";
+    d.textContent = t;
+    fg.appendChild(d);
+  });
+  $("rChapter").textContent = GAPS[gi].partline;
   $("rMove").textContent = GAPS[gi].move;
-  $("rChapter").textContent = GAPS[gi].ch;
+  const ask = $("rAsk");
+  ask.textContent = GAPS[gi].ask;
+  ask.href = "mailto:liz@onthegrowleadership.com?subject=" + encodeURIComponent(GAPS[gi].askSubject);
   $("capture").classList.remove("hidden");
   $("fullReport").classList.add("hidden");
   show("result");
