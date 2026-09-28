@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Amplifier Assessment | OnTheGrow Leadership</title>
+<title>The AI Leadership Load Assessment | OnTheGrow Leadership</title>
 <meta name="description" content="What will AI scale on your team? Twelve statements. Three minutes. No email required to see your score.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
   h1{font-weight:300;font-size:clamp(1.9rem,5.5vw,2.9rem);line-height:1.18;letter-spacing:-.01em;color:#fff}
   h2{font-weight:300;font-size:clamp(1.5rem,4.5vw,2.1rem);line-height:1.2;color:#fff}
   h1 b,h2 b{font-weight:600}
+  b,strong{font-family:'Work Sans',Arial,sans-serif;font-weight:600}
   .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-hi);display:block;margin-bottom:16px}
   .subhead{font-size:1.25rem;font-weight:300;color:var(--dim);margin-top:10px}
   p{max-width:60ch}
@@ -138,12 +139,13 @@
 
     <!-- Landing -->
     <section id="landing">
-      <span class="eyebrow">OnTheGrow Leadership™</span>
-      <h1>The Amplifier Assessment</h1>
+      <span class="eyebrow">Free Assessment</span>
+      <h1>The AI Leadership Load Assessment</h1>
       <p class="subhead">What will AI scale on your team?</p>
       <div class="rule"></div>
-      <p class="dim">A leader is anyone who directs the work of someone else, human or AI. Title does not matter.</p>
-      <p class="dim" style="margin-top:14px">Rate each statement about your organization. Answer for what you could prove today. Not what you plan. Not what you believe.</p>
+      <p class="dim"><b style="color:#fff">AI doesn't fix leadership. It scales it.</b> Take this assessment and see what your leaders can carry.</p>
+      <p class="dim" style="margin-top:14px">A leader is anyone who directs the work of someone else, human or AI. Title does not matter.</p>
+      <p class="dim" style="margin-top:14px">Rate each statement about your leadership team. Answer for what you could prove today. Not what you plan. Not what you believe.</p>
       <p style="margin-top:18px"><b>Twelve statements. Three minutes. No email required to see your score.</b></p>
       <p style="margin-top:34px"><button class="btn" id="startBtn">Start the assessment</button></p>
       <p class="faint" style="margin-top:44px;max-width:64ch"><b>Privacy.</b> Your answers are recorded anonymously to improve the assessment. Your email is only stored if you request the full report. We keep that record for 24 months or until you ask us to delete it. Write to liz@onthegrowleadership.com any time for a copy or deletion. We never sell your data.</p>
@@ -293,22 +295,22 @@ const GAPS = [
    partline:"This is Decode, chapters 1 through 4.",
    move:"Pick your ten most-asked questions and make one answer true everywhere, with a name beside it.",
    ask:"Send us one policy that lives in two places. We will show you what AI will do with it.",
-   askSubject:"The Amplifier Assessment: Truth"},
+   askSubject:"The AI Leadership Load Assessment: Truth"},
   {readout:"You cannot redesign work you have not seen, and AI is about to move it anyway.",
    partline:"This is Redesign, chapters 5 through 8.",
    move:"A task inventory for one high-volume role, with hours, and a decision for each task about what a machine may do alone.",
    ask:"Send us one job description for a high-volume role. We will show you which tasks a machine will take first.",
-   askSubject:"The Amplifier Assessment: Work"},
+   askSubject:"The AI Leadership Load Assessment: Work"},
   {readout:"Systems and software are making decisions nobody owns.",
    partline:"This is Redesign and Decode, chapters 4 and 7.",
    move:"List every rule and tool that acts on its own and put one name beside each, then name who owns work design before the next purchase.",
    ask:"Name one tool in your organization that already acts on its own. We will show you what its owner needs to decide.",
-   askSubject:"The Amplifier Assessment: Ownership"},
+   askSubject:"The AI Leadership Load Assessment: Ownership"},
   {readout:"AI will scale every version of leadership you have.",
-   partline:"This is Amplify, chapters 9 through 11.",
+   partline:"This is Scale, chapters 9 through 11.",
    move:"Before the next rollout, confirm every leader can catch a confident error and explain the override, and put one standard under every leader.",
    ask:"Send us one AI-drafted review or one override from the last 30 days. We will show you what it reveals.",
-   askSubject:"The Amplifier Assessment: Leaders"}
+   askSubject:"The AI Leadership Load Assessment: Leaders"}
 ];
 
 let current = 0;
