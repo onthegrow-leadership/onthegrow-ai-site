@@ -55,7 +55,9 @@
   .qmeta .sect{font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-hi)}
   .qmeta .sect.context{color:var(--faint);letter-spacing:.08em;text-transform:none;font-style:italic}
 
-  .question{font-weight:400;font-size:clamp(1.2rem,3.4vw,1.5rem);line-height:1.4;color:#fff;margin-bottom:34px;max-width:36em}
+  .stmt{margin-bottom:34px}
+  .question{font-weight:400;font-size:clamp(1.2rem,3.4vw,1.5rem);line-height:1.4;color:#fff;max-width:36em}
+  .example{margin-top:14px;font-size:1rem;color:var(--dim);max-width:60ch}
   .opts{display:flex;flex-direction:column;gap:12px;list-style:none}
   .opt{width:100%;text-align:left;font-family:inherit;font-size:1rem;line-height:1.45;color:#fff;
     background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:8px;
@@ -145,7 +147,7 @@
       <div class="rule"></div>
       <p class="dim"><b style="color:#fff">AI doesn't fix leadership. It scales it.</b> Take this assessment and see what your leaders can carry.</p>
       <p class="dim" style="margin-top:14px">A leader is anyone who directs the work of someone else, human or AI. Title does not matter.</p>
-      <p class="dim" style="margin-top:14px">Rate each statement about your leadership team. Answer for what you could prove today. Not what you plan. Not what you believe.</p>
+      <p class="dim" style="margin-top:14px">Rate each statement about your leadership team. Answer for what you could prove today. Not what you plan. Not what you believe. Answer for the part of the organization you lead. If that is the whole company, answer for the company.</p>
       <p style="margin-top:18px"><b>Twelve statements. Three minutes. No email required to see your score.</b></p>
       <p style="margin-top:34px"><button class="btn" id="startBtn">Start the assessment</button></p>
       <p class="faint" style="margin-top:44px;max-width:64ch"><b>Privacy.</b> Your answers are recorded anonymously to improve the assessment. Your email is only stored if you request the full report. We keep that record for 24 months or until you ask us to delete it. Write to liz@onthegrowleadership.com any time for a copy or deletion. We never sell your data.</p>
@@ -155,7 +157,10 @@
     <section id="quiz" class="hidden">
       <div class="progress"><i id="bar"></i></div>
       <div class="qmeta"><span class="sect" id="qSection"></span><span id="qCount"></span></div>
-      <h1 class="question" id="qText"></h1>
+      <div class="stmt">
+        <h1 class="question" id="qText"></h1>
+        <p class="example hidden" id="qExample"><b>Example:</b> <span id="qExampleText"></span></p>
+      </div>
       <ul class="opts" id="qOpts"></ul>
       <button class="backlink" id="backBtn">Back</button>
     </section>
@@ -254,23 +259,44 @@ const GROUPS = ["Truth","Work","Ownership","Leaders"];
 // One scale for every statement. "We've never asked" is index 3 and feeds the blind-spot count.
 const SCALE = [["True, and we can prove it",3],["True in spots",1],["Not yet true",0],["We've never asked",0]];
 
-// s: group index, or null for the unscored context question.
+// Unscored context question. Index 0 is the label people see. Index 1 is the value the payload
+// carries as aiToday. Those values are unchanged from the earlier labels so GHL segmentation keeps working.
+const AI_TODAY = [
+  ["Not yet (no AI in use that we know of)", "Not yet"],
+  ["Individual use (people use AI on their own, no company policy)", "Individual use, no policy"],
+  ["Pilots underway (a team or two is testing it with permission)", "Pilots underway"],
+  ["In production (AI is part of how at least one process runs)", "In production"],
+  ["Agents deployed (software acts on its own in at least one process)", "Agents deployed"]
+];
+
+// s: group index, or null for the unscored context question. e: the example shown beneath the statement.
 // Groups: Truth statements 1 and 2, Work 3 through 7, Ownership 8 through 10, Leaders 11 and 12.
 const QUESTIONS = [
-  {s:null, q:"Where is your organization with AI today?",
-   o:[["Not yet"],["Individual use, no policy"],["Pilots underway"],["In production"],["Agents deployed"]]},
-  {s:0, q:"The policies AI relies on have a clear source of truth, a named owner, and a date someone last verified them.", o:SCALE},
-  {s:0, q:"When people disagree about which policy, process, or source is correct, we know who has the authority to resolve it.", o:SCALE},
-  {s:1, q:"For our highest-volume work, we can show where the hours go.", o:SCALE},
-  {s:1, q:"Before AI touches a job, we look at the work task by task and decide what stays human, what a person does with a machine, and what a machine may do alone.", o:SCALE},
-  {s:1, q:"We decide what AI may do by what happens if it is wrong, not by what the tool can do.", o:SCALE},
-  {s:1, q:"When AI frees capacity, we decide on purpose where those hours go.", o:SCALE},
-  {s:1, q:"When AI takes over entry-level work, we redesign how new people learn the judgment that work used to teach.", o:SCALE},
-  {s:2, q:"For rules our systems apply automatically, we can name who defined them, who checks them, and who answers when they are wrong.", o:SCALE},
-  {s:2, q:"Every AI system that acts on its own has a named human owner and written boundaries.", o:SCALE},
-  {s:2, q:"A named leader owns work and role design before AI technology decisions are made.", o:SCALE},
-  {s:3, q:"Leaders who use AI have caught a confident error on real work, overridden it, and explained why.", o:SCALE},
-  {s:3, q:"Expectations, feedback, accountability, and follow-through do not depend on which leader an employee happens to get.", o:SCALE}
+  {s:null, q:"Where is your organization with AI today?", o:AI_TODAY},
+  {s:0, q:"The policies AI relies on have a clear source of truth, a named owner, and a date someone last verified them.", o:SCALE,
+   e:"the PTO policy lives in one place, someone owns it, and it was checked this year."},
+  {s:0, q:"When people disagree about which policy, process, or source is correct, we know who has the authority to resolve it.", o:SCALE,
+   e:"when the handbook and the intranet disagree, everyone knows who makes the call."},
+  {s:1, q:"For our highest-volume work, we can show where the hours go.", o:SCALE,
+   e:"for customer support, you could show hours by task, not just headcount."},
+  {s:1, q:"Before AI touches a job, we look at the work task by task and decide what stays human, what a person does with a machine, and what a machine may do alone.", o:SCALE,
+   e:"before the rollout, each task in the role was marked human, person with a machine, or machine alone."},
+  {s:1, q:"We decide what AI may do by what happens if it is wrong, not by what the tool can do.", o:SCALE,
+   e:"a scheduling agent may act alone. A termination letter never leaves without a person."},
+  {s:1, q:"When AI frees capacity, we decide on purpose where those hours go.", o:SCALE,
+   e:"AI cut two hours a day from a role, and someone decided where those hours went."},
+  {s:1, q:"When AI takes over entry-level work, we redesign how new people learn the judgment that work used to teach.", o:SCALE,
+   e:"AI now drafts first-year reports, so you built another way for new people to learn what a bad one looks like."},
+  {s:2, q:"For rules our systems apply automatically, we can name who defined them, who checks them, and who answers when they are wrong.", o:SCALE,
+   e:"the overtime rule in payroll. Who defined it, who checks it, who answers when it is wrong."},
+  {s:2, q:"Every AI system that acts on its own has a named human owner and written boundaries.", o:SCALE,
+   e:"the resume screener has a named owner and a written list of what it may and may not decide."},
+  {s:2, q:"A named leader owns work and role design before AI technology decisions are made.", o:SCALE,
+   e:"the role was redesigned before the tool was bought, not after."},
+  {s:3, q:"Leaders who use AI have caught a confident error on real work, overridden it, and explained why.", o:SCALE,
+   e:"a leader caught an AI draft citing a policy that does not exist, rejected it, and said why."},
+  {s:3, q:"Expectations, feedback, accountability, and follow-through do not depend on which leader an employee happens to get.", o:SCALE,
+   e:"two employees on different teams get the same quality of feedback and follow-through."}
 ];
 
 const STATES = [
@@ -337,6 +363,9 @@ function renderQuestion(){
     $("qCount").textContent = "Statement " + current + " of 12";
   }
   $("qText").textContent = item.q;
+  const ex = $("qExample");
+  if (item.e){ $("qExampleText").textContent = item.e; ex.classList.remove("hidden"); }
+  else ex.classList.add("hidden");
   const ul = $("qOpts");
   ul.innerHTML = "";
   item.o.forEach((opt, i) => {
@@ -416,7 +445,7 @@ function payloadBase(){
   const p = {
     source: "onthegrow.ai/readiness",
     submittedAt: new Date().toISOString(),
-    aiToday: answers[0] === null ? "" : QUESTIONS[0].o[answers[0]][0],
+    aiToday: answers[0] === null ? "" : AI_TODAY[answers[0]][1],
     score: total,
     blindSpotCount: blindSpots,
     flags: flags,
