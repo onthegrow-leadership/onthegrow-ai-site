@@ -344,7 +344,9 @@
   .dlcard p{color:#cfc6e0}
   .dlcard .opener{margin-top:24px}
   .dlcard .form-err{color:#f5b8c4}
-  .dlcard .dl-ok{display:none;margin-top:24px;font-size:1.08rem;color:#fff}
+  .dlcard .dl-ok{display:none;margin-top:24px}
+  .dlcard .dl-ok p{font-size:1.08rem;color:#fff}
+  .dlcard .dl-ok .dl-more{margin-top:10px;font-size:.98rem;color:#cfc6e0}
   .dlcard .dl-ok a{color:var(--teal-hi);font-weight:600}
   @media(max-width:600px){.dlcard{padding:32px 24px}}
 
@@ -766,7 +768,10 @@
         <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
         <div class="actions"><button class="btn btn-teal" type="submit">Send me the overview</button><p class="form-err"></p></div>
       </form>
-      <p class="dl-ok" id="overviewOk">Your overview is ready. <a href="assets/growth-execution-model-overview.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+      <div class="dl-ok" id="overviewOk">
+        <p>Your overview is ready. <a href="assets/growth-execution-model-overview.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
+      </div>
     </div>
 
   </div>
@@ -811,6 +816,25 @@
       </div>
     </div>
     <p class="line reveal">The book gives you the method. We apply it with you. The platform will run it every day.</p>
+
+    <div class="dlcard reveal" id="journey">
+      <span class="eyebrow">Free Download</span>
+      <h3>The Leadership Infrastructure Journey</h3>
+      <p>Five stages. One engine: the GROWTH™ Execution Model. How we redesign the work and install one standard for leaders and AI agents.</p>
+      <p class="opener"><button class="btn btn-teal" type="button" id="journeyOpen">Get the journey</button></p>
+      <form class="fgrid2 closed" id="journeyForm" novalidate>
+        <div><label for="jy-first">First name</label><input type="text" id="jy-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="jy-last">Last name</label><input type="text" id="jy-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="jy-email">Email</label><input type="email" id="jy-email" name="email" autocomplete="email" required></div>
+        <div><label for="jy-company">Company</label><input type="text" id="jy-company" name="company" autocomplete="organization" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn btn-teal" type="submit">Send me the journey</button><p class="form-err"></p></div>
+      </form>
+      <div class="dl-ok" id="journeyOk">
+        <p>Your journey is ready. <a href="assets/leadership-infrastructure-journey.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
+        <p class="dl-more">See the engine: <a href="#overview">the GROWTH Execution Model overview.</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1000,27 +1024,32 @@
   function showErr(form, msg){ const err = form.querySelector('.form-err'); err.textContent = msg; err.style.display = 'block'; }
   function hideErr(form){ form.querySelector('.form-err').style.display = 'none'; }
 
-  // GROWTH overview gate. The download is never blocked on a webhook error.
-  const ovOpen = document.getElementById('overviewOpen'), ovForm = document.getElementById('overviewForm');
-  ovOpen.addEventListener('click', () => {
-    ovOpen.parentElement.style.display = 'none';
-    ovForm.classList.remove('closed');
-    ovForm.elements.firstName.focus();
-  });
-  ovForm.addEventListener('submit', async e => {
-    e.preventDefault(); hideErr(ovForm);
-    const f = readFields(ovForm, ['firstName','lastName','email','company']);
-    if (!f.firstName || !f.lastName || !f.email || !f.company){ showErr(ovForm, 'Please fill in every field.'); return; }
-    if (!EMAIL_RE.test(f.email)){ showErr(ovForm, "That email doesn't look complete. Check it and try again."); return; }
-    const btn = ovForm.querySelector('button[type=submit]');
-    btn.disabled = true; btn.textContent = 'Sending';
-    if (!ovForm.elements.website.value){
-      try { await postWebhook({tag:'growth-overview', source:'growth-overview', ...f, submittedAt:new Date().toISOString()}); }
-      catch(_) {}
-    }
-    ovForm.style.display = 'none';
-    document.getElementById('overviewOk').style.display = 'block';
-  });
+  // Gated downloads. The download is never blocked on a webhook error.
+  // tag names the download; source names the page it was requested from.
+  function wireDownload(id, tag, source){
+    const open = document.getElementById(id + 'Open'), form = document.getElementById(id + 'Form');
+    open.addEventListener('click', () => {
+      open.parentElement.style.display = 'none';
+      form.classList.remove('closed');
+      form.elements.firstName.focus();
+    });
+    form.addEventListener('submit', async e => {
+      e.preventDefault(); hideErr(form);
+      const f = readFields(form, ['firstName','lastName','email','company']);
+      if (!f.firstName || !f.lastName || !f.email || !f.company){ showErr(form, 'Please fill in every field.'); return; }
+      if (!EMAIL_RE.test(f.email)){ showErr(form, "That email doesn't look complete. Check it and try again."); return; }
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Sending';
+      if (!form.elements.website.value){
+        try { await postWebhook({tag, source, ...f, submittedAt:new Date().toISOString()}); }
+        catch(_) {}
+      }
+      form.style.display = 'none';
+      document.getElementById(id + 'Ok').style.display = 'block';
+    });
+  }
+  wireDownload('overview', 'growth-overview', 'growth-overview');
+  wireDownload('journey', 'journey', 'journey');
 
   // Contact Us. On a webhook error the typed text stays in the form.
   const ctForm = document.getElementById('contactForm');
