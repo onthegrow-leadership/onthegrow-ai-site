@@ -51,7 +51,10 @@
   .btn-primary{background:var(--teal);color:#fff}
   .btn-ghost{border:1.5px solid var(--teal-hi);color:var(--white);background:transparent}
   .btn-teal{background:var(--teal);color:#fff}
-  @media(max-width:820px){.navlinks a:not(.btn){display:none}}
+  .nav-in{gap:16px}
+  @media(max-width:1480px){.navlinks{gap:10px}.navlinks a{font-size:.84rem}.navlinks .btn{padding:12px 16px}}
+  @media(max-width:1180px){nav .wm-text{display:none}}
+  @media(max-width:920px){.navlinks a:not(.btn){display:none}}
   @media(max-width:560px){
     nav .wm-text{display:none}
     .navlinks{gap:0}
@@ -329,6 +332,43 @@
   .ourmark .mline{margin:0 auto;max-width:none;font-size:1.12rem;color:var(--muted)}
   .ourmark img{width:130px;height:auto;margin:40px auto 0;display:inline-block}
 
+  /* buttons rendered as <button> match the anchor buttons */
+  button.btn{border:none;cursor:pointer;font-family:inherit;line-height:inherit}
+  .btn[disabled]{opacity:.55;cursor:default;transform:none}
+  .form-err a{color:inherit;text-decoration:underline}
+
+  /* GROWTH overview download card, end of The Method */
+  .dlcard{margin-top:56px;background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;position:relative;overflow:hidden}
+  .dlcard .eyebrow{color:var(--teal-hi)}
+  .dlcard h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:600;margin:10px 0 12px}
+  .dlcard p{color:#cfc6e0}
+  .dlcard .opener{margin-top:24px}
+  .dlcard .form-err{color:#f5b8c4}
+  .dlcard .dl-ok{display:none;margin-top:24px;font-size:1.08rem;color:#fff}
+  .dlcard .dl-ok a{color:var(--teal-hi);font-weight:600}
+  @media(max-width:600px){.dlcard{padding:32px 24px}}
+
+  /* forms with several fields: overview gate and Contact Us. One column under 600px. */
+  .fgrid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;max-width:720px}
+  .fgrid2.closed{display:none}
+  .fgrid2 .full{grid-column:1 / -1}
+  .fgrid2 label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+  .fgrid2 label .opt{opacity:.65;text-transform:none;letter-spacing:0;font-weight:500}
+  .dlcard .fgrid2 label{color:var(--teal-hi)}
+  .fgrid2 input,.fgrid2 textarea{width:100%;padding:13px 15px;font-family:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px}
+  .fgrid2 textarea{min-height:140px;resize:vertical}
+  .fgrid2 input:focus,.fgrid2 textarea:focus{outline:2px solid var(--teal-hi);outline-offset:1px;border-color:var(--teal)}
+  .fgrid2 .actions{grid-column:1 / -1;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px}
+  .fgrid2 .form-err{margin-top:0}
+  @media(max-width:600px){.fgrid2{grid-template-columns:1fr}}
+  .hp{position:absolute;left:-9999px;top:-9999px}
+  .contact .sent-ok{display:none;font-size:1.12rem;font-weight:500;color:var(--deep)}
+
+  /* footer contact button */
+  .foot-right{text-align:right}
+  footer a.btn{color:#fff;background:var(--teal)}
+  .foot-cta{padding:12px 22px;font-size:.92rem}
+
   /* reveal */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
   .reveal.on{opacity:1;transform:none}
@@ -354,6 +394,7 @@
       <a href="#work">Work With Us</a>
       <a href="#about">About</a>
       <a href="/resources/">Resources</a>
+      <a href="#contact">Contact</a>
       <a class="btn btn-primary" href="/readiness/">Take the AI Leadership Load Assessment</a>
     </div>
   </div>
@@ -712,6 +753,22 @@
       </div>
     </div>
 
+    <div class="dlcard reveal" id="overview">
+      <span class="eyebrow">Free Download</span>
+      <h3>The GROWTH™ Execution Model</h3>
+      <p>Six steps. One language for leaders and AI agents. The two-page overview of the model, how it applies to AI, and what it produced.</p>
+      <p class="opener"><button class="btn btn-teal" type="button" id="overviewOpen">Get the overview</button></p>
+      <form class="fgrid2 closed" id="overviewForm" novalidate>
+        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
+        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn btn-teal" type="submit">Send me the overview</button><p class="form-err"></p></div>
+      </form>
+      <p class="dl-ok" id="overviewOk">Your overview is ready. <a href="assets/growth-execution-model-overview.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+    </div>
+
   </div>
 </section>
 
@@ -754,6 +811,27 @@
       </div>
     </div>
     <p class="line reveal">The book gives you the method. We apply it with you. The platform will run it every day.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Contact Us</span>
+      <h2>Start the <strong>conversation.</strong></h2>
+      <p class="lede">Tell us what you are working on. We will be in touch within two business days.</p>
+    </div>
+    <form class="fgrid2 reveal" id="contactForm" novalidate>
+      <div><label for="ct-first">First name</label><input type="text" id="ct-first" name="firstName" autocomplete="given-name" required></div>
+      <div><label for="ct-last">Last name</label><input type="text" id="ct-last" name="lastName" autocomplete="family-name" required></div>
+      <div><label for="ct-email">Email</label><input type="email" id="ct-email" name="email" autocomplete="email" required></div>
+      <div><label for="ct-company">Company</label><input type="text" id="ct-company" name="company" autocomplete="organization" required></div>
+      <div class="full"><label for="ct-role">Role <span class="opt">(optional)</span></label><input type="text" id="ct-role" name="role" autocomplete="organization-title"></div>
+      <div class="full"><label for="ct-message">What are you working on?</label><textarea id="ct-message" name="message" required></textarea></div>
+      <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="actions"><button class="btn btn-teal" type="submit">Send</button><p class="form-err"></p></div>
+    </form>
+    <p class="sent-ok" id="contactOk">Thank you. We will be in touch within two business days.</p>
   </div>
 </section>
 
@@ -869,8 +947,9 @@
       </div>
       <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
     </div>
-    <div style="text-align:right">
-      <p><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
+    <div class="foot-right">
+      <p><a class="btn foot-cta" href="#contact">Contact Us</a></p>
+      <p style="margin-top:14px"><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
       <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
     </div>
   </div>
@@ -899,12 +978,70 @@
       if (!res.ok) throw new Error('bad response');
       ok.style.display = 'block'; form.reset();
     } catch(_) {
-      err.textContent = 'Something went wrong on our end. Email liz@onthegrowleadership.com and we will add you directly.';
+      err.innerHTML = 'Something went wrong on our end. Please try again in a moment, or <a href="#contact">use the contact form</a>.';
       err.style.display = 'block';
     }
   }
   document.getElementById('notifyForm').addEventListener('submit', e => {e.preventDefault(); otgSubmit(e.target, 'book-launch-notify');});
   document.getElementById('accessForm').addEventListener('submit', e => {e.preventDefault(); otgSubmit(e.target, 'early-access');});
+
+  // Forms with several fields. Same webhook, branched on tag like every other submission.
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  function postWebhook(body){
+    if (!WEBHOOK_URL) return Promise.reject(new Error('no webhook configured'));
+    return fetch(WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
+      .then(res => { if (!res.ok) throw new Error('bad response'); });
+  }
+  function readFields(form, names){
+    const out = {};
+    names.forEach(n => { out[n] = form.elements[n].value.trim(); });
+    return out;
+  }
+  function showErr(form, msg){ const err = form.querySelector('.form-err'); err.textContent = msg; err.style.display = 'block'; }
+  function hideErr(form){ form.querySelector('.form-err').style.display = 'none'; }
+
+  // GROWTH overview gate. The download is never blocked on a webhook error.
+  const ovOpen = document.getElementById('overviewOpen'), ovForm = document.getElementById('overviewForm');
+  ovOpen.addEventListener('click', () => {
+    ovOpen.parentElement.style.display = 'none';
+    ovForm.classList.remove('closed');
+    ovForm.elements.firstName.focus();
+  });
+  ovForm.addEventListener('submit', async e => {
+    e.preventDefault(); hideErr(ovForm);
+    const f = readFields(ovForm, ['firstName','lastName','email','company']);
+    if (!f.firstName || !f.lastName || !f.email || !f.company){ showErr(ovForm, 'Please fill in every field.'); return; }
+    if (!EMAIL_RE.test(f.email)){ showErr(ovForm, "That email doesn't look complete. Check it and try again."); return; }
+    const btn = ovForm.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending';
+    if (!ovForm.elements.website.value){
+      try { await postWebhook({tag:'growth-overview', source:'growth-overview', ...f, submittedAt:new Date().toISOString()}); }
+      catch(_) {}
+    }
+    ovForm.style.display = 'none';
+    document.getElementById('overviewOk').style.display = 'block';
+  });
+
+  // Contact Us. On a webhook error the typed text stays in the form.
+  const ctForm = document.getElementById('contactForm');
+  ctForm.addEventListener('submit', async e => {
+    e.preventDefault(); hideErr(ctForm);
+    const f = readFields(ctForm, ['firstName','lastName','email','company','role','message']);
+    if (!f.firstName || !f.lastName || !f.email || !f.company || !f.message){ showErr(ctForm, 'Please fill in every field. Role is optional.'); return; }
+    if (!EMAIL_RE.test(f.email)){ showErr(ctForm, "That email doesn't look complete. Check it and try again."); return; }
+    if (ctForm.elements.website.value) return; // honeypot
+    const btn = ctForm.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending';
+    try {
+      await postWebhook({tag:'contact', source:'contact', ...f, submittedAt:new Date().toISOString()});
+      ctForm.style.display = 'none';
+      document.getElementById('contactOk').style.display = 'block';
+    } catch(_) {
+      showErr(ctForm, 'Something went wrong. Please try again in a moment.');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send';
+    }
+  });
 </script>
 </body>
 </html>

@@ -41,7 +41,10 @@
        background:var(--teal);color:#fff;transition:transform .15s ease}
   .btn:hover{transform:translateY(-1px)}
   .btn[disabled]{opacity:.55;cursor:default;transform:none}
-  @media(max-width:820px){.navlinks a:not(.btn){display:none}}
+  .nav-in{gap:16px}
+  @media(max-width:1480px){.navlinks{gap:10px}.navlinks a{font-size:.84rem}.navlinks .btn{padding:12px 16px}}
+  @media(max-width:1180px){nav .wm-text{display:none}}
+  @media(max-width:920px){.navlinks a:not(.btn){display:none}}
   @media(max-width:560px){
     nav .wm-text{display:none}
     .navlinks{gap:0}
@@ -86,6 +89,11 @@
   footer .tag{color:#8f88a0;margin-top:6px}
   footer a{color:var(--teal-hi);text-decoration:none}
 
+  .form-err a{color:inherit;text-decoration:underline}
+  .foot-right{text-align:right}
+  footer a.btn{color:#fff;background:var(--teal)}
+  .foot-cta{padding:12px 22px;font-size:.92rem}
+
   .hidden{display:none}
   @media (prefers-reduced-motion: reduce){.btn:hover{transform:none}}
 </style>
@@ -105,6 +113,7 @@
       <a href="/#work">Work With Us</a>
       <a href="/#about">About</a>
       <a href="/resources/">Resources</a>
+      <a href="/#contact">Contact</a>
       <a class="btn" href="/readiness/">Take the AI Leadership Load Assessment</a>
     </div>
   </div>
@@ -167,8 +176,9 @@
       </div>
       <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
     </div>
-    <div style="text-align:right">
-      <p><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
+    <div class="foot-right">
+      <p><a class="btn foot-cta" href="/#contact">Contact Us</a></p>
+      <p style="margin-top:14px"><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
       <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
     </div>
   </div>
@@ -233,7 +243,7 @@ function wireGate(formId, okId, errId, btnId, resource, noun){
       e.target.style.display = "none";
       document.getElementById(okId).style.display = "block";
     } catch(_) {
-      err.textContent = "Something went wrong on our end. Email liz@onthegrowleadership.com and we will send the " + noun + " directly.";
+      err.innerHTML = 'Something went wrong on our end. Please try again in a moment, or <a href="/#contact">use the contact form</a> and we will send the ' + noun + ' directly.';
       err.style.display = "block";
     } finally {
       btn.disabled = false; btn.textContent = label;

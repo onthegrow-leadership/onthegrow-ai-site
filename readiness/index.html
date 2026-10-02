@@ -118,6 +118,10 @@
   .foot-in img{height:44px;width:auto}
   footer a{color:var(--teal-hi);text-decoration:none}
 
+  .faint a,.error a{color:var(--teal-hi)}
+  footer a.btn{color:#fff}
+  .foot-cta{margin-left:auto;padding:12px 22px;font-size:.92rem}
+
   .hidden{display:none}
   @media (prefers-reduced-motion: reduce){
     .btn:hover{transform:none}
@@ -150,7 +154,7 @@
       <p class="dim" style="margin-top:14px">Rate each statement about your leadership team. Answer for what you could prove today. Not what you plan. Not what you believe. Answer for the part of the organization you lead. If that is the whole company, answer for the company.</p>
       <p style="margin-top:18px"><b>Twelve statements. Three minutes. No email required to see your score.</b></p>
       <p style="margin-top:34px"><button class="btn" id="startBtn">Start the assessment</button></p>
-      <p class="faint" style="margin-top:44px;max-width:64ch"><b>Privacy.</b> Your answers are recorded anonymously to improve the assessment. Your email is only stored if you request the full report. We keep that record for 24 months or until you ask us to delete it. Write to liz@onthegrowleadership.com any time for a copy or deletion. We never sell your data.</p>
+      <p class="faint" style="margin-top:44px;max-width:64ch"><b>Privacy.</b> Your answers are recorded anonymously to improve the assessment. Your email is only stored if you request the full report. We keep that record for 24 months or until you ask us to delete it. Use the <a href="/#contact">contact form</a> any time to ask for a copy or deletion. We never sell your data.</p>
     </section>
 
     <!-- Question -->
@@ -247,6 +251,7 @@
       <p>OnTheGrow Leadership™ · <a href="/">onthegrow.ai</a></p>
       <p>© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
     </div>
+    <a class="btn foot-cta" href="/#contact">Contact Us</a>
   </div>
 </footer>
 
@@ -578,7 +583,7 @@ $("reportForm").addEventListener("submit", async (e) => {
     $("capture").classList.add("hidden");
     $("fullReport").classList.remove("hidden");
   } catch (_) {
-    err.textContent = "Something went wrong on our end. Email liz@onthegrowleadership.com and we will send the report directly.";
+    err.innerHTML = 'Something went wrong on our end. Please try again in a moment, or <a href="/#contact">use the contact form</a> and we will send the report directly.';
     err.style.display = "block";
   } finally {
     btn.disabled = false; btn.textContent = "Send my report";
