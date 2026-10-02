@@ -52,14 +52,25 @@
   .btn-ghost{border:1.5px solid var(--teal-hi);color:var(--white);background:transparent}
   .btn-teal{background:var(--teal);color:#fff}
   .nav-in{gap:16px}
-  @media(max-width:1480px){.navlinks{gap:10px}.navlinks a{font-size:.84rem}.navlinks .btn{padding:12px 16px}}
-  @media(max-width:1180px){nav .wm-text{display:none}}
-  @media(max-width:920px){.navlinks a:not(.btn){display:none}}
-  @media(max-width:560px){
-    nav .wm-text{display:none}
-    .navlinks{gap:0}
-    .navlinks .btn{padding:11px 16px;font-size:.85rem;white-space:nowrap}
+  @media(max-width:1700px){.navlinks{gap:10px}.navlinks a{font-size:.84rem}.navlinks .btn{padding:12px 16px}}
+  @media(max-width:1419px){nav .wm-text{display:none}}
+  /* mobile menu: hamburger below 1120px, every nav link in a panel under the bar */
+  .navtoggle{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;padding:10px;flex-direction:column;justify-content:center;gap:5px;border-radius:6px}
+  .navtoggle:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .navtoggle span{display:block;height:2px;background:var(--deep);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  nav.open .navtoggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  nav.open .navtoggle span:nth-child(2){opacity:0}
+  nav.open .navtoggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:1119px){
+    nav .wm-text{display:inline}
+    .navtoggle{display:flex}
+    .navlinks{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+      background:#fff;border-bottom:1px solid var(--line);padding:6px 24px 22px;box-shadow:0 18px 36px rgba(54,41,79,.14)}
+    nav.open .navlinks{display:flex}
+    .navlinks a{font-size:1.05rem;font-weight:500;padding:15px 0;border-bottom:1px solid var(--line);white-space:normal}
+    .navlinks a.btn{margin-top:18px;border-bottom:none;text-align:center;justify-content:center;padding:14px 20px;font-size:1rem}
   }
+  @media(max-width:560px){nav .wm-text{display:none}}
 
   /* wordmark */
   .wordmark{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -389,7 +400,8 @@
       <img class="icon-img" src="assets/otg-mark.png" alt="" width="337" height="400">
       <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
     </a>
-    <div class="navlinks">
+    <button class="navtoggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    <div class="navlinks" id="navlinks">
       <a href="#thesis">The Thesis</a>
       <a href="#book">The Book</a>
       <a href="#method">The Method</a>
@@ -984,6 +996,17 @@
     for (const e of entries) if (e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Mobile menu
+  const navEl = document.querySelector('nav'), navToggle = document.getElementById('navToggle');
+  function setMenu(open){
+    navEl.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  navToggle.addEventListener('click', () => setMenu(!navEl.classList.contains('open')));
+  navEl.querySelectorAll('.navlinks a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('open')){ setMenu(false); navToggle.focus(); } });
 
   // Go High Level inbound webhook. All submissions carry a `tag` field to branch on.
   const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/CH6hbzpcMHz9c8FHItiO/webhook-trigger/f12f0892-5189-44b2-8548-f5aa301a5a7a";
