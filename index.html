@@ -4,15 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OnTheGrow Leadership | AI Will Scale Good Leadership</title>
-<meta name="description" content="AI doesn't fix leadership. It scales it. OnTheGrow Leadership helps organizations redesign work before AI scales what's broken. Home of the book AI Will Scale Good Leadership. And Bad Leadership. and the GROWTH™ Execution Model.">
+<meta name="description" content="AI doesn't fix leadership. It scales it. OnTheGrow Leadership helps organizations redesign work before AI scales what's broken. Home of the book AI Will Scale Good Leadership and Bad Leadership and the GROWTH™ Execution Model.">
 <meta property="og:title" content="OnTheGrow Leadership | AI Will Scale Good Leadership">
-<meta property="og:description" content="AI doesn't fix leadership. It scales it. The CHRO's method for redesigning work before AI scales what's broken. Publishing Fall 2026.">
+<meta property="og:description" content="AI doesn't fix leadership. It scales it. The CHRO's method for redesigning work before AI scales what's broken. Available on Amazon November 16, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/OTG-favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/OTG-favicon-180.png">
-<meta property="og:image" content="assets/OTG-favicon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onthegrow.ai/">
+<meta property="og:image" content="https://onthegrow.ai/assets/book-3d-teal.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OnTheGrow Leadership | AI Will Scale Good Leadership">
+<meta name="twitter:description" content="AI doesn't fix leadership. It scales it. The CHRO's method for redesigning work before AI scales what's broken.">
+<meta name="twitter:image" content="https://onthegrow.ai/assets/book-3d-teal.jpg">
+<meta name="twitter:image:alt" content="AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
+<script src="assets/book-launch.js"></script>
 <style>
   :root{
     --teal:#39989e; --teal-hi:#75cbc4; --purple:#6B529E; --blush:#f9eff6;
@@ -123,9 +134,9 @@
     background-size:contain;background-repeat:no-repeat}
 
   /* book */
-  .book .bgrid{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:center}
+  .book .bgrid{display:grid;grid-template-columns:minmax(0,1.05fr) 1fr;gap:56px;align-items:center}
   @media(max-width:860px){.book .bgrid{grid-template-columns:1fr;justify-items:start}}
-  .book img.cover{width:100%;max-width:300px;height:auto;object-fit:contain;border-radius:6px;box-shadow:0 24px 60px rgba(54,41,79,.35);display:block;margin:0 auto}
+  .book img.cover{width:100%;max-width:560px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 24px 30px rgba(54,41,79,.35))}
   .book .subtitle{font-size:1.12rem;color:var(--muted);margin:14px 0 20px;max-width:44ch}
   .book .status{font-size:.88rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:22px 0 26px}
   .book .note{font-size:.85rem;color:var(--muted);margin-top:12px}
@@ -201,7 +212,7 @@
 
   /* founder */
   .founder{background:var(--blush)}
-  .founder-in{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;max-width:960px}
+  .founder-in{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:48px;align-items:center;max-width:960px}
   @media(max-width:760px){.founder-in{grid-template-columns:1fr}}
   .fmark{width:120px;height:136px}
   .founder blockquote{font-size:1.3rem;font-weight:300;color:var(--deep);margin-bottom:18px}
@@ -221,6 +232,7 @@
   footer{background:var(--onyx);color:#b9b3c4;padding:52px 0;font-size:.88rem}
   .foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
   footer .tag{color:#8f88a0;margin-top:6px}
+  footer .legal{margin-top:26px;max-width:none;font-size:.8rem;line-height:1.6;color:#8f88a0}
   footer a{color:var(--teal-hi);text-decoration:none}
 
   /* architecture strip */
@@ -247,12 +259,12 @@
   /* hero split */
   .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;position:relative;padding:90px 24px 80px}
   @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:44px;padding:64px 24px 64px}}
-  .hero-cover{width:100%;max-width:340px;height:auto;object-fit:contain;border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.45);justify-self:end}
-  @media(max-width:900px){.hero-cover{justify-self:start;max-width:260px}}
+  .hero-cover{width:100%;max-width:480px;height:auto;filter:drop-shadow(0 28px 36px rgba(0,0,0,.45));justify-self:end}
+  @media(max-width:900px){.hero-cover{justify-self:start;max-width:420px}}
 
   /* brand icon images */
   .icon-img{height:36px;width:auto;display:block}
-  .about-icon{width:120px;height:auto}
+  .about-card{width:100%;max-width:360px;height:auto;display:block;border-radius:12px;box-shadow:0 18px 44px rgba(54,41,79,.22)}
   .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
   .foot-icon{height:36px;width:auto}
 
@@ -297,24 +309,22 @@
   /* work with us */
   .work{background:var(--blush)}
   .ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-  @media(min-width:1100px){.ladder{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}.rung{padding:26px 22px}}
+  @media(min-width:1100px){.ladder{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.rung{padding:26px 22px}}
   .rung{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;display:flex;flex-direction:column}
-  .rung-cta{margin-top:auto;padding-top:18px}
-  .rung-cta .btn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;padding:0 10px;font-size:.92rem;line-height:1.3;text-align:center;box-shadow:none}
-  @media(min-width:1100px){
-    .rung h3{font-size:1.02rem}
-    @supports(grid-template-rows:subgrid){
-      .rung{display:grid;grid-template-rows:subgrid;grid-row:span 4;align-content:start}
-      .rung-cta{margin-top:0;align-self:end}
-    }
-  }
-  .work .line{max-width:none}
-  @media(min-width:900px){.work .line{white-space:nowrap}}
+  .rung-cta{margin-top:auto;padding-top:18px;display:flex;flex-direction:column;gap:10px}
+  .rung-cta .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:10px 12px;font-size:.92rem;line-height:1.3;text-align:center;box-shadow:none}
+  .rung-cta .btn-outline{background:#fff;border:1.5px solid var(--teal);color:var(--teal)}
+  @media(min-width:1100px){.rung h3{font-size:1.02rem}}
   .wlead{font-weight:300;letter-spacing:.04em}
   .rung .step{font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
   .rung h3{margin:10px 0 10px}
+  .rung .price{font-weight:600;color:var(--deep);font-size:.98rem;margin-bottom:10px}
   .rung p{font-size:.94rem;color:var(--muted)}
-  .work .line{margin-top:34px;font-size:1.15rem;font-weight:500;color:var(--deep)}
+  .rung p+p{margin-top:10px}
+  .rung img.rung-cover{width:100%;max-width:190px;height:auto;display:block;border-radius:6px;box-shadow:0 14px 30px rgba(54,41,79,.25);margin:6px 0 18px}
+  .platform-note{margin-top:34px;font-size:.95rem;color:var(--muted);max-width:none}
+  .platform-note b{color:var(--deep);font-weight:600}
+  .platform-note a{color:var(--purple)}
 
   /* platform extras */
   .early-badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);background:var(--teal-hi);border-radius:99px;padding:5px 14px;margin:6px 0 14px}
@@ -395,6 +405,29 @@
     .btn:hover,.gcard:hover{transform:none}
     html{scroll-behavior:auto}
   }
+
+  /* Oct 17 update: two ways band, launch banner, launch switch states */
+  section,.rung,.dlcard{scroll-margin-top:84px}
+  .ways{background:var(--blush);border-bottom:1px solid var(--line);padding:64px 0}
+  .ways h2{margin-bottom:28px}
+  .ways-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:760px){.ways-grid{grid-template-columns:1fr}}
+  .way{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 26px;display:flex;flex-direction:column}
+  .way h3{font-size:1.25rem;margin-bottom:8px}
+  .way p{color:var(--muted);font-size:.98rem}
+  .way .price{margin-top:14px;font-weight:600;color:var(--deep)}
+  .way .more{margin-top:auto;padding-top:16px;font-weight:600;color:var(--teal);text-decoration:none}
+  .way .more:hover{color:var(--purple)}
+  .ways .built{margin-top:22px;font-size:.95rem;color:var(--muted);max-width:none}
+  .launch-strip{padding:0 24px}
+  .launch-strip img{width:100%;max-width:820px;height:auto;display:block;margin:0 auto;border-radius:12px;box-shadow:0 16px 40px rgba(54,41,79,.16)}
+  .launch-strip+.book{padding-top:56px}
+  .book .book-buy{margin-top:22px}
+  [data-book-live]{display:none}
+  .book-live [data-book-live]{display:block}
+  .book-live [data-book-pre]{display:none}
+  .book-live .launch-strip{display:none}
+  .book-live .launch-strip+.book{padding-top:96px}
 </style>
 </head>
 <body>
@@ -432,10 +465,31 @@
       </div>
       <p class="hero-note">Twelve statements. Three minutes. No email required to see your score.</p>
     </div>
-    <img class="hero-cover" src="assets/book-cover.jpg" width="640" height="960" fetchpriority="high"
-         alt="Hardcover of AI Will Scale Good Leadership. And Bad Leadership. A road forks into a teal path and a purple path under a sunset sky.">
+    <img class="hero-cover" src="assets/book-stack.webp" width="1600" height="1146" fetchpriority="high"
+         alt="AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
   </div>
 </header>
+
+<section class="ways" id="ways">
+  <div class="wrap">
+    <h2>Two ways <strong>we work</strong></h2>
+    <div class="ways-grid">
+      <div class="way reveal">
+        <h3>Workshop</h3>
+        <p>90 minutes. Leaders learn one structure for every prompt and every conversation.</p>
+        <p class="price">$3,500</p>
+        <a class="more" href="#workshop">See the workshop</a>
+      </div>
+      <div class="way reveal">
+        <h3>The First 90 Days</h3>
+        <p>Prove it on one process, then scale what works.</p>
+        <p class="price">From $15,000</p>
+        <a class="more" href="#first-90-days">See the 90 days</a>
+      </div>
+    </div>
+    <p class="built">Built for PE-backed companies and the HR teams inside them.</p>
+  </div>
+</section>
 
 <div class="arch">
   <div class="wrap arch-in">
@@ -542,23 +596,29 @@
   </div>
 </section>
 
+<div class="launch-strip" data-book-banner>
+  <img src="assets/launch-banner-nov16.webp" width="820" height="312" loading="lazy" alt="AI Will Scale Good Leadership and Bad Leadership, available November 16 on Amazon">
+</div>
+
 <section class="book" id="book">
   <div class="wrap">
     <div class="bgrid">
-      <img class="cover reveal" src="assets/book-cover.jpg" width="640" height="960" loading="lazy"
-           alt="Hardcover of AI Will Scale Good Leadership. And Bad Leadership. A road forks into a teal path and a purple path under a sunset sky.">
+      <img class="cover reveal" src="assets/book-front-back.webp" width="1600" height="1592" loading="lazy"
+           alt="Front and back cover of AI Will Scale Good Leadership and Bad Leadership">
       <div>
         <span class="eyebrow">The Book</span>
-        <h2 style="margin-top:10px">AI Will Scale Good Leadership. <strong>And Bad Leadership.</strong></h2>
+        <h2 style="margin-top:10px">AI Will Scale Good Leadership <strong>and Bad Leadership</strong></h2>
         <p class="subtitle">The CHRO's Method for Redesigning Work Before AI Scales What's Broken</p>
         <p>AI will amplify whatever leadership system already exists. This book is the method for redesigning the work first, so what scales is worth scaling.</p>
-        <p class="status">Publishing Fall 2026</p>
-        <form class="notify" id="notifyForm" novalidate>
+        <p class="status" data-book-pre>Available November 16 on Amazon</p>
+        <p class="status" data-book-live>Now available on Amazon</p>
+        <form class="notify" id="notifyForm" novalidate data-book-pre>
           <input type="email" name="email" placeholder="you@company.com" aria-label="Email for launch notification" required>
           <button class="btn btn-primary" type="submit">Notify me at launch</button>
           <p class="form-ok">You're on the launch list.</p>
           <p class="form-err"></p>
         </form>
+        <p class="book-buy" data-book-live><a class="btn btn-primary" data-book-cta href="#book">Buy on Amazon</a></p>
       </div>
     </div>
   </div>
@@ -798,7 +858,7 @@
         <div class="actions"><button class="btn btn-teal" type="submit">Send me the overview</button><p class="form-err"></p></div>
       </form>
       <div class="dl-ok" id="overviewOk">
-        <p>Your overview is ready. <a href="assets/growth-execution-model-overview.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+        <p>Your overview is ready. <a href="assets/GROWTH-Execution-Model-Overview-OnTheGrow-v3.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
         <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
       </div>
     </div>
@@ -810,41 +870,45 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Work With Us</span>
-      <h2>Start free. <strong>Go as deep as the work requires.</strong></h2>
+      <h2>Four ways in. <strong>Start where you are.</strong></h2>
     </div>
     <div class="ladder">
-      <div class="rung reveal">
-        <span class="step">01 · Free</span>
+      <div class="rung reveal" id="assessment">
+        <span class="step">Free</span>
         <h3>The AI Leadership Load Assessment</h3>
-        <p>Twelve statements. Three minutes. Your score, your biggest gap, and where to start.</p>
-        <p class="rung-cta"><a class="btn btn-primary" href="/readiness/">Take the assessment</a></p>
+        <p>12 statements. Three minutes. See what AI will scale on your team.</p>
+        <div class="rung-cta"><a class="btn btn-primary" href="/readiness/">Take the assessment</a></div>
       </div>
-      <div class="rung reveal">
-        <span class="step">02 · The book</span>
-        <h3>AI Will Scale Good Leadership. And Bad Leadership.</h3>
-        <p>The full method, with the 14 Toolbox tools. Publishing Fall 2026.</p>
-        <p class="rung-cta"><a class="btn btn-primary" href="#book">Notify me at launch</a></p>
+      <div class="rung reveal" id="workshop">
+        <span class="step">Workshop</span>
+        <h3>Write Better Prompts. Coach People Better.</h3>
+        <p class="price">$3,500 per session, up to 12 leaders</p>
+        <p>One structure that makes your leaders' AI prompts sharper and their one-on-ones better. 90 minutes. Virtual or in person. Small by design, so every leader gets coached.</p>
+        <div class="rung-cta">
+          <a class="btn btn-primary" href="assets/OTG-Workshop-Write-Better-Prompts.pdf" target="_blank" rel="noopener">Download the one pager</a>
+          <a class="btn btn-outline" href="https://calendly.com/liz-onthegrowleadership/intro-to-the-growth-model" target="_blank" rel="noopener">Book a call</a>
+        </div>
       </div>
-      <div class="rung reveal">
-        <span class="step">03 · The method, applied</span>
-        <h3>We run the method with you.</h3>
-        <p>The book's five stages, led inside your organization: Decode. Redesign. Scale. Embed. Execute. From the work taxonomy to the scale decision, your team does the work alongside ours.</p>
-        <p class="rung-cta"><a class="btn btn-primary" href="https://calendly.com/liz-onthegrowleadership">Talk with us</a></p>
+      <div class="rung reveal" id="first-90-days">
+        <span class="step">For PE-backed companies and the HR teams inside them</span>
+        <h3>The First 90 Days: Prove It on One Process</h3>
+        <p class="price">From $15,000</p>
+        <p>The 90 day program from the book, run with your HR team. One process redesigned, owners named, a council running, and before and after data for the board. Your team learns the method by doing it.</p>
+        <div class="rung-cta">
+          <a class="btn btn-primary" href="assets/OTG-First-90-Days.pdf" target="_blank" rel="noopener">Download the one pager</a>
+          <a class="btn btn-outline" href="https://calendly.com/liz-onthegrowleadership/intro-to-the-growth-model" target="_blank" rel="noopener">Book a call</a>
+        </div>
       </div>
-      <div class="rung reveal">
-        <span class="step">04 · GROWTH™, installed</span>
-        <h3>One standard for every leader.</h3>
-        <p>Every leader runs the same six steps, with people and with agents: Goal, Reflect, Options, What's Next, Tracking, Habits.</p>
-        <p class="rung-cta"><a class="btn btn-primary" href="https://calendly.com/liz-onthegrowleadership">Talk with us</a></p>
-      </div>
-      <div class="rung reveal">
-        <span class="step">05 · In development</span>
-        <h3>OnTheGrow.ai™</h3>
-        <p>The method, built to run inside the work. Join early access to help shape it.</p>
-        <p class="rung-cta"><a class="btn btn-primary" href="#product">Join early access</a></p>
+      <div class="rung reveal" id="the-book">
+        <span class="step">The Book</span>
+        <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
+        <img class="rung-cover" src="assets/book-cover-front.webp" width="1000" height="1500" loading="lazy" alt="Cover of AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
+        <p data-book-pre>Available November 16 on Amazon.</p>
+        <p data-book-live>Now available on Amazon.</p>
+        <div class="rung-cta"><a class="btn btn-primary" data-book-cta href="#book">Available November 16</a></div>
       </div>
     </div>
-    <p class="line reveal">The book gives you the method. We apply it with you. The platform will run it every day.</p>
+    <p class="platform-note reveal"><b>OnTheGrow.ai™.</b> The GROWTH Execution Model for leaders and their AI agents. Coming. <a href="#product">Join early access.</a></p>
 
     <div class="dlcard reveal" id="journey">
       <span class="eyebrow">Free Download</span>
@@ -860,7 +924,7 @@
         <div class="actions"><button class="btn btn-teal" type="submit">Send me the journey</button><p class="form-err"></p></div>
       </form>
       <div class="dl-ok" id="journeyOk">
-        <p>Your journey is ready. <a href="assets/leadership-infrastructure-journey.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
+        <p>Your journey is ready. <a href="assets/Leadership-Infrastructure-Journey-OnTheGrow-v2.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
         <p class="dl-more">See the engine: <a href="#overview">the GROWTH Execution Model overview.</a></p>
       </div>
     </div>
@@ -890,7 +954,7 @@
 
 <section class="founder" id="about">
   <div class="wrap founder-in">
-    <img class="about-icon reveal" src="assets/otg-mark.png" alt="" width="337" height="400">
+    <img class="about-card reveal" src="assets/liz-quote-card.webp" width="1200" height="1200" loading="lazy" alt="Liz Corey, Founder and CEO of OnTheGrow Leadership">
     <div>
       <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
       <p class="who reveal"><b>Liz Corey</b>, Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
@@ -986,7 +1050,7 @@
     <h2>Twelve statements from now, <strong style="color:#75cbc4">you'll know.</strong></h2>
     <p>AI doesn't fix leadership. It scales it. Take the AI Leadership Load Assessment and see what your leaders can carry.</p>
     <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
-      <a class="btn btn-teal" href="https://calendly.com/liz-onthegrowleadership">Book a conversation</a>
+      <a class="btn btn-teal" href="https://calendly.com/liz-onthegrowleadership/intro-to-the-growth-model" target="_blank" rel="noopener">Book a call</a>
     </div>
   </div>
 </section>
@@ -1002,10 +1066,10 @@
     </div>
     <div class="foot-right">
       <p><a class="btn foot-cta" href="#contact">Contact Us</a></p>
-      <p style="margin-top:14px"><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
       <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
     </div>
   </div>
+  <div class="wrap"><p class="legal">© 2026 Elizabeth A. Corey. All rights reserved. Leadership as Infrastructure™, The GROWTH™ Execution Model, Leadership that Lifts™, Grace &amp; Grit™, and the AI Leadership Load Assessment™ are trademarks of Elizabeth A. Corey.</p></div>
 </footer>
 
 <script>

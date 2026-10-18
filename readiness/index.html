@@ -112,10 +112,17 @@
   .error{color:#f5b8c4;font-size:.9rem;margin-top:12px;display:none}
 
   .result-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;align-items:center}
+  .nextstep{margin-top:36px;max-width:52ch}
+  .nextstep .k{font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-hi);margin-bottom:12px}
+  .nextstep .btn{display:inline-block;max-width:100%;text-align:center}
+  .nextstep .alt{margin-top:14px;font-size:.98rem;color:var(--dim)}
+  .nextstep a.link{color:var(--teal-hi);text-decoration:underline;text-underline-offset:3px}
+  .nextstep .call{margin-top:10px;font-size:.95rem}
 
   footer{border-top:1px solid rgba(255,255,255,.1);padding:34px 0;font-size:.85rem;color:var(--faint)}
   .foot-in{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
   .foot-in img{height:44px;width:auto}
+  footer .legal{margin-top:22px;max-width:none;font-size:.8rem;line-height:1.6;color:var(--faint)}
   footer a{color:var(--teal-hi);text-decoration:none}
 
   .faint a,.error a{color:var(--teal-hi)}
@@ -186,6 +193,13 @@
         <p class="small">AI is the amplifier. Leadership is the infrastructure.</p>
       </div>
 
+      <div class="nextstep" id="nextStep">
+        <p class="k">Your next step</p>
+        <p><a class="btn" id="nsPrimary" href="/#first-90-days">Prove it on one process in 90 days</a></p>
+        <p class="alt"><a class="link" id="nsAlt" href="/#workshop">Or start with a 90 minute workshop.</a></p>
+        <p class="call"><a class="link" href="https://calendly.com/liz-onthegrowleadership/intro-to-the-growth-model" target="_blank" rel="noopener">Book a call</a></p>
+      </div>
+
       <div class="capture" id="capture">
         <h2>Want the full report?</h2>
         <p class="sub">All four group scores, every flag explained, the first move for your weakest group, and the matching book chapters.</p>
@@ -230,7 +244,7 @@
         </div>
         <div class="decode">
           <p>This is where a Decode engagement starts: a knowledge audit and your first agent job descriptions.</p>
-          <a class="btn" href="https://calendly.com/liz-onthegrowleadership">Talk with us</a>
+          <a class="btn" href="https://calendly.com/liz-onthegrowleadership/intro-to-the-growth-model" target="_blank" rel="noopener">Book a call</a>
         </div>
         <p class="teamline">The real finding is the gap between how your leaders answer. Have your leadership team take the assessment with the same company name, and we will compare the results with you.</p>
       </div>
@@ -253,6 +267,7 @@
     </div>
     <a class="btn foot-cta" href="/#contact">Contact Us</a>
   </div>
+  <div class="wrap"><p class="legal">© 2026 Elizabeth A. Corey. All rights reserved. Leadership as Infrastructure™, The GROWTH™ Execution Model, Leadership that Lifts™, Grace &amp; Grit™, and the AI Leadership Load Assessment™ are trademarks of Elizabeth A. Corey.</p></div>
 </footer>
 
 <script>
@@ -495,6 +510,13 @@ function renderResult(){
   });
   $("rGapFree").textContent = GROUPS[gi] + ".";
   $("rReadout").textContent = GAPS[gi].readout;
+  // Next step, mapped to the weakest group. Leaders points to the workshop;
+  // Truth, Work, and Ownership point to The First 90 Days. Display only; the payload is untouched.
+  const next = GROUPS[gi] === "Leaders"
+    ? {primary:"Run the workshop with your leaders", primaryHref:"/#workshop", alt:"Or prove it on one process in 90 days.", altHref:"/#first-90-days"}
+    : {primary:"Prove it on one process in 90 days", primaryHref:"/#first-90-days", alt:"Or start with a 90 minute workshop.", altHref:"/#workshop"};
+  $("nsPrimary").textContent = next.primary; $("nsPrimary").href = next.primaryHref;
+  $("nsAlt").textContent = next.alt; $("nsAlt").href = next.altHref;
   const lines = flagLines(flags);
   $("rFlags").classList.toggle("hidden", lines.length === 0);
   const fl = $("rFlagList");

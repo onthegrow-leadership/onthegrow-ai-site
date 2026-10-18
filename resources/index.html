@@ -11,6 +11,7 @@
 <link rel="icon" href="../assets/OTG-favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/OTG-favicon-180.png">
 <meta property="og:image" content="../assets/OTG-favicon-512.png">
+<script src="../assets/book-launch.js"></script>
 <style>
   :root{
     --teal:#39989e; --teal-hi:#75cbc4; --purple:#6B529E; --blush:#f9eff6;
@@ -72,24 +73,13 @@
   .page-head{padding:84px 24px 20px}
   .page-head h1{margin-top:14px}
 
-  /* same purple card as the free downloads */
-  .rescard{background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;max-width:none}
-  .rescard .eyebrow{color:var(--teal-hi)}
-  .rescard h2{color:#fff;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.8rem);margin:10px 0 12px}
-  .rescard .body{color:#cfc6e0}
-  @media(max-width:600px){.rescard{padding:32px 24px}}
-  .resform{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;max-width:480px}
-  .resform input{flex:1;min-width:220px;padding:13px 15px;font-family:inherit;font-size:.95rem;
-    border:1px solid var(--line);border-radius:6px}
-  .form-ok{flex-basis:100%;display:none;margin-top:8px}
-  .form-ok .note{font-size:.88rem;color:#cfc6e0;margin-top:10px}
   .form-err{flex-basis:100%;font-size:.88rem;color:#f5b8c4;margin-top:8px;display:none}
 
   /* free downloads: the same cards as the home page */
   .dlsec{padding:48px 0 0}
   .dlsec h2{font-weight:300;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:24px}
   .dlcard{background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;position:relative;overflow:hidden}
-  .dlcard+.dlcard{margin-top:20px}
+  .dlsec .wrap>*+*{margin-top:20px}
   .dlcard .eyebrow{color:var(--teal-hi)}
   .dlcard h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:600;margin:10px 0 12px}
   .dlcard p{color:#cfc6e0}
@@ -126,6 +116,7 @@
   .foot-brand img{height:36px;width:auto}
   footer .wm-text{color:#fff}
   footer .tag{color:#8f88a0;margin-top:6px}
+  footer .legal{margin-top:26px;max-width:none;font-size:.8rem;line-height:1.6;color:#8f88a0}
   footer a{color:var(--teal-hi);text-decoration:none}
 
   .form-err a{color:inherit;text-decoration:underline}
@@ -134,6 +125,10 @@
   .foot-cta{padding:12px 22px;font-size:.92rem}
 
   .hidden{display:none}
+  /* book launch switch (assets/book-launch.js) */
+  [data-book-live]{display:none}
+  .book-live [data-book-live]{display:inline}
+  .book-live [data-book-pre]{display:none}
   @media (prefers-reduced-motion: reduce){.btn:hover{transform:none}}
 </style>
 </head>
@@ -168,22 +163,40 @@
 <section class="dlsec">
   <div class="wrap">
     <h2>Free Downloads</h2>
-    <div class="dlcard" id="overview">
-      <span class="eyebrow">Free Download</span>
-      <h3>The GROWTH™ Execution Model</h3>
-      <p>Six steps. One language for leaders and AI agents. The two-page overview of the model, how it applies to AI, and what it produced.</p>
-      <p class="opener"><button class="btn" type="button" id="overviewOpen">Get the overview</button></p>
-      <form class="fgrid2 closed" id="overviewForm" novalidate>
-        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
-        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
+    <div class="dlcard" id="summary">
+      <span class="eyebrow">The Book</span>
+      <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
+      <p>A two-page summary of the book's thesis and method. <span data-book-pre>Available November 16 on Amazon.</span><span data-book-live>Now available on Amazon.</span></p>
+      <p class="opener"><button class="btn" type="button" id="summaryOpen">Get the summary</button></p>
+      <form class="fgrid2 closed" id="summaryForm" novalidate>
+        <div><label for="sm-first">First name</label><input type="text" id="sm-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="sm-last">Last name</label><input type="text" id="sm-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="sm-email">Email</label><input type="email" id="sm-email" name="email" autocomplete="email" required></div>
+        <div><label for="sm-company">Company</label><input type="text" id="sm-company" name="company" autocomplete="organization" required></div>
         <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn" type="submit">Send me the overview</button><p class="form-err"></p></div>
+        <div class="actions"><button class="btn" type="submit">Send me the summary</button><p class="form-err"></p></div>
       </form>
-      <div class="dl-ok" id="overviewOk">
-        <p>Your overview is ready. <a href="/assets/growth-execution-model-overview.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
-        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
+      <div class="dl-ok" id="summaryOk">
+        <p>Your summary is ready. <a href="/assets/AI-Will-Scale-Good-Leadership-Book-Summary-OnTheGrow-v4.pdf" target="_blank" rel="noopener">Download the book summary.</a></p>
+        <p class="dl-more">The summary is yours. You can ask us to delete your record any time.</p>
+      </div>
+    </div>
+    <div class="dlcard" id="brief">
+      <span class="eyebrow">The Evidence Brief</span>
+      <h3>14 Chapters, 21 Independent Findings</h3>
+      <p>Recent research from McKinsey, BCG, Accenture, EY, IBM, PwC, Gallup, and Harvard Business Review, paired with each chapter of the book.</p>
+      <p class="opener"><button class="btn" type="button" id="briefOpen">Get the brief</button></p>
+      <form class="fgrid2 closed" id="briefForm" novalidate>
+        <div><label for="br-first">First name</label><input type="text" id="br-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="br-last">Last name</label><input type="text" id="br-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="br-email">Email</label><input type="email" id="br-email" name="email" autocomplete="email" required></div>
+        <div><label for="br-company">Company</label><input type="text" id="br-company" name="company" autocomplete="organization" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn" type="submit">Send me the brief</button><p class="form-err"></p></div>
+      </form>
+      <div class="dl-ok" id="briefOk">
+        <p>Your brief is ready. <a href="/assets/AI-Will-Scale-Good-Leadership-Evidence-Brief-Q4-2026.pdf" target="_blank" rel="noopener">Download the evidence brief.</a></p>
+        <p class="dl-more">The brief is yours. You can ask us to delete your record any time.</p>
       </div>
     </div>
     <div class="dlcard" id="journey">
@@ -200,42 +213,26 @@
         <div class="actions"><button class="btn" type="submit">Send me the journey</button><p class="form-err"></p></div>
       </form>
       <div class="dl-ok" id="journeyOk">
-        <p>Your journey is ready. <a href="/assets/leadership-infrastructure-journey.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
+        <p>Your journey is ready. <a href="/assets/Leadership-Infrastructure-Journey-OnTheGrow-v2.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
         <p class="dl-more">See the engine: <a href="#overview">the GROWTH Execution Model overview.</a></p>
       </div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="rescard">
-      <span class="eyebrow">The Book</span>
-      <h2>AI Will Scale Good Leadership. And Bad Leadership.</h2>
-      <p class="body">A two-page summary of the book's thesis and method. Publishing Fall 2026.</p>
-      <form class="resform" id="summaryForm" novalidate>
-        <input type="email" name="email" placeholder="you@company.com" aria-label="Email for the book summary" required>
-        <button class="btn" type="submit" id="summaryBtn">Send me the summary</button>
-        <p class="form-err" id="summaryErr"></p>
+    <div class="dlcard" id="overview">
+      <span class="eyebrow">Free Download</span>
+      <h3>The GROWTH™ Execution Model</h3>
+      <p>Six steps. One language for leaders and AI agents. The two-page overview of the model, how it applies to AI, and what it produced.</p>
+      <p class="opener"><button class="btn" type="button" id="overviewOpen">Get the overview</button></p>
+      <form class="fgrid2 closed" id="overviewForm" novalidate>
+        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
+        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn" type="submit">Send me the overview</button><p class="form-err"></p></div>
       </form>
-      <div class="form-ok" id="summaryOk">
-        <a class="btn" href="/book-summary.pdf" download>Download the summary (PDF)</a>
-        <p class="note">The summary is yours. You can ask us to delete your record any time.</p>
-      </div>
-    </div>
-
-    <div class="rescard" style="margin-top:20px">
-      <span class="eyebrow">The Evidence Brief</span>
-      <h2>14 Chapters, 14 Independent Findings</h2>
-      <p class="body">Recent research from McKinsey, BCG, Accenture, EY, IBM, PwC, and Harvard Business Review, paired with each chapter of the book.</p>
-      <form class="resform" id="briefForm" novalidate>
-        <input type="email" name="email" placeholder="you@company.com" aria-label="Email for the evidence brief" required>
-        <button class="btn" type="submit" id="briefBtn">Send me the brief</button>
-        <p class="form-err" id="briefErr"></p>
-      </form>
-      <div class="form-ok" id="briefOk">
-        <a class="btn" href="/evidence-brief.pdf" download>Download the brief (PDF)</a>
-        <p class="note">The brief is yours. You can ask us to delete your record any time.</p>
+      <div class="dl-ok" id="overviewOk">
+        <p>Your overview is ready. <a href="/assets/GROWTH-Execution-Model-Overview-OnTheGrow-v3.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
       </div>
     </div>
   </div>
@@ -261,10 +258,10 @@
     </div>
     <div class="foot-right">
       <p><a class="btn foot-cta" href="/#contact">Contact Us</a></p>
-      <p style="margin-top:14px"><a href="https://www.onthegrowleadership.com">onthegrowleadership.com</a></p>
       <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
     </div>
   </div>
+  <div class="wrap"><p class="legal">© 2026 Elizabeth A. Corey. All rights reserved. Leadership as Infrastructure™, The GROWTH™ Execution Model, Leadership that Lifts™, Grace &amp; Grit™, and the AI Leadership Load Assessment™ are trademarks of Elizabeth A. Corey.</p></div>
 </footer>
 
 <script>
@@ -314,38 +311,6 @@ FORBES.forEach(([date, title, summary, url]) => {
   grid.appendChild(card);
 });
 
-// One gate per resource card: posts to the webhook, then reveals the download on screen.
-function wireGate(formId, okId, errId, btnId, resource, noun){
-  document.getElementById(formId).addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const err = document.getElementById(errId);
-    err.style.display = "none";
-    const email = e.target.email.value.trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-      err.textContent = "That email doesn't look complete. Check it and try again.";
-      err.style.display = "block";
-      return;
-    }
-    const btn = document.getElementById(btnId);
-    const label = btn.textContent;
-    btn.disabled = true; btn.textContent = "Sending";
-    try {
-      const res = await fetch(WEBHOOK_URL, {method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({tag:"book-launch-notify", resource:resource, email:email,
-          source:"onthegrow.ai/resources", submittedAt:new Date().toISOString()})});
-      if (!res.ok) throw new Error("bad response");
-      e.target.style.display = "none";
-      document.getElementById(okId).style.display = "block";
-    } catch(_) {
-      err.innerHTML = 'Something went wrong on our end. Please try again in a moment, or <a href="/#contact">use the contact form</a> and we will send the ' + noun + ' directly.';
-      err.style.display = "block";
-    } finally {
-      btn.disabled = false; btn.textContent = label;
-    }
-  });
-}
-wireGate("summaryForm", "summaryOk", "summaryErr", "summaryBtn", "book-summary", "summary");
-wireGate("briefForm", "briefOk", "briefErr", "briefBtn", "evidence-brief", "brief");
 
 // Gated downloads, the same component as the home page.
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -358,8 +323,9 @@ function readFields(form, names){ const out = {}; names.forEach(n => { out[n] = 
 function showErr(form, msg){ const err = form.querySelector(".form-err"); err.textContent = msg; err.style.display = "block"; }
 function hideErr(form){ form.querySelector(".form-err").style.display = "none"; }
 // Gated downloads. The download is never blocked on a webhook error.
-// tag names the download; source names the page it was requested from.
-function wireDownload(id, tag, source){
+// tag names the download; source names the page it was requested from; extra carries any
+// field GHL already keys on (the summary and brief keep tag book-launch-notify plus resource).
+function wireDownload(id, tag, source, extra){
   const open = document.getElementById(id + 'Open'), form = document.getElementById(id + 'Form');
   open.addEventListener('click', () => {
     open.parentElement.style.display = 'none';
@@ -374,15 +340,17 @@ function wireDownload(id, tag, source){
     const btn = form.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = 'Sending';
     if (!form.elements.website.value){
-      try { await postWebhook({tag, source, ...f, submittedAt:new Date().toISOString()}); }
+      try { await postWebhook({tag, source, ...(extra || {}), ...f, submittedAt:new Date().toISOString()}); }
       catch(_) {}
     }
     form.style.display = 'none';
     document.getElementById(id + 'Ok').style.display = 'block';
   });
 }
-wireDownload('overview', 'growth-overview', 'growth-overview-resources');
+wireDownload('summary', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'book-summary'});
+wireDownload('brief', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'evidence-brief'});
 wireDownload('journey', 'journey', 'journey-resources');
+wireDownload('overview', 'growth-overview', 'growth-overview-resources');
 </script>
 </body>
 </html>
