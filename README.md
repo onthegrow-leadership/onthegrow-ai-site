@@ -8,15 +8,17 @@ Infrastructure™ thesis.
 - `index.html`: main page, self-contained (Google Fonts only external dependency)
 - `readiness/index.html`: free AI readiness assessment (ten questions, scored client-side,
   submissions POST to a Go High Level inbound webhook set in `WEBHOOK_URL`)
+- `resources/index.html`: resources page, free downloads and Forbes articles
+- `reader/index.html`: reader tools page for book buyers, behind a courtesy access code. Content comes from `reader/content.json`, files from `reader/files/`. See `reader/HOW-TO-UPDATE.md`.
 - `assets/book-cover.jpg`: book cover, web compressed
 - `favicon.svg`: hexagonal brand mark (SVG recreation; swap for designer original when available)
 
 ## Deploy
 
-Hosted on AWS Amplify (manual deployment):
+Hosted on AWS Amplify. A push to `main` runs `.github/workflows/deploy.yml`, which does these steps. By hand:
 
 ```sh
-zip -r site.zip index.html favicon.svg assets readiness
+zip -r site.zip index.html favicon.svg assets readiness resources reader book-summary.pdf evidence-brief.pdf
 aws amplify create-deployment --app-id <APP_ID> --branch-name main
 curl -H "Content-Type: application/zip" --upload-file site.zip "<zipUploadUrl>"
 aws amplify start-deployment --app-id <APP_ID> --branch-name main --job-id <JOB_ID>

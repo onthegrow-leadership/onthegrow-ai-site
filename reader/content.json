@@ -1,0 +1,73 @@
+{
+  "tools": [
+    {"n": 1, "toolbox": "Front matter", "name": "AI Glossary for CHROs", "file": "AI-Glossary-OnTheGrow-v1.pdf", "format": "PDF, 7 pages",
+     "description": "72 terms in plain language, and what each one means for the work. The searchable version is in the glossary below."},
+    {"n": 2, "toolbox": "No. 1", "name": "The Work Taxonomy", "file": "Work-Taxonomy-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Map the work before you decide where AI belongs. One row per task. Includes the AI Opportunity Assessment and the Work Assignment register."},
+    {"n": 3, "toolbox": "No. 2", "name": "The Five Terms and the Assignment Structure", "file": "Five-Terms-Assignment-Structure-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "Command of the vocabulary is not the goal. Command of the consequence is. Keep it open in every AI conversation you lead."},
+    {"n": 4, "toolbox": "No. 3", "name": "The Knowledge Readiness Test", "file": "Knowledge-Readiness-Test-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "AI inherits your knowledge exactly as it stands. Score the answers to the questions people ask most on six tests before you let AI answer them."},
+    {"n": 5, "toolbox": "No. 4", "name": "The Agent Job Description", "file": "Agent-Job-Description-OnTheGrow-v1.docx", "format": "Word template",
+     "description": "Hire an agent the way you hire a person. A full version, a half page version, and a finished example."},
+    {"n": 6, "toolbox": "No. 5", "name": "The Seven-Step Redesign Run Sheet", "file": "Seven-Step-Redesign-Run-Sheet-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "Start with the work. The workforce number comes last."},
+    {"n": 7, "toolbox": "No. 6", "name": "The Work Assignment Matrix", "file": "Work-Assignment-Matrix-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "Map the work. Then decide who does it. The full size worksheet the book points to. The Excel register is a tab in the Work Taxonomy workbook."},
+    {"n": 8, "toolbox": "No. 7", "name": "The Decision Rights Matrix", "file": "Decision-Rights-Matrix-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Ownership is singular. When two people own a rule, nobody owns it. Five names on every rule that moves money or touches people."},
+    {"n": 9, "toolbox": "Chapter 7", "name": "The CHRO Governance Checklist", "file": "CHRO-Governance-Checklist-OnTheGrow-v1.pdf", "format": "PDF, 1 page, fillable",
+     "description": "What HR owns, what it shares, and what belongs to IT and legal. One page, every quarter."},
+    {"n": 10, "toolbox": "No. 8", "name": "The Capability Gap Assessment", "file": "Capability-Gap-Assessment-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Literacy is whether a person can explain the five terms. Capability is what they actually do when it counts. The gap between knowing and doing is where the risk lives."},
+    {"n": 11, "toolbox": "No. 8", "name": "The Six Skills Behavioral Scale", "file": "Six-Skills-Behavioral-Scale-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "Capability is behavior under conditions. Every anchor is observable. Companion to the Capability Gap Assessment."},
+    {"n": 12, "toolbox": "No. 9", "name": "The Manager Readiness Review", "file": "Manager-Readiness-Review-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Never scale what you haven't reviewed. A talent review for the management layer, run before any pilot multiplies."},
+    {"n": 13, "toolbox": "No. 10", "name": "The Mixed-Team Operating Rhythm", "file": "Mixed-Team-Operating-Rhythm-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "You don't need a second management system for AI. Bring AI into the one you already have."},
+    {"n": 14, "toolbox": "No. 11", "name": "The GROWTH Conversation Guide and AI Harness Map", "file": "GROWTH-Conversation-Guide-AI-Harness-Map-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "Six steps for any conversation with an agenda. With people, and with agents. Page 1 is the GROWTH card."},
+    {"n": 15, "toolbox": "No. 12", "name": "The AI-Era Listening Set", "file": "AI-Era-Listening-Set-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "AI doesn't make the experience go away. Four signals, added to the instruments you already run."},
+    {"n": 16, "toolbox": "No. 13", "name": "The No-Surprises Protocol", "file": "No-Surprises-Protocol-OnTheGrow-v1.pdf", "format": "PDF, fillable",
+     "description": "The communication discipline for the entire transformation, installable this month."},
+    {"n": 17, "toolbox": "No. 13", "name": "The Ambiguity Inventory", "file": "Ambiguity-Inventory-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Ambiguity has beneficiaries. Name who benefits from the fog before your AI effort forces the rules into single versions. Private: use it, don't publish it."},
+    {"n": 18, "toolbox": "Chapter 14", "name": "The 30/60/90 Enablement Roadmap", "file": "30-60-90-Enablement-Roadmap-OnTheGrow-v1.xlsx", "format": "Excel workbook",
+     "description": "Every chapter ended with a move you could make with the authority you already hold. Here they become a program: seventeen moves, three phases, ninety days."},
+    {"n": 19, "toolbox": "No. 14", "name": "The Enablement Council Charter", "file": "Enablement-Council-Charter-OnTheGrow-v1.docx", "format": "Word template",
+     "description": "Nobody owns AI alone. Four functions, four verbs, one page."}
+  ],
+  "legalWatch": {
+    "updated": "2026-10-21",
+    "items": [
+      {"jurisdiction": "European Union",
+       "headline": "High-risk employment AI rules delayed to December 2027",
+       "whatChanged": "The Digital Omnibus on AI, approved by the European Parliament on June 16, 2026 and the Council on June 29, 2026, moved the application date for stand-alone high-risk AI systems (which include employment uses) from August 2, 2026 to December 2, 2027. High-risk AI embedded in products moves to August 2, 2028. Transparency duties for generative AI already on the market now apply from December 2, 2026. A delay is not a repeal.",
+       "whatToDo": "Use the extra time the way the book says: every agent under a job description, five names on every consequential rule, a leader who answers for the pattern. That is what the high-risk regime will ask for.",
+       "sourceTitle": "Ogletree Deakins, \"EU Digital Omnibus on AI,\" June 16, 2026",
+       "sourceUrl": "https://ogletree.com/?p=89498"},
+      {"jurisdiction": "Colorado",
+       "headline": "AI Act narrowed and moved to January 1, 2027",
+       "whatChanged": "Senate Bill 189 (May 2026) moved the effective date from June 30, 2026 to January 1, 2027 and rewrote the law around transparency. The duty of care, risk management program, and impact assessment requirements were removed. What remains: disclosures about intended uses, training data categories, and deployer oversight; and a right to meaningful human review of adverse automated decisions. The attorney general will define \"materially influences\" by rule.",
+       "whatToDo": "\"Meaningful human review\" is the Assist box with a named owner. If a consequential employment decision is touched by AI, make sure a person can explain it and a person owns it.",
+       "sourceTitle": "IAPP, \"Amendments move Colorado AI Act's focus from risk to transparency,\" May 13, 2026",
+       "sourceUrl": "https://iapp.org/news/a/amendments-move-colorado-ai-act-s-focus-from-risk-to-transparency"},
+      {"jurisdiction": "United States",
+       "headline": "Mobley v. Workday, age claims proceeding as a collective action",
+       "whatChanged": "In May 2025 the federal court in the Northern District of California allowed age discrimination claims over AI applicant screening to proceed as a collective action, later extended to applicants screened by Workday's HiredScore features. Notice went out in December 2025. A third amended complaint was filed in March 2026, and on June 22, 2026 the court granted in part and denied in part a motion to dismiss. The case continues.",
+       "whatToDo": "Shortlisting is the book's standing example. AI ranks, never rejects. The recruiter sees the full list. Candidates are scored against a written performance profile. That design is also the defensible one.",
+       "sourceTitle": "Civil Rights Litigation Clearinghouse, Mobley v. Workday, Inc., docket last updated September 17, 2026",
+       "sourceUrl": "https://clearinghouse.net/case/44074/"}
+    ]
+  },
+  "glossaryNote": {
+    "updated": "2026-10-22",
+    "embed": "AI-Glossary-GHL-Embed-OnTheGrow-v1.html"
+  },
+  "evidenceBrief": {
+    "file": "AI-Will-Scale-Good-Leadership-Evidence-Brief-Q4-2026.pdf",
+    "edition": "Q4 2026"
+  }
+}
