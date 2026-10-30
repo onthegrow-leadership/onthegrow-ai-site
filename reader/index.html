@@ -272,7 +272,6 @@
         <h3>The Evidence Brief</h3>
         <p>Fourteen chapters, fourteen independent findings. Recent research paired with each chapter, updated quarterly.</p>
         <p class="opener"><a class="btn" id="briefLink" href="/reader/files/AI-Will-Scale-Good-Leadership-Evidence-Brief-Q4-2026-v3.pdf" download>The Evidence Brief, Q4 2026 edition</a></p>
-        <p class="dl-more" id="briefEdition">Current edition: Q4 2026.</p>
       </div>
       <div class="dlcard" id="governance">
         <span class="eyebrow">Section 5</span>
@@ -444,7 +443,6 @@ function renderRest(d){
   b.href = FILES_BASE + d.evidenceBrief.file;
   b.setAttribute('download', d.evidenceBrief.file);
   b.textContent = 'The Evidence Brief, ' + d.evidenceBrief.edition + ' edition';
-  document.getElementById('briefEdition').textContent = 'Current edition: ' + d.evidenceBrief.edition + '.';
   return d.glossaryNote.embed ? '/reader/' + d.glossaryNote.embed : GLOSSARY_EMBED;
 }
 
