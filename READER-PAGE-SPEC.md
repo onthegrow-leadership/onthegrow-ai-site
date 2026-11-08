@@ -132,7 +132,7 @@ The book's Chapter 7 sends readers here for "a one-page CHRO governance checklis
 ### Closing
 
 - The book's last line, set as a pull quote: **"Prove me right."**
-- Two buttons: **Take the AI Leadership Load Assessment** (to /readiness/) and **Talk with us** (to the existing Calendly link).
+- Two buttons: **Take the AI Leadership Load Assessment** (to /readiness/) and **Talk with us** (to the booking link).
 
 ## Navigation
 
