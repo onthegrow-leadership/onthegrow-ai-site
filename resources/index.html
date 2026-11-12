@@ -99,6 +99,14 @@
   @media(max-width:600px){.fgrid2{grid-template-columns:1fr}}
   .hp{position:absolute;left:-9999px;top:-9999px}
 
+  /* Work Assignment Matrix gate. Every rule is scoped to #matrix. */
+  #matrix{scroll-margin-top:72px}
+  #matrix .wam-fine{grid-column:1 / -1;font-size:.86rem;color:#cfc6e0;max-width:none}
+  #matrix .wam-ok{display:none;margin-top:28px}
+  #matrix .wam-ok .wam-head{font-size:clamp(1.25rem,2.2vw,1.5rem);font-weight:600;color:#fff}
+  #matrix .wam-ok .btn{margin-top:16px}
+  #matrix .wam-ok .wam-next{margin-top:18px;font-size:.98rem;color:#cfc6e0}
+
   .forbes{background:var(--blush)}
   .intro{color:var(--muted);margin-top:12px}
   .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:40px}
@@ -159,6 +167,28 @@
   <span class="eyebrow">Resources</span>
   <h1>Ideas worth taking into<br><strong>your next leadership conversation.</strong></h1>
 </header>
+
+<section class="dlsec" id="matrix">
+  <div class="wrap">
+    <div class="dlcard">
+      <span class="eyebrow">Free tool from the book</span>
+      <h3>The Work Assignment Matrix</h3>
+      <p>The tool from Chapter 6. One page. List the tasks in one process and decide, task by task, what stays human, what AI assists, and what AI does with a named owner. Most AI rollouts skip this. It takes an afternoon.</p>
+      <form class="fgrid2" id="wamForm" novalidate>
+        <div><label for="wam-first">First name</label><input type="text" id="wam-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="wam-email">Email</label><input type="email" id="wam-email" name="email" autocomplete="email" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn" type="submit">Send me the matrix</button><p class="form-err" role="alert"></p></div>
+        <p class="wam-fine">You'll also get the quarterly evidence updates. One email a quarter. Unsubscribe any time.</p>
+      </form>
+      <div class="wam-ok" id="wamOk">
+        <p class="wam-head">Here's your matrix.</p>
+        <a class="btn" href="/reader/files/Work-Assignment-Matrix-OnTheGrow-v1.pdf" download>Download the Work Assignment Matrix (PDF)</a>
+        <p class="wam-next">Run it on one process this month. If it surfaces something you want a second set of eyes on, reply to the email you're about to get.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="dlsec">
   <div class="wrap">
@@ -351,6 +381,37 @@ wireDownload('summary', 'book-launch-notify', 'onthegrow.ai/resources', {resourc
 wireDownload('brief', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'evidence-brief'});
 wireDownload('journey', 'journey', 'journey-resources');
 wireDownload('overview', 'growth-overview', 'growth-overview-resources');
+
+// Work Assignment Matrix gate (#matrix). Unlike the downloads above, the button appears only
+// after the webhook accepts the submission. Success is remembered per device in localStorage.
+(function(){
+  const KEY = 'otg-wam';
+  const form = document.getElementById('wamForm'), ok = document.getElementById('wamOk');
+  const btn = form.querySelector('button[type=submit]'), err = form.querySelector('.form-err');
+  function showOk(){ form.style.display = 'none'; ok.style.display = 'block'; }
+  let seen = false;
+  try { seen = localStorage.getItem(KEY) === '1'; } catch(_) {}
+  if (seen) showOk();
+  form.addEventListener('submit', async e => {
+    e.preventDefault(); hideErr(form);
+    const firstName = form.elements.firstName.value.trim(), email = form.elements.email.value.trim();
+    if (!firstName){ showErr(form, 'Please enter your first name.'); form.elements.firstName.focus(); return; }
+    if (!EMAIL_RE.test(email)){ showErr(form, "That email doesn't look complete. Check it and try again."); form.elements.email.focus(); return; }
+    btn.disabled = true; btn.textContent = 'Sending';
+    try {
+      if (!form.elements.website.value){ // honeypot
+        await postWebhook({tag:'wam-download', tags:'wam-download', source:'resources-wam', firstName, first_name:firstName, email, submittedAt:new Date().toISOString()});
+      }
+    } catch(_) {
+      btn.disabled = false; btn.textContent = 'Send me the matrix';
+      err.innerHTML = 'Something went wrong. Email <a href="mailto:liz@onthegrowleadership.com">liz@onthegrowleadership.com</a> and I\'ll send it by hand.';
+      err.style.display = 'block';
+      return;
+    }
+    try { localStorage.setItem(KEY, '1'); } catch(_) {}
+    showOk();
+  });
+})();
 </script>
 </body>
 </html>
