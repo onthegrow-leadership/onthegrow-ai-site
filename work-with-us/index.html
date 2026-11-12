@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Redesign Value Calculator | OnTheGrow Leadership</title>
+<meta name="description" content="Most AI tools count hours saved. This one shows what the redesign adds to EBITDA.">
+<link rel="canonical" href="https://onthegrow.ai/work-with-us/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="/assets/OTG-favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/OTG-favicon-180.png">
+<meta property="og:image" content="https://onthegrow.ai/assets/OTG-favicon-512.png">
+<style>
+  /* Site chrome only: nav, intro, footer. The reset and the type rules are kept off the
+     calculator block (#otg-roi), which carries its own scoped styles and is pasted as is. */
+  :root{
+    --teal:#39989e; --teal-hi:#75cbc4; --purple:#6B529E; --blush:#f9eff6;
+    --deep:#36294f; --onyx:#333333; --white:#ffffff; --ink:#2b2b2b;
+    --muted:#6f6a7a; --line:#e8e2ee;
+  }
+  *{box-sizing:border-box}
+  :where(nav, .page-head, footer) :where(*){margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Work Sans',Arial,sans-serif;color:var(--ink);background:var(--white);
+       font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--teal-hi);color:var(--deep)}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);display:block}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .navlinks{display:flex;gap:20px;align-items:center}
+  .navlinks a{font-size:.88rem;font-weight:500;color:var(--onyx);text-decoration:none;white-space:nowrap}
+  .navlinks a:hover{color:var(--purple)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:6px;
+       font-weight:600;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;font-family:inherit;
+       background:var(--teal);color:#fff;transition:transform .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .nav-in{gap:16px}
+  @media(max-width:1700px){.navlinks{gap:10px}.navlinks a{font-size:.84rem}.navlinks .btn{padding:12px 16px}}
+  @media(max-width:1419px){nav .wm-text{display:none}}
+  /* mobile menu: hamburger below 1120px, every nav link in a panel under the bar */
+  .navtoggle{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;padding:10px;flex-direction:column;justify-content:center;gap:5px;border-radius:6px}
+  .navtoggle:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .navtoggle span{display:block;height:2px;background:var(--deep);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  nav.open .navtoggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  nav.open .navtoggle span:nth-child(2){opacity:0}
+  nav.open .navtoggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:1119px){
+    nav .wm-text{display:inline}
+    .navtoggle{display:flex}
+    .navlinks{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+      background:#fff;border-bottom:1px solid var(--line);padding:6px 24px 22px;box-shadow:0 18px 36px rgba(54,41,79,.14)}
+    nav.open .navlinks{display:flex}
+    .navlinks a{font-size:1.05rem;font-weight:500;padding:15px 0;border-bottom:1px solid var(--line);white-space:normal}
+    .navlinks a.btn{margin-top:18px;border-bottom:none;text-align:center;justify-content:center;padding:14px 20px;font-size:1rem}
+  }
+  @media(max-width:560px){nav .wm-text{display:none}}
+  .navlinks a.btn{color:#fff}
+  .wordmark{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .wordmark img{height:36px;width:auto;display:block}
+  .wm-text{font-size:1.14rem;letter-spacing:.02em;color:var(--onyx);white-space:nowrap}
+  .wm-text .w1{font-weight:300}.wm-text .w2{font-weight:400}.wm-text .w3{font-weight:600}
+  .wlead{font-weight:300;letter-spacing:.04em}
+
+  /* the intro: eyebrow and one paragraph. The headline is the block's own title. */
+  #calculator{scroll-margin-top:72px;padding-bottom:72px}
+  .page-head{padding:84px 24px 40px}
+  .page-head p{max-width:64ch;margin-top:18px;font-size:1.08rem}
+
+  /* the calculator block sits in the page column; on phones it runs edge to edge on its own gutters */
+  .calc-frame{max-width:1160px;margin:0 auto;padding:0 24px}
+  @media(max-width:600px){.calc-frame{padding:0}}
+
+  footer{background:var(--onyx);color:#b9b3c4;padding:52px 0;font-size:.88rem}
+  .foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .foot-brand img{height:36px;width:auto}
+  footer .wm-text{color:#fff}
+  footer .tag{color:#8f88a0;margin-top:6px}
+  footer .legal{margin-top:26px;max-width:none;font-size:.8rem;line-height:1.6;color:#8f88a0}
+  footer a{color:var(--teal-hi);text-decoration:none}
+  .foot-right{text-align:right}
+  footer a.btn{color:#fff;background:var(--teal)}
+  .foot-cta{padding:12px 22px;font-size:.92rem}
+  @media (prefers-reduced-motion: reduce){.btn:hover{transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="wordmark" href="/" aria-label="OnTheGrow Leadership home">
+      <img src="/assets/otg-mark.png" alt="" width="337" height="400">
+      <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
+    </a>
+    <button class="navtoggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+    <div class="navlinks" id="navlinks">
+      <a href="/#thesis">The Thesis</a>
+      <a href="/#book">The Book</a>
+      <a href="/#partner">GROWTH Partner</a>
+      <a href="/#method">The Method</a>
+      <a href="/#work">Work With Us</a>
+      <a href="/#about">About</a>
+      <a href="/resources/">Resources</a>
+      <a href="/#contact">Contact</a>
+      <a class="btn" href="/readiness/">Take the AI Leadership Load Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<main id="calculator">
+  <header class="wrap page-head">
+    <span class="eyebrow">The business case</span>
+    <p>Most AI tools count hours saved. This one shows what the redesign adds to EBITDA. Load the sample to see a shared services team at a 600-person company, or enter your own numbers.</p>
+  </header>
+  <div class="calc-frame">
+<!-- Work Redesign Value Calculator: roi-embed.html pasted as is. Do not restyle it, rename ids, or move its script. -->
+<div id="otg-roi">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: working sheet left (assumptions, how time converts, tasks), bottom line pinned right; stacks with the bottom line first on phones. All rules scoped to #otg-roi so the block can be pasted into a website page. */
+#otg-roi{
+  --ink:#231B33;--muted:#6B6480;--bg:#F4F2F8;--surface:#FFFFFF;--line:#E2DDEB;
+  --brand:#36294F;--brand-ink:#FFFFFF;--brand-sub:#9FDCD7;--accent:#39989E;--accent-soft:#E2F1F1;--good:#2F7D5B;--warn:#8A3B2E;
+  --human:#441985;--human-ink:#FFFFFF;--assist:#39989E;--assist-ink:#FFFFFF;
+  --agent:#BFE6E2;--agent-ink:#16323A;--automate:#E6F4F2;--automate-ink:#16323A;--cut:#D9D4E2;--cut-ink:#3B3450;
+  --p-hire:#36294F;--p-spend:#39989E;--p-rev:#75CBC4;--p-none:#D9D4E2;
+  --font:"Work Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-family:var(--font);color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5;
+  border-radius:12px;
+}
+#otg-roi *{box-sizing:border-box}
+#otg-roi [hidden]{display:none!important}
+#otg-roi .wrap{max-width:1180px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+#otg-roi .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+#otg-roi h2.title{font-size:clamp(26px,4vw,36px);line-height:1.1;margin:4px 0 6px;font-weight:700;text-wrap:balance;color:var(--ink)}
+#otg-roi .lede{color:var(--muted);max-width:66ch;margin:0 0 22px}
+#otg-roi .grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start}
+@media (max-width:920px){#otg-roi .grid{grid-template-columns:minmax(0,1fr)}#otg-roi .side{order:-1}}
+#otg-roi .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+#otg-roi .stack{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;min-width:0}
+#otg-roi h3{font-size:17px;margin:0 0 4px;font-weight:700;color:var(--ink)}
+#otg-roi .hint{color:var(--muted);font-size:13px;margin:0 0 14px}
+#otg-roi .fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px 14px}
+#otg-roi label.f{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:500}
+#otg-roi input,#otg-roi select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0;margin:0}
+#otg-roi input:focus-visible,#otg-roi select:focus-visible,#otg-roi button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#otg-roi .money,#otg-roi .pct,#otg-roi .mult{position:relative}
+#otg-roi .money span{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+#otg-roi .money input{padding-left:22px}
+#otg-roi .pct span,#otg-roi .mult span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+#otg-roi .pct input,#otg-roi .mult input{padding-right:28px}
+#otg-roi .sub{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:18px 0 8px}
+#otg-roi .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+#otg-roi table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin:0}
+#otg-roi th,#otg-roi td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+#otg-roi th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--bg);white-space:nowrap}
+#otg-roi tr:last-child td{border-bottom:0}
+#otg-roi td.num,#otg-roi th.num{text-align:right}
+#otg-roi .tasks td input{background:transparent;border-color:transparent;padding:6px 8px}
+#otg-roi .tasks td input:hover{border-color:var(--line)}
+#otg-roi .tasks td input.hrs{width:76px;text-align:right}
+#otg-roi .tasks td select{width:118px;padding:6px 8px}
+#otg-roi .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+#otg-roi .p-Human{background:var(--human);color:var(--human-ink)}#otg-roi .p-Assist{background:var(--assist);color:var(--assist-ink)}
+#otg-roi .p-Agent{background:var(--agent);color:var(--agent-ink)}#otg-roi .p-Automate{background:var(--automate);color:var(--automate-ink)}#otg-roi .p-Cut{background:var(--cut);color:var(--cut-ink)}
+#otg-roi .rates input{width:70px;text-align:right}
+#otg-roi .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#otg-roi button{font:inherit;font-weight:600;font-size:14px;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);margin:0}
+#otg-roi button:hover{border-color:var(--accent)}
+#otg-roi button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+#otg-roi button.x{padding:4px 8px;color:var(--muted);border-color:transparent;background:none}
+#otg-roi .side{position:sticky;top:88px;min-width:0} /* 88px clears the 72px sticky site nav */
+@media (max-width:920px){#otg-roi .side{position:static}}
+#otg-roi .bottom{background:var(--brand);color:var(--brand-ink);border-radius:10px;padding:22px}
+#otg-roi .bottom .eyebrow{color:var(--brand-sub)}
+#otg-roi .big{font-size:clamp(36px,6vw,48px);font-weight:700;line-height:1;margin:8px 0 4px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+#otg-roi .bottom .cap{opacity:.85;font-size:13px;margin:0}
+#otg-roi .big2{font-size:26px;font-weight:700;margin:14px 0 2px;font-variant-numeric:tabular-nums}
+#otg-roi .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2)}
+#otg-roi .kpi b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+#otg-roi .kpi span{font-size:12px;opacity:.85}
+#otg-roi .evtoggle{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);cursor:pointer}
+#otg-roi .evtoggle input{width:16px;height:16px;padding:0;flex:none;accent-color:var(--brand-sub);cursor:pointer}
+#otg-roi .evbox .big2{margin-top:12px}
+#otg-roi .line{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:14px}
+#otg-roi .line p{margin:0 0 10px;font-size:14px}
+#otg-roi .copied{font-size:12px;color:var(--good);margin-left:8px}
+#otg-roi .callout{margin-top:14px;font-size:13px;color:var(--muted);padding:12px 14px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0}
+#otg-roi .callout b{color:var(--ink)}
+#otg-roi .yrs td:first-child{font-weight:600}
+#otg-roi .yrs tr.total td{font-weight:700;background:var(--accent-soft)}
+#otg-roi .neg{color:var(--warn)!important}
+#otg-roi .split{display:flex;height:16px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin:4px 0 10px}
+#otg-roi .split div{height:100%}
+#otg-roi .legend{display:grid;gap:6px;font-size:13px}
+#otg-roi .legend div{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center}
+#otg-roi .legend i{width:12px;height:12px;border-radius:3px;display:block}
+#otg-roi .legend b{font-variant-numeric:tabular-nums}
+#otg-roi .c-hire{background:var(--p-hire)}#otg-roi .c-spend{background:var(--p-spend)}#otg-roi .c-rev{background:var(--p-rev)}#otg-roi .c-none{background:var(--p-none)}
+#otg-roi .method{font-size:14px;color:var(--muted)}
+#otg-roi .method ol{padding-left:20px;margin:8px 0}
+#otg-roi .method li{margin-bottom:4px}
+#otg-roi .method b{color:var(--ink)}
+#otg-roi .msg{font-size:13px;color:var(--muted);margin-top:8px;min-height:1em}
+#otg-roi .msg.err{color:var(--warn)}
+#otg-roi .tag{font-size:12px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;margin-left:6px}
+#otg-roi .foot{margin-top:24px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+#otg-roi .sr{position:absolute;left:-9999px}
+@media (prefers-reduced-motion:reduce){#otg-roi *{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">OnTheGrow Leadership · For PE-backed companies</div>
+  <h2 class="title">Work Redesign Value Calculator</h2>
+  <p class="lede">Most AI tools count hours saved. This one shows what the redesign adds to EBITDA.</p>
+
+  <div class="grid">
+    <div class="stack">
+
+      <section class="panel" aria-labelledby="roi-h-a">
+        <h3 id="roi-h-a">The company and the deal</h3>
+        <p class="hint">Use loaded cost: salary plus benefits and taxes, per hour.</p>
+        <div class="fields">
+          <label class="f">Function being redesigned<input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
+          <label class="f">Loaded cost per hour<div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
+          <label class="f">Working weeks a year<input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
+          <label class="f">Years left in the hold<select id="roi-hold"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+          <label class="f" id="roi-multwrap" hidden>Exit multiple (EV / EBITDA)<div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div></label>
+        </div>
+
+        <div class="sub">Ramp to full value</div>
+        <div class="fields">
+          <label class="f">Year 1<div class="pct"><input id="roi-ramp1" type="number" min="0" max="100" step="5" value="60"><span>%</span></div></label>
+          <label class="f">Year 2<div class="pct"><input id="roi-ramp2" type="number" min="0" max="100" step="5" value="90"><span>%</span></div></label>
+          <label class="f">Year 3 and after<div class="pct"><input id="roi-ramp3" type="number" min="0" max="100" step="5" value="100"><span>%</span></div></label>
+        </div>
+
+        <div class="sub">Investment</div>
+        <div class="fields">
+          <label class="f">Redesign engagement (one time)<div class="money"><span>$</span><input id="roi-fee" type="number" min="0" step="1000" placeholder="Enter your quote"></div></label>
+          <label class="f">AI tools and agents (per year, your cost)<div class="money"><span>$</span><input id="roi-tools" type="number" min="0" step="1000" value="18000"></div></label>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="roi-h-c">
+        <h3 id="roi-h-c">How freed time becomes EBITDA</h3>
+        <p class="hint">Freed hours are not EBITDA until leadership decides where they go. Split them across three paths. Whatever is left has no destination and counts as zero.</p>
+        <div class="fields">
+          <label class="f">Avoided hires already in the plan<div class="pct"><input id="roi-sh" type="number" min="0" max="100" step="5" value="40"><span>%</span></div></label>
+          <label class="f">Cut spend (agencies, contractors, overtime)<div class="pct"><input id="roi-ss" type="number" min="0" max="100" step="5" value="15"><span>%</span></div></label>
+          <label class="f">Revenue capacity<div class="pct"><input id="roi-sr" type="number" min="0" max="100" step="5" value="10"><span>%</span></div></label>
+        </div>
+        <div class="fields" style="margin-top:12px">
+          <label class="f">Revenue per redirected hour<div class="money"><span>$</span><input id="roi-revhr" type="number" min="0" step="5" value="150"></div></label>
+          <label class="f">Contribution margin on that revenue<div class="pct"><input id="roi-margin" type="number" min="0" max="100" step="5" value="35"><span>%</span></div></label>
+        </div>
+        <div class="sub">Where the freed time goes</div>
+        <div class="split" id="roi-split" aria-hidden="true"></div>
+        <div class="legend" id="roi-legend"></div>
+        <div class="msg" id="roi-sharemsg" role="status"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="roi-h-t">
+        <h3 id="roi-h-t">Tasks and where they land <span class="tag">Sample: shared services team at a 600-person company</span></h3>
+        <p class="hint">Hours are per week for the whole team. Import the matrix CSV from the Work Assignment Agent, or enter tasks here.</p>
+        <div class="tbl-wrap">
+          <table class="tasks">
+            <thead><tr><th>Task</th><th class="num">Hrs / wk</th><th>Placement</th><th class="num">Freed / wk</th><th><span class="sr">Remove</span></th></tr></thead>
+            <tbody id="roi-tasks"></tbody>
+          </table>
+        </div>
+        <div class="btns">
+          <button id="roi-add" type="button">Add task</button>
+          <button id="roi-import" type="button">Import matrix CSV</button>
+          <input id="roi-file" type="file" accept=".csv,text/csv" hidden>
+          <button id="roi-sample" type="button">Load sample</button>
+          <button id="roi-clear" type="button">Clear tasks</button>
+        </div>
+        <div class="msg" id="roi-importmsg" role="status"></div>
+
+        <div class="sub">Time freed by placement, net of checking</div>
+        <div class="tbl-wrap">
+          <table class="rates">
+            <thead><tr><th>Placement</th><th class="num">Time saved</th><th class="num">Checking and oversight</th><th class="num">Net freed</th></tr></thead>
+            <tbody id="roi-rates"></tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:8px">Hard-to-check work keeps more of its hours for review, which is why Agent and Assist net less than Automate. Human work frees nothing. Cut work frees all of it.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="roi-h-y">
+        <h3 id="roi-h-y">Year by year, through exit</h3>
+        <div class="tbl-wrap" style="margin-top:10px">
+          <table class="yrs">
+            <thead><tr><th></th><th class="num">EBITDA added</th><th class="num">One-time investment</th><th class="num">Net cash</th><th class="num">Cumulative</th></tr></thead>
+            <tbody id="roi-years"></tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:8px">EBITDA added is net of the annual AI tool cost. The engagement is a one-time cost, shown separately.</p>
+      </section>
+
+      <section class="panel method" aria-labelledby="roi-h-m">
+        <h3 id="roi-h-m">How the number is built</h3>
+        <ol>
+          <li><b>Freed hours.</b> Each task's weekly hours times the net freed rate for its placement.</li>
+          <li><b>Conversion.</b> Avoided hires and cut spend are valued at loaded cost. Revenue capacity is valued at revenue per hour times contribution margin. Unassigned time counts as zero.</li>
+          <li><b>EBITDA added.</b> The converted value, scaled by the ramp for each year, minus the annual AI tool cost.</li>
+          <li id="roi-evstep" hidden><b>Value at exit.</b> EBITDA added in the exit year times the exit multiple.</li>
+        </ol>
+        <p style="margin:8px 0 0">Most AI calculators count hours saved and stop. This one subtracts the time it takes to check the work and counts only the time leadership puts to use.</p>
+      </section>
+    </div>
+
+    <aside class="side" aria-labelledby="roi-h-b">
+      <div class="bottom">
+        <div class="eyebrow" id="roi-h-b">The bottom line</div>
+        <div class="big" id="roi-ebitda">$0</div>
+        <p class="cap" id="roi-ebitdacap">EBITDA added a year, by exit</p>
+        <div class="kpis">
+          <div class="kpi"><b id="roi-kpay">n/a</b><span>Payback</span></div>
+          <div class="kpi"><b id="roi-kmult">n/a</b><span>Return on the engagement</span></div>
+          <div class="kpi"><b id="roi-khrs">0</b><span>Hours freed a week</span></div>
+        </div>
+        <label class="evtoggle"><input id="roi-showev" type="checkbox"><span id="roi-evlabel">Show value at a 10x exit multiple</span></label>
+        <div class="evbox" id="roi-evbox" hidden>
+          <div class="big2" id="roi-ev">$0</div>
+          <p class="cap" id="roi-evcap">Enterprise value at exit</p>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="eyebrow" style="margin-bottom:6px">For the investment memo</div>
+        <p id="roi-summary"></p>
+        <button id="roi-copy" type="button" class="primary">Copy summary</button><span class="copied" id="roi-copied" role="status"></span>
+      </div>
+
+      <div class="callout" id="roi-callout"></div>
+    </aside>
+  </div>
+
+  <div class="foot">
+    <span>© 2026 Elizabeth A. Corey. OnTheGrow Leadership · onthegrow.ai</span>
+    <span>Planning estimates. Results depend on the redesign actually being run.</span>
+  </div>
+</div>
+
+<script>
+(function(){
+const root=document.getElementById("otg-roi");if(!root)return;
+const $=id=>root.querySelector("#roi-"+id);
+const PL=["Human","Assist","Automate","Agent","Cut"];
+const DEF_RATES={Human:[0,0],Assist:[50,20],Automate:[90,10],Agent:[80,20],Cut:[100,0]};
+const SAMPLE=[
+ ["Answer employee policy and benefits questions",25,"Agent"],
+ ["Onboarding paperwork and system access requests",14,"Automate"],
+ ["Build the monthly headcount and turnover report by hand",10,"Automate"],
+ ["Draft job descriptions and postings",8,"Assist"],
+ ["Screen resumes (AI ranks, recruiter reviews every list)",22,"Assist"],
+ ["Schedule and reschedule interviews",16,"Agent"],
+ ["Employee relations investigations",10,"Human"],
+ ["Pay and performance decisions with managers",8,"Human"],
+ ["Reconcile timesheets and flag exceptions",18,"Agent"],
+ ["Rekey new-hire data from the ATS into HRIS and payroll",8,"Cut"],
+ ["Answer paycheck questions",10,"Agent"],
+ ["Final payroll approval and tax filings",6,"Human"],
+ ["Match invoices to purchase orders and receipts",30,"Automate"],
+ ["Chase missing approvals from budget owners",10,"Automate"],
+ ["Vendor setup and banking changes",6,"Human"],
+ ["Code expenses to GL accounts",14,"Assist"],
+ ["Month-end reports nobody uses",6,"Cut"]
+].map(([name,hours,place])=>({name,hours,place}));
+const FIELDS=["team","rate","weeks","hold","mult","ramp1","ramp2","ramp3","fee","tools","sh","ss","sr","revhr","margin"];
+const KEY="otg-roi-pe-v1";
+const fmt$=n=>(n<0?"-":"")+"$"+Math.round(Math.abs(n)).toLocaleString("en-US");
+const short$=n=>{const a=Math.abs(n),s=n<0?"-":"";if(a>=1e6)return s+"$"+(a/1e6).toFixed(2).replace(/0$/,"")+"M";if(a>=1e3)return s+"$"+Math.round(a/1e3)+"K";return fmt$(n)};
+const num=(v,d=0)=>{const x=parseFloat(v);return isFinite(x)?x:d};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let state={tasks:SAMPLE.map(t=>({...t})),rates:JSON.parse(JSON.stringify(DEF_RATES))};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s){if(Array.isArray(s.tasks))state.tasks=s.tasks;if(s.rates)state.rates=Object.assign(JSON.parse(JSON.stringify(DEF_RATES)),s.rates);if(s.fields)for(const k of FIELDS)if(s.fields[k]!=null&&$(k))$(k).value=s.fields[k];}}catch(e){}
+function save(){try{const fields={};for(const k of FIELDS)fields[k]=$(k).value;localStorage.setItem(KEY,JSON.stringify({tasks:state.tasks,rates:state.rates,fields}))}catch(e){}}
+const net=p=>{const r=state.rates[p]||[0,0];return Math.max(0,Math.min(100,r[0]-r[1]))/100};
+
+function renderRates(){
+  $("rates").innerHTML=PL.map(p=>{const r=state.rates[p];const lock=p==="Human";
+    return `<tr><td><span class="pill p-${p}">${p}</span></td>
+    <td class="num"><input aria-label="${p} time saved percent" data-rp="${p}" data-i="0" type="number" min="0" max="100" step="5" value="${r[0]}" ${lock?"disabled":""}>%</td>
+    <td class="num"><input aria-label="${p} checking percent" data-rp="${p}" data-i="1" type="number" min="0" max="100" step="5" value="${r[1]}" ${lock||p==="Cut"?"disabled":""}>%</td>
+    <td class="num" data-net="${p}"><b>${Math.round(net(p)*100)}%</b></td></tr>`}).join("");
+}
+function renderTasks(){
+  const b=$("tasks");
+  if(!state.tasks.length){b.innerHTML=`<tr><td colspan="5" style="color:var(--muted);padding:16px">No tasks yet. Import the matrix CSV from the Work Assignment Agent, add a task, or load the sample.</td></tr>`;return}
+  b.innerHTML=state.tasks.map((t,i)=>`<tr>
+    <td style="min-width:220px"><input aria-label="Task name" data-t="${i}" data-k="name" value="${esc(t.name)}"></td>
+    <td class="num"><input class="hrs" aria-label="Hours per week" data-t="${i}" data-k="hours" type="number" min="0" step="1" value="${t.hours}"></td>
+    <td><select aria-label="Placement" data-t="${i}" data-k="place">${PL.map(p=>`<option${p===t.place?" selected":""}>${p}</option>`).join("")}</select></td>
+    <td class="num" data-freed="${i}">${(num(t.hours)*net(t.place)).toFixed(1)}</td>
+    <td><button class="x" type="button" data-del="${i}" aria-label="Remove ${esc(t.name)}">✕</button></td></tr>`).join("");
+}
+
+function calc(){
+  const rate=num($("rate").value),weeks=num($("weeks").value,48),hold=Math.max(1,Math.min(5,num($("hold").value,3))),mult=num($("mult").value);
+  const ramp=[num($("ramp1").value),num($("ramp2").value),num($("ramp3").value)].map(x=>Math.max(0,Math.min(100,x))/100);
+  const fee=num($("fee").value),tools=num($("tools").value);
+  let sh=Math.max(0,num($("sh").value))/100,ss=Math.max(0,num($("ss").value))/100,sr=Math.max(0,num($("sr").value))/100;
+  const over=sh+ss+sr>1.0001;if(over){const t=sh+ss+sr;sh/=t;ss/=t;sr/=t}
+  const none=Math.max(0,1-sh-ss-sr);
+  const revhr=num($("revhr").value),margin=num($("margin").value)/100;
+  let hrs=0,total=0;for(const t of state.tasks){const h=num(t.hours);total+=h;hrs+=h*net(t.place)}
+  const annual=hrs*weeks;
+  const vHire=annual*sh*rate,vSpend=annual*ss*rate,vRev=annual*sr*revhr*margin,vNone=annual*none*rate;
+  const gross=vHire+vSpend+vRev;
+  const years=[];let cum=0;
+  for(let y=1;y<=hold;y++){const r=ramp[Math.min(y,3)-1];const e=gross*r-tools;const c=y===1?fee:0;cum+=e-c;years.push({e,c,net:e-c,cum})}
+  const exitE=years[hold-1].e,ev=exitE*mult;
+  const sumE=years.reduce((a,y)=>a+y.e,0);
+  let pay=null;if(fee>0){let bal=-fee;for(let m=1;m<=hold*12;m++){bal+=years[Math.floor((m-1)/12)].e/12;if(bal>=0){pay=m;break}}}
+  return{rate,weeks,hold,mult,fee,tools,sh,ss,sr,none,over,hrs,total,annual,vHire,vSpend,vRev,vNone,gross,years,exitE,ev,sumE,pay};
+}
+
+function render(){
+  const c=calc();const team=$("team").value.trim()||"the function";
+  const showEv=$("showev").checked,art=/^(8|11|18)/.test(String(c.mult))?"an":"a";
+  $("evlabel").textContent=`Show value at ${art} ${c.mult}x exit multiple`;$("evbox").hidden=!showEv;$("multwrap").hidden=!showEv;$("evstep").hidden=!showEv;
+  $("ev").textContent=short$(c.ev);$("ev").classList.toggle("neg",c.ev<0);
+  $("evcap").textContent=`Enterprise value at ${art} ${c.mult}x exit multiple`;
+  $("ebitda").textContent=fmt$(c.exitE);$("ebitda").classList.toggle("neg",c.exitE<0);
+  $("ebitdacap").textContent=`EBITDA added a year, by year ${c.hold}`;
+  $("kmult").textContent=c.fee>0?(c.sumE/c.fee).toFixed(1)+"x":"Add cost";
+  $("kpay").textContent=c.fee>0?(c.pay?c.pay+(c.pay===1?" month":" months"):"Not in hold"):"Add cost";
+  $("khrs").textContent=Math.round(c.hrs).toLocaleString("en-US");
+  // split bar
+  const parts=[["hire","Avoided hires",c.sh,c.vHire],["spend","Cut spend",c.ss,c.vSpend],["rev","Revenue capacity",c.sr,c.vRev],["none","No destination yet",c.none,0]];
+  $("split").innerHTML=parts.map(p=>`<div class="c-${p[0]}" style="width:${(p[2]*100).toFixed(1)}%"></div>`).join("");
+  $("legend").innerHTML=parts.map(p=>`<div><i class="c-${p[0]}"></i><span>${p[1]} · ${Math.round(p[2]*100)}% · ${Math.round(c.hrs*p[2])} hrs/wk</span><b>${p[0]==="none"?"$0":fmt$(p[3])+" / yr"}</b></div>`).join("");
+  const sm=$("sharemsg");sm.classList.toggle("err",c.over);sm.textContent=c.over?"The three paths add to more than 100%. They have been scaled down to fit. Lower one to set them exactly.":"";
+  // years
+  $("years").innerHTML=c.years.map((y,i)=>`<tr><td>Year ${i+1}${i===c.hold-1?" (exit)":""}</td><td class="num${y.e<0?" neg":""}">${fmt$(y.e)}</td><td class="num">${y.c?fmt$(y.c):"$0"}</td><td class="num${y.net<0?" neg":""}">${fmt$(y.net)}</td><td class="num${y.cum<0?" neg":""}">${fmt$(y.cum)}</td></tr>`).join("")
+    +`<tr class="total"><td>Total</td><td class="num">${fmt$(c.sumE)}</td><td class="num">${fmt$(c.fee)}</td><td class="num${c.sumE-c.fee<0?" neg":""}">${fmt$(c.sumE-c.fee)}</td><td></td></tr>`;
+  state.tasks.forEach((t,i)=>{const el=root.querySelector(`[data-freed="${i}"]`);if(el)el.textContent=(num(t.hours)*net(t.place)).toFixed(1)});
+  PL.forEach(p=>{const el=root.querySelector(`[data-net="${p}"]`);if(el)el.innerHTML=`<b>${Math.round(net(p)*100)}%</b>`});
+  // summary
+  const conv=Math.round((1-c.none)*100);
+  let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the redesign adds ${fmt$(c.exitE)} a year to EBITDA by year ${c.hold}${showEv?`, worth ${short$(c.ev)} in enterprise value at ${art} ${c.mult}x exit multiple`:""}.`;
+  if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within the hold.`;
+  $("summary").textContent=s;
+  // callout
+  $("callout").innerHTML=c.none>0.001
+    ?`<b>${Math.round(c.none*100)}% of the freed time has no destination yet.</b> That is ${Math.round(c.hrs*c.none)} hours a week, worth ${fmt$(c.vNone)} a year at loaded cost${showEv?`, and ${short$(c.vNone*c.mult)} at exit`:""}. Deciding where it goes is a leadership decision, not a technology one.`
+    :`<b>Every freed hour has a destination.</b> That is reinvestment discipline, and it is why this number holds up in diligence.`;
+  save();
+}
+
+root.addEventListener("input",e=>{const t=e.target;
+  if(t.dataset.t!=null){const i=+t.dataset.t,k=t.dataset.k;state.tasks[i][k]=k==="hours"?num(t.value):t.value;render();return}
+  if(t.dataset.rp){state.rates[t.dataset.rp][+t.dataset.i]=Math.max(0,Math.min(100,num(t.value)));render();return}
+  if(t.id&&FIELDS.includes(t.id.replace("roi-","")))render();
+});
+root.addEventListener("change",e=>{if(e.target.dataset&&e.target.dataset.k==="place"||e.target.id==="roi-hold")render()});
+root.addEventListener("click",e=>{const d=e.target.closest("[data-del]");if(d){state.tasks.splice(+d.dataset.del,1);renderTasks();render()}});
+$("add").onclick=()=>{state.tasks.push({name:"New task",hours:5,place:"Assist"});renderTasks();render();const ins=root.querySelectorAll('[data-k="name"]');const last=ins[ins.length-1];if(last){last.focus();last.select()}};
+$("sample").onclick=()=>{state.tasks=SAMPLE.map(t=>({...t}));$("team").value="Shared Services (HR, Payroll, AP)";renderTasks();render();$("importmsg").textContent="Sample loaded."};
+$("clear").onclick=()=>{state.tasks=[];renderTasks();render();$("importmsg").textContent="Tasks cleared."};
+$("import").onclick=()=>$("file").click();
+$("showev").onchange=render;
+
+function parseCSV(text){const rows=[];let row=[],cell="",q=false;
+  for(let i=0;i<text.length;i++){const ch=text[i];
+    if(q){if(ch==='"'){if(text[i+1]==='"'){cell+='"';i++}else q=false}else cell+=ch}
+    else if(ch==='"')q=true;else if(ch===","){row.push(cell);cell=""}
+    else if(ch==="\n"||ch==="\r"){if(ch==="\r"&&text[i+1]==="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}
+    else cell+=ch}
+  if(cell!==""||row.length){row.push(cell);rows.push(row)}
+  return rows.filter(r=>r.some(c=>c.trim()!==""));}
+function importText(text){const msg=$("importmsg");msg.classList.remove("err");
+  const rows=parseCSV(text.replace(/^﻿/,""));
+  if(rows.length<2){msg.textContent="That file has no task rows. Download the matrix CSV from the Work Assignment Agent and try again.";msg.classList.add("err");return}
+  const h=rows[0].map(x=>x.trim().toLowerCase());
+  const iT=h.indexOf("task"),iH=h.findIndex(x=>x.startsWith("hours")),iP=h.indexOf("placement");
+  if(iT<0||iH<0||iP<0){msg.textContent="Columns not found. The file needs Task, Hours per week, and Placement columns, as in the Work Assignment Agent's matrix CSV.";msg.classList.add("err");return}
+  const out=[];let skipped=0;
+  for(const r of rows.slice(1)){const raw=(r[iP]||"").trim().toLowerCase();const p=PL.find(x=>raw.startsWith(x.toLowerCase()));const hrs=num(r[iH],NaN);
+    if(!r[iT]||!p||!isFinite(hrs)){skipped++;continue}out.push({name:r[iT].trim(),hours:hrs,place:p})}
+  if(!out.length){msg.textContent="No usable rows. Check that Placement says Human, Assist, Automate, Agent, or Cut.";msg.classList.add("err");return}
+  state.tasks=out;renderTasks();render();
+  msg.textContent=`Imported ${out.length} task${out.length===1?"":"s"}${skipped?`, skipped ${skipped} row${skipped===1?"":"s"} without hours or a placement`:""}. Update the function name above.`;}
+$("file").onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>importText(String(r.result||""));r.onerror=()=>{$("importmsg").textContent="That file couldn't be read. Try downloading it again.";$("importmsg").classList.add("err")};r.readAsText(f);e.target.value=""};
+
+$("copy").onclick=()=>{const t=$("summary").textContent;const done=ok=>{$("copied").textContent=ok?"Copied":"Select the text above to copy it";setTimeout(()=>$("copied").textContent="",2500)};
+  const sel=()=>{try{const r=document.createRange();r.selectNodeContents($("summary"));const s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}};
+  try{navigator.clipboard.writeText(t).then(()=>done(true),()=>{sel();done(false)})}catch(e){sel();done(false)}};
+
+renderRates();renderTasks();render();
+})();
+</script>
+</div>
+<!-- end of the calculator block -->
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">
+        <img src="/assets/otg-mark.png" alt="" width="337" height="400">
+        <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
+      </div>
+      <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
+    </div>
+    <div class="foot-right">
+      <p><a class="btn foot-cta" href="/#contact">Contact Us</a></p>
+      <p class="tag">© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
+    </div>
+  </div>
+  <div class="wrap"><p class="legal">© 2026 Elizabeth A. Corey. All rights reserved. Leadership as Infrastructure™, The GROWTH™ Execution Model, Leadership that Lifts™, Grace &amp; Grit™, and the AI Leadership Load Assessment™ are trademarks of Elizabeth A. Corey.</p></div>
+</footer>
+
+<script>
+// Mobile menu
+const navEl = document.querySelector('nav'), navToggle = document.getElementById('navToggle');
+function setMenu(open){
+  navEl.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+navToggle.addEventListener('click', () => setMenu(!navEl.classList.contains('open')));
+navEl.querySelectorAll('.navlinks a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('open')){ setMenu(false); navToggle.focus(); } });
+</script>
+</body>
+</html>
