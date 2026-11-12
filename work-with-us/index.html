@@ -115,7 +115,7 @@
 <main id="calculator">
   <header class="wrap page-head">
     <span class="eyebrow">The business case</span>
-    <p>Most AI tools count hours saved. This one shows what the redesign adds to EBITDA. Load the sample to see a shared services team at a 600-person company, or enter your own numbers.</p>
+    <p>Load the sample to see a shared services team at a 600-person company, or enter your own numbers.</p>
   </header>
   <div class="calc-frame">
 <!-- Work Redesign Value Calculator: roi-embed.html pasted as is. Do not restyle it, rename ids, or move its script. -->
@@ -229,15 +229,7 @@
           <label class="f">Function being redesigned<input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
           <label class="f">Loaded cost per hour<div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
           <label class="f">Working weeks a year<input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
-          <label class="f">Years left in the hold<select id="roi-hold"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
           <label class="f" id="roi-multwrap" hidden>Exit multiple (EV / EBITDA)<div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div></label>
-        </div>
-
-        <div class="sub">Ramp to full value</div>
-        <div class="fields">
-          <label class="f">Year 1<div class="pct"><input id="roi-ramp1" type="number" min="0" max="100" step="5" value="60"><span>%</span></div></label>
-          <label class="f">Year 2<div class="pct"><input id="roi-ramp2" type="number" min="0" max="100" step="5" value="90"><span>%</span></div></label>
-          <label class="f">Year 3 and after<div class="pct"><input id="roi-ramp3" type="number" min="0" max="100" step="5" value="100"><span>%</span></div></label>
         </div>
 
         <div class="sub">Investment</div>
@@ -294,14 +286,14 @@
       </section>
 
       <section class="panel" aria-labelledby="roi-h-y">
-        <h3 id="roi-h-y">Year by year, through exit</h3>
+        <h3 id="roi-h-y">EBITDA added, year by year</h3>
         <div class="tbl-wrap" style="margin-top:10px">
           <table class="yrs">
-            <thead><tr><th></th><th class="num">EBITDA added</th><th class="num">One-time investment</th><th class="num">Net cash</th><th class="num">Cumulative</th></tr></thead>
+            <thead><tr><th></th><th class="num">EBITDA added</th></tr></thead>
             <tbody id="roi-years"></tbody>
           </table>
         </div>
-        <p class="hint" style="margin-top:8px">EBITDA added is net of the annual AI tool cost. The engagement is a one-time cost, shown separately.</p>
+        <p class="hint" style="margin-top:8px">EBITDA added is net of the annual AI tool cost.</p>
       </section>
 
       <section class="panel method" aria-labelledby="roi-h-m">
@@ -374,7 +366,7 @@ const SAMPLE=[
  ["Code expenses to GL accounts",14,"Assist"],
  ["Month-end reports nobody uses",6,"Cut"]
 ].map(([name,hours,place])=>({name,hours,place}));
-const FIELDS=["team","rate","weeks","hold","mult","ramp1","ramp2","ramp3","fee","tools","sh","ss","sr","revhr","margin"];
+const FIELDS=["team","rate","weeks","mult","fee","tools","sh","ss","sr","revhr","margin"];
 const KEY="otg-roi-pe-v1";
 const fmt$=n=>(n<0?"-":"")+"$"+Math.round(Math.abs(n)).toLocaleString("en-US");
 const short$=n=>{const a=Math.abs(n),s=n<0?"-":"";if(a>=1e6)return s+"$"+(a/1e6).toFixed(2).replace(/0$/,"")+"M";if(a>=1e3)return s+"$"+Math.round(a/1e3)+"K";return fmt$(n)};
@@ -405,8 +397,8 @@ function renderTasks(){
 }
 
 function calc(){
-  const rate=num($("rate").value),weeks=num($("weeks").value,48),hold=Math.max(1,Math.min(5,num($("hold").value,3))),mult=num($("mult").value);
-  const ramp=[num($("ramp1").value),num($("ramp2").value),num($("ramp3").value)].map(x=>Math.max(0,Math.min(100,x))/100);
+  const rate=num($("rate").value),weeks=num($("weeks").value,48),hold=3,mult=num($("mult").value);
+  const ramp=[.5,.85,1]; // built-in ramp to full value over the three years
   const fee=num($("fee").value),tools=num($("tools").value);
   let sh=Math.max(0,num($("sh").value))/100,ss=Math.max(0,num($("ss").value))/100,sr=Math.max(0,num($("sr").value))/100;
   const over=sh+ss+sr>1.0001;if(over){const t=sh+ss+sr;sh/=t;ss/=t;sr/=t}
@@ -433,7 +425,7 @@ function render(){
   $("ebitda").textContent=fmt$(c.exitE);$("ebitda").classList.toggle("neg",c.exitE<0);
   $("ebitdacap").textContent=`EBITDA added a year, by year ${c.hold}`;
   $("kmult").textContent=c.fee>0?(c.sumE/c.fee).toFixed(1)+"x":"Add cost";
-  $("kpay").textContent=c.fee>0?(c.pay?c.pay+(c.pay===1?" month":" months"):"Not in hold"):"Add cost";
+  $("kpay").textContent=c.fee>0?(c.pay?c.pay+(c.pay===1?" month":" months"):"Over 3 years"):"Add cost";
   $("khrs").textContent=Math.round(c.hrs).toLocaleString("en-US");
   // split bar
   const parts=[["hire","Avoided hires",c.sh,c.vHire],["spend","Cut spend",c.ss,c.vSpend],["rev","Revenue capacity",c.sr,c.vRev],["none","No destination yet",c.none,0]];
@@ -441,14 +433,14 @@ function render(){
   $("legend").innerHTML=parts.map(p=>`<div><i class="c-${p[0]}"></i><span>${p[1]} · ${Math.round(p[2]*100)}% · ${Math.round(c.hrs*p[2])} hrs/wk</span><b>${p[0]==="none"?"$0":fmt$(p[3])+" / yr"}</b></div>`).join("");
   const sm=$("sharemsg");sm.classList.toggle("err",c.over);sm.textContent=c.over?"The three paths add to more than 100%. They have been scaled down to fit. Lower one to set them exactly.":"";
   // years
-  $("years").innerHTML=c.years.map((y,i)=>`<tr><td>Year ${i+1}${i===c.hold-1?" (exit)":""}</td><td class="num${y.e<0?" neg":""}">${fmt$(y.e)}</td><td class="num">${y.c?fmt$(y.c):"$0"}</td><td class="num${y.net<0?" neg":""}">${fmt$(y.net)}</td><td class="num${y.cum<0?" neg":""}">${fmt$(y.cum)}</td></tr>`).join("")
-    +`<tr class="total"><td>Total</td><td class="num">${fmt$(c.sumE)}</td><td class="num">${fmt$(c.fee)}</td><td class="num${c.sumE-c.fee<0?" neg":""}">${fmt$(c.sumE-c.fee)}</td><td></td></tr>`;
+  $("years").innerHTML=c.years.map((y,i)=>`<tr><td>Year ${i+1}</td><td class="num${y.e<0?" neg":""}">${fmt$(y.e)}</td></tr>`).join("")
+    +`<tr class="total"><td>Total</td><td class="num${c.sumE<0?" neg":""}">${fmt$(c.sumE)}</td></tr>`;
   state.tasks.forEach((t,i)=>{const el=root.querySelector(`[data-freed="${i}"]`);if(el)el.textContent=(num(t.hours)*net(t.place)).toFixed(1)});
   PL.forEach(p=>{const el=root.querySelector(`[data-net="${p}"]`);if(el)el.innerHTML=`<b>${Math.round(net(p)*100)}%</b>`});
   // summary
   const conv=Math.round((1-c.none)*100);
   let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the redesign adds ${fmt$(c.exitE)} a year to EBITDA by year ${c.hold}${showEv?`, worth ${short$(c.ev)} in enterprise value at ${art} ${c.mult}x exit multiple`:""}.`;
-  if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within the hold.`;
+  if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within three years.`;
   $("summary").textContent=s;
   // callout
   $("callout").innerHTML=c.none>0.001
@@ -462,7 +454,7 @@ root.addEventListener("input",e=>{const t=e.target;
   if(t.dataset.rp){state.rates[t.dataset.rp][+t.dataset.i]=Math.max(0,Math.min(100,num(t.value)));render();return}
   if(t.id&&FIELDS.includes(t.id.replace("roi-","")))render();
 });
-root.addEventListener("change",e=>{if(e.target.dataset&&e.target.dataset.k==="place"||e.target.id==="roi-hold")render()});
+root.addEventListener("change",e=>{if(e.target.dataset&&e.target.dataset.k==="place")render()});
 root.addEventListener("click",e=>{const d=e.target.closest("[data-del]");if(d){state.tasks.splice(+d.dataset.del,1);renderTasks();render()}});
 $("add").onclick=()=>{state.tasks.push({name:"New task",hours:5,place:"Assist"});renderTasks();render();const ins=root.querySelectorAll('[data-k="name"]');const last=ins[ins.length-1];if(last){last.focus();last.select()}};
 $("sample").onclick=()=>{state.tasks=SAMPLE.map(t=>({...t}));$("team").value="Shared Services (HR, Payroll, AP)";renderTasks();render();$("importmsg").textContent="Sample loaded."};
