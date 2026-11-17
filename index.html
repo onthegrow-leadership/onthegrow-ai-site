@@ -436,6 +436,14 @@
   .review-all{max-width:none;text-align:center;margin-top:26px;font-weight:600}
   .review-all a{color:var(--teal)}
   .review-all a:hover{color:var(--purple)}
+  /* Launch layout, Nov 17 to Dec 17, 2026: book section first, reviews inside it */
+  .book-first{padding:56px 0 72px}
+  @media(min-width:861px){.book-first .bgrid{grid-template-columns:minmax(0,.8fr) 1.2fr;align-items:start}}
+  .book-reviews{margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  @media(max-width:1100px){.book .review-grid{grid-template-columns:1fr}}
+  .book .review{padding:24px 24px 22px}
+  .book .review blockquote{font-size:.93rem}
+  .book .review-all{text-align:left}
 </style>
 </head>
 <body>
@@ -460,6 +468,44 @@
     </div>
   </div>
 </nav>
+
+<!-- Launch layout, Nov 17 to Dec 17, 2026: the book section leads the page with the first reviews inside it. After Dec 17, move it back below the thesis section. -->
+<section class="book book-first" id="book">
+  <div class="wrap">
+    <div class="bgrid">
+      <img class="cover reveal" src="assets/book-front-back.webp" width="1440" height="1600"
+           alt="Front and back cover of AI Will Scale Good Leadership and Bad Leadership">
+      <div>
+        <span class="eyebrow">The Book</span>
+        <h2 style="margin-top:10px">AI Will Scale Good Leadership <strong>and Bad Leadership</strong></h2>
+        <p class="subtitle">The CHRO's Method for Redesigning Work Before AI Scales What's Broken</p>
+        <p>AI will amplify whatever leadership system already exists. This book is the method for redesigning the work first, so what scales is worth scaling.</p>
+        <p class="status">Available now in paperback and Kindle.</p>
+        <p class="book-buy">
+          <a class="btn btn-primary" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order on Amazon</a>
+          <a class="btn btn-outline" href="https://bookshop.org/p/books/ai-will-scale-good-leadership-and-bad-leadership-the-chro-s-method-for-redesigning-work-before-ai-scales-what-s-broken/304b945603a34d16" target="_blank" rel="noopener">Order on Bookshop.org</a>
+        </p>
+        <p class="note">Paperback $24.95. Kindle edition available. 238 pages.</p>
+        <div class="book-reviews" id="reviews">
+          <span class="eyebrow">First Reviews</span>
+        <div class="review-grid">
+          <figure class="review reveal">
+            <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
+            <blockquote>"Most books about AI and work are either hype or hand-wringing. This one is neither. Liz Corey does something genuinely useful: she gives leaders a clear, repeatable method for deciding what AI should and shouldn't do. If you're a leader, an HR professional, or anyone responsible for how AI enters your organization, read this. It's the rare business book you'll actually use."</blockquote>
+            <figcaption><b>Mark C. Ondash, CPTD, MPC</b><span>Co-founder, Cognistry</span></figcaption>
+          </figure>
+          <figure class="review reveal">
+            <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
+            <blockquote>"In my thirty-six year career as a leadership and executive coach I have read hundreds of business books. With few exceptions, most give you the why of the subject matter without giving you a proven method and the tools to implement it. Liz Corey has created a step-by-step process for scaling AI within your organization in the smartest, most effective way possible."</blockquote>
+            <figcaption><b>Rebecca Bradley</b><span>International Coach Federation Master Certified Coach</span></figcaption>
+          </figure>
+        </div>
+        <p class="review-all"><a href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Read all reviews on Amazon</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <header class="hero dark" id="top">
   <div class="wrap hero-grid">
@@ -601,46 +647,6 @@
       <span class="lead">Before you scale AI, know what you are scaling.</span>
       <strong>Leadership inconsistency has a balance sheet.</strong> It shows up as turnover, missed commitments, and decisions that don't hold. And AI is now amplifying every one of your leadership standards separately, at machine speed, with your leaders' names attached.
     </div>
-  </div>
-</section>
-
-<section class="book" id="book">
-  <div class="wrap">
-    <div class="bgrid">
-      <img class="cover reveal" src="assets/book-front-back.webp" width="1440" height="1600" loading="lazy"
-           alt="Front and back cover of AI Will Scale Good Leadership and Bad Leadership">
-      <div>
-        <span class="eyebrow">The Book</span>
-        <h2 style="margin-top:10px">AI Will Scale Good Leadership <strong>and Bad Leadership</strong></h2>
-        <p class="subtitle">The CHRO's Method for Redesigning Work Before AI Scales What's Broken</p>
-        <p>AI will amplify whatever leadership system already exists. This book is the method for redesigning the work first, so what scales is worth scaling.</p>
-        <p class="status">Available now in paperback and Kindle.</p>
-        <p class="book-buy">
-          <a class="btn btn-primary" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order on Amazon</a>
-          <a class="btn btn-outline" href="https://bookshop.org/p/books/ai-will-scale-good-leadership-and-bad-leadership-the-chro-s-method-for-redesigning-work-before-ai-scales-what-s-broken/304b945603a34d16" target="_blank" rel="noopener">Order on Bookshop.org</a>
-        </p>
-        <p class="note">Paperback $24.95. Kindle edition available. 238 pages.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="reviews" id="reviews">
-  <div class="wrap">
-    <span class="eyebrow">First Reviews</span>
-    <div class="review-grid">
-      <figure class="review reveal">
-        <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
-        <blockquote>"Most books about AI and work are either hype or hand-wringing. This one is neither. Liz Corey does something genuinely useful: she gives leaders a clear, repeatable method for deciding what AI should and shouldn't do. If you're a leader, an HR professional, or anyone responsible for how AI enters your organization, read this. It's the rare business book you'll actually use."</blockquote>
-        <figcaption><b>Mark C. Ondash, CPTD, MPC</b><span>Co-founder, Cognistry</span></figcaption>
-      </figure>
-      <figure class="review reveal">
-        <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
-        <blockquote>"In my thirty-six year career as a leadership and executive coach I have read hundreds of business books. With few exceptions, most give you the why of the subject matter without giving you a proven method and the tools to implement it. Liz Corey has created a step-by-step process for scaling AI within your organization in the smartest, most effective way possible."</blockquote>
-        <figcaption><b>Rebecca Bradley</b><span>International Coach Federation Master Certified Coach</span></figcaption>
-      </figure>
-    </div>
-    <p class="review-all"><a href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Read all reviews on Amazon</a></p>
   </div>
 </section>
 
