@@ -77,11 +77,11 @@
 
   /* free downloads: the same cards as the home page */
   .dlsec{padding:48px 0 0}
-  .dlsec h2{font-weight:300;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:24px}
   .dlcard{background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;position:relative;overflow:hidden}
   .dlsec .wrap>*+*{margin-top:20px}
   .dlcard .eyebrow{color:var(--teal-hi)}
   .dlcard h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:600;margin:10px 0 12px}
+  .dlcard h3:first-child{margin-top:0}
   .dlcard p{color:#cfc6e0}
   .dlcard .opener{margin-top:24px}
   .dlcard .form-err{color:#f5b8c4;margin-top:0}
@@ -145,20 +145,19 @@
 <nav>
   <div class="wrap nav-in">
     <a class="wordmark" href="/" aria-label="OnTheGrow Leadership home">
-      <img src="../assets/otg-mark.png" alt="" width="337" height="400">
+      <img src="../assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
       <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
     </a>
     <button class="navtoggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     <div class="navlinks" id="navlinks">
-      <a href="/#thesis">The Thesis</a>
       <a href="/#book">The Book</a>
-      <a href="/#partner">GROWTH Partner</a>
+      <a href="/#thesis">The Thesis</a>
       <a href="/#method">The Method</a>
       <a href="/#work">Work With Us</a>
       <a href="/#about">About</a>
       <a href="/resources/">Resources</a>
       <a href="/#contact">Contact</a>
-      <a class="btn" href="/readiness/">Take the AI Leadership Load Assessment</a>
+      <a class="btn" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order the Book</a>
     </div>
   </div>
 </nav>
@@ -166,6 +165,7 @@
 <header class="wrap page-head">
   <span class="eyebrow">Resources</span>
   <h1>Ideas worth taking into<br><strong>your next leadership conversation.</strong></h1>
+  <p class="intro">Free tools from the book. Download any of them below.</p>
 </header>
 
 <section class="dlsec" id="matrix">
@@ -192,47 +192,26 @@
 
 <section class="dlsec">
   <div class="wrap">
-    <h2>Free Downloads</h2>
-    <div class="dlcard" id="summary">
-      <span class="eyebrow">The Book</span>
-      <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
-      <p>A two-page summary of the book's thesis and method. Now available on Amazon.</p>
-      <p class="opener"><button class="btn" type="button" id="summaryOpen">Get the summary</button></p>
-      <form class="fgrid2 closed" id="summaryForm" novalidate>
-        <div><label for="sm-first">First name</label><input type="text" id="sm-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="sm-last">Last name</label><input type="text" id="sm-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="sm-email">Email</label><input type="email" id="sm-email" name="email" autocomplete="email" required></div>
-        <div><label for="sm-company">Company</label><input type="text" id="sm-company" name="company" autocomplete="organization" required></div>
+    <div class="dlcard" id="overview">
+      <h3>The GROWTH™ Execution Model</h3>
+      <p>The two-page overview of the model, how it applies to AI, and what it produced.</p>
+      <p class="opener"><button class="btn" type="button" id="overviewOpen">Get the overview</button></p>
+      <form class="fgrid2 closed" id="overviewForm" novalidate>
+        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
+        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
         <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn" type="submit">Send me the summary</button><p class="form-err"></p></div>
+        <div class="actions"><button class="btn" type="submit">Send me the overview</button><p class="form-err"></p></div>
       </form>
-      <div class="dl-ok" id="summaryOk">
-        <p>Your summary is ready. <a href="/assets/AI-Will-Scale-Good-Leadership-Book-Summary-OnTheGrow-v4.pdf" target="_blank" rel="noopener">Download the book summary.</a></p>
-        <p class="dl-more">The summary is yours. You can ask us to delete your record any time.</p>
-      </div>
-    </div>
-    <div class="dlcard" id="brief">
-      <span class="eyebrow">The Evidence Brief</span>
-      <h3>14 Chapters, 21 Independent Findings</h3>
-      <p>Recent research from McKinsey, BCG, Accenture, EY, IBM, PwC, Gallup, and Harvard Business Review, paired with each chapter of the book.</p>
-      <p class="opener"><button class="btn" type="button" id="briefOpen">Get the brief</button></p>
-      <form class="fgrid2 closed" id="briefForm" novalidate>
-        <div><label for="br-first">First name</label><input type="text" id="br-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="br-last">Last name</label><input type="text" id="br-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="br-email">Email</label><input type="email" id="br-email" name="email" autocomplete="email" required></div>
-        <div><label for="br-company">Company</label><input type="text" id="br-company" name="company" autocomplete="organization" required></div>
-        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn" type="submit">Send me the brief</button><p class="form-err"></p></div>
-      </form>
-      <div class="dl-ok" id="briefOk">
-        <p>Your brief is ready. <a href="/assets/AI-Will-Scale-Good-Leadership-Evidence-Brief-Q4-2026-v3.pdf" target="_blank" rel="noopener">Download the evidence brief.</a></p>
-        <p class="dl-more">The brief is yours. You can ask us to delete your record any time.</p>
+      <div class="dl-ok" id="overviewOk">
+        <p>Your overview is ready. <a href="/assets/GROWTH-Execution-Model-Overview-OnTheGrow-v3.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
+        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
       </div>
     </div>
     <div class="dlcard" id="journey">
-      <span class="eyebrow">Free Download</span>
       <h3>The Leadership Infrastructure Journey</h3>
-      <p>Five stages. One engine: the GROWTH™ Execution Model. How we redesign the work and install one standard for leaders and AI agents.</p>
+      <p>How we redesign the work and install one standard for leaders and AI agents.</p>
       <p class="opener"><button class="btn" type="button" id="journeyOpen">Get the journey</button></p>
       <form class="fgrid2 closed" id="journeyForm" novalidate>
         <div><label for="jy-first">First name</label><input type="text" id="jy-first" name="firstName" autocomplete="given-name" required></div>
@@ -247,22 +226,32 @@
         <p class="dl-more">See the engine: <a href="#overview">the GROWTH Execution Model overview.</a></p>
       </div>
     </div>
-    <div class="dlcard" id="overview">
-      <span class="eyebrow">Free Download</span>
-      <h3>The GROWTH™ Execution Model</h3>
-      <p>Six steps. One language for leaders and AI agents. The two-page overview of the model, how it applies to AI, and what it produced.</p>
-      <p class="opener"><button class="btn" type="button" id="overviewOpen">Get the overview</button></p>
-      <form class="fgrid2 closed" id="overviewForm" novalidate>
-        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
-        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
+    <div class="dlcard" id="assessment">
+      <h3>The AI Leadership Load Assessment</h3>
+      <p>See what AI will scale on your team.</p>
+      <p class="opener"><a class="btn" href="/readiness/">Take the assessment</a></p>
+    </div>
+    <div class="dlcard" id="book">
+      <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
+      <p>Available now in paperback and Kindle.</p>
+      <p class="opener"><a class="btn" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order on Amazon</a></p>
+    </div>
+    <div class="dlcard" id="summary">
+      <span class="eyebrow">The Book Summary</span>
+      <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
+      <p>A two-page summary of the book's thesis and method. Now available on Amazon.</p>
+      <p class="opener"><button class="btn" type="button" id="summaryOpen">Get the summary</button></p>
+      <form class="fgrid2 closed" id="summaryForm" novalidate>
+        <div><label for="sm-first">First name</label><input type="text" id="sm-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="sm-last">Last name</label><input type="text" id="sm-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="sm-email">Email</label><input type="email" id="sm-email" name="email" autocomplete="email" required></div>
+        <div><label for="sm-company">Company</label><input type="text" id="sm-company" name="company" autocomplete="organization" required></div>
         <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn" type="submit">Send me the overview</button><p class="form-err"></p></div>
+        <div class="actions"><button class="btn" type="submit">Send me the summary</button><p class="form-err"></p></div>
       </form>
-      <div class="dl-ok" id="overviewOk">
-        <p>Your overview is ready. <a href="/assets/GROWTH-Execution-Model-Overview-OnTheGrow-v3.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
-        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
+      <div class="dl-ok" id="summaryOk">
+        <p>Your summary is ready. <a href="/assets/AI-Will-Scale-Good-Leadership-Book-Summary-OnTheGrow-v4.pdf" target="_blank" rel="noopener">Download the book summary.</a></p>
+        <p class="dl-more">The summary is yours. You can ask us to delete your record any time.</p>
       </div>
     </div>
   </div>
@@ -281,10 +270,11 @@
   <div class="wrap foot-in">
     <div>
       <div class="foot-brand">
-        <img src="../assets/otg-mark.png" alt="" width="337" height="400">
+        <img src="../assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
         <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
       </div>
       <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
+      <p class="tag"><a href="/platform/">Platform</a> · <a href="/#about">About</a></p>
     </div>
     <div class="foot-right">
       <p><a class="btn foot-cta" href="/#contact">Contact Us</a></p>
@@ -378,7 +368,6 @@ function wireDownload(id, tag, source, extra){
   });
 }
 wireDownload('summary', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'book-summary'});
-wireDownload('brief', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'evidence-brief'});
 wireDownload('journey', 'journey', 'journey-resources');
 wireDownload('overview', 'growth-overview', 'growth-overview-resources');
 

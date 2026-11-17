@@ -407,7 +407,7 @@
 
   /* Oct 17 update: two ways band, launch banner, launch switch states */
   section,.rung,.dlcard{scroll-margin-top:84px}
-  .ways{background:var(--blush);border-bottom:1px solid var(--line);padding:64px 0}
+  .ways{background:var(--white);padding:64px 0}
   .ways h2{margin-bottom:28px}
   .ways-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   @media(max-width:760px){.ways-grid{grid-template-columns:1fr}}
@@ -436,7 +436,7 @@
   .review-all{max-width:none;text-align:center;margin-top:26px;font-weight:600}
   .review-all a{color:var(--teal)}
   .review-all a:hover{color:var(--purple)}
-  /* Launch layout, Nov 17 to Dec 17, 2026: book section first, reviews inside it */
+  /* Book section leads the page, reviews inside it */
   .book-first{padding:56px 0 72px}
   @media(min-width:861px){.book-first .bgrid{grid-template-columns:minmax(0,.8fr) 1.2fr;align-items:start}}
   .book-reviews{margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
@@ -444,32 +444,63 @@
   .book .review{padding:24px 24px 22px}
   .book .review blockquote{font-size:.93rem}
   .book .review-all{text-align:left}
+  /* Nov 17 restructure: thesis merged under the dark heading, GROWTH block inside The Method */
+  .thesis-sec{padding:0}
+  .thesis-main{padding-top:96px;padding-bottom:96px}
+  .method{padding-bottom:0}
+  .method-growth{margin-top:72px;padding:96px 0}
+  /* ROI strip between The Method and Two ways we work; card buttons; Book a call */
+  .roi-strip{background:var(--deep);color:#cfc6e0;padding:30px 0}
+  .roi-in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .roi-strip h2{color:#fff;font-size:clamp(1.3rem,2.2vw,1.6rem);font-weight:600}
+  .roi-strip p{margin-top:4px;font-size:1rem;max-width:none}
+  .way .price{margin:14px 0 20px}
+  .way .btn{margin-top:auto;align-self:flex-start}
+  .ways-custom{max-width:68ch;margin:38px auto 0;text-align:center;font-size:1.02rem;color:var(--muted)}
+  .ways-custom b{color:var(--deep)}
+  .ways-call{max-width:none;text-align:center;margin-top:22px}
+  /* About: north star, values, pledge, Grace + Grit, our mark, founder, kept compact */
+  .about-sec{padding:0}
+  .about-sec .northstar,.about-sec .ggsec,.about-sec .founder,.about-block{padding:56px 0}
+  .about-sec h2{font-size:clamp(1.4rem,2.5vw,1.9rem)}
+  .vcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:16px 0 0}
+  .vcards+.eyebrow{display:block;margin-top:34px}
+  @media(max-width:980px){.vcards{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.vcards{grid-template-columns:1fr}}
+  .vcards .v{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;font-size:1.05rem;font-weight:300;color:var(--ink);max-width:none}
+  .about-sec .sec-head{margin-bottom:28px}
+  .about-sec .ggcard{padding:26px 30px}
+  .about-sec .ggcard h3{font-size:1.3rem}
+  .about-sec .lens{margin-top:30px}
+  .markrow{display:grid;grid-template-columns:120px 1fr;gap:40px;align-items:center}
+  @media(max-width:600px){.markrow{grid-template-columns:1fr;gap:20px}}
+  .markrow img{width:110px;height:auto;display:block}
+  .markrow h2{margin:8px 0 14px}
+  .markrow .mline{font-size:1.02rem;color:var(--muted);max-width:none}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap nav-in">
-    <a class="wordmark" href="#top" aria-label="OnTheGrow Leadership home">
-      <img class="icon-img" src="assets/otg-mark.png" alt="" width="337" height="400">
+    <a class="wordmark" href="/" aria-label="OnTheGrow Leadership home">
+      <img class="icon-img" src="assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
       <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
     </a>
     <button class="navtoggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     <div class="navlinks" id="navlinks">
-      <a href="#thesis">The Thesis</a>
       <a href="#book">The Book</a>
-      <a href="#partner">GROWTH Partner</a>
+      <a href="#thesis">The Thesis</a>
       <a href="#method">The Method</a>
       <a href="#work">Work With Us</a>
       <a href="#about">About</a>
       <a href="/resources/">Resources</a>
       <a href="#contact">Contact</a>
-      <a class="btn btn-primary" href="/readiness/">Take the AI Leadership Load Assessment</a>
+      <a class="btn btn-primary" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order the Book</a>
     </div>
   </div>
 </nav>
 
-<!-- Launch layout, Nov 17 to Dec 17, 2026: the book section leads the page with the first reviews inside it. After Dec 17, move it back below the thesis section. -->
 <section class="book book-first" id="book">
   <div class="wrap">
     <div class="bgrid">
@@ -507,70 +538,20 @@
   </div>
 </section>
 
-<header class="hero dark" id="top">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Leadership as Infrastructure™</span>
-      <h1>AI doesn't fix leadership.<br><span class="accent">It scales it.</span></h1>
-      <p class="sub">The strong and the broken alike: faster, at scale, and on the record. Your leaders are already working with AI in the room. Can your leadership system govern what it scales?</p>
-      <div class="hero-ctas">
-        <a class="btn btn-teal" href="/readiness/">Take the AI Leadership Load Assessment</a>
-        <a class="btn btn-ghost" href="#thesis">Read the thesis</a>
-      </div>
-      <p class="hero-note">Twelve statements. Three minutes. No email required to see your score.</p>
-    </div>
-    <img class="hero-cover" src="assets/book-stack-tablet.webp" width="1600" height="1155" fetchpriority="high"
-         alt="AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
-  </div>
-</header>
-
-<section class="ways" id="ways">
-  <div class="wrap">
-    <h2>Two ways <strong>we work</strong></h2>
-    <div class="ways-grid">
-      <div class="way reveal">
-        <h3>Workshop</h3>
-        <p>90 minutes. Leaders learn one structure for every prompt and every conversation.</p>
-        <p class="price">Call for pricing</p>
-        <a class="more" href="#workshop">See the workshop</a>
-      </div>
-      <div class="way reveal">
-        <h3>The First 90 Days</h3>
-        <p>Prove it on one process, then scale what works.</p>
-        <p class="price">Call for pricing</p>
-        <a class="more" href="#first-90-days">See the 90 days</a>
+<section class="thesis-sec" id="thesis">
+  <div class="hero dark">
+    <div class="wrap">
+      <div class="hero-in">
+    <span class="eyebrow">Leadership as Infrastructure™</span>
+    <h1>AI doesn't fix leadership.<br><span class="accent">It scales it.</span></h1>
+    <p class="sub">The strong and the broken alike: faster, at scale, and on the record. Your leaders are already working with AI in the room. Can your leadership system govern what it scales?</p>
       </div>
     </div>
-    <p class="built">Built for midsize companies, including private equity-backed ones, and the HR teams inside them.</p>
   </div>
-</section>
-
-<div class="arch">
-  <div class="wrap arch-in">
-    <p class="reveal">AI is the<br><b>amplifier.</b></p>
-    <p class="reveal">Leadership is the<br><b>infrastructure.</b></p>
-    <p class="reveal">GROWTH™ is the<br><b>execution architecture.</b></p>
-  </div>
-</div>
-
-<div class="stats">
-  <div class="wrap">
-    <div class="stats-in">
-      <div class="stat reveal"><div class="pre">At least</div><div class="num">70<span>%</span></div><div class="lbl">of the variance in employee engagement across business units comes down to the manager</div></div>
-      <div class="stat reveal"><div class="pre"></div><div class="num">16<span>%</span></div><div class="lbl">of employees said their last conversation with their manager was extremely meaningful</div></div>
-      <div class="stat reveal"><div class="pre"></div><div class="num">88<span>%</span></div><div class="lbl">of employees with enterprise AI access also use personal AI tools for work</div></div>
-      <div class="stat reveal"><div class="pre"></div><div class="num">69<span>%</span></div><div class="lbl">of organizations suspect or have evidence employees use prohibited public GenAI</div></div>
-    </div>
-    <p class="prov">The first two predate AI. The last two landed on top of them. Sources: Gallup, State of the American Manager and a study of nearly 15,000 employees; Gartner, a 1Q26 survey of 12,004 employees and a survey of 302 cybersecurity leaders.</p>
-  </div>
-</div>
-
-<section id="thesis">
-  <div class="wrap">
+  <div class="wrap thesis-main">
     <div class="thesis-head">
       <div class="reveal">
         <span class="eyebrow">The Thesis</span>
-        <h2>AI does not fix leadership.<br><strong>It scales it.</strong></h2>
         <div class="thesis-body">
           <p>Two organizations can deploy the same AI and get very different results.</p>
           <p>AI amplifies what is already there. Clear standards become easier to execute. Good judgment travels farther. Strong leaders gain leverage.</p>
@@ -648,151 +629,27 @@
       <strong>Leadership inconsistency has a balance sheet.</strong> It shows up as turnover, missed commitments, and decisions that don't hold. And AI is now amplifying every one of your leadership standards separately, at machine speed, with your leaders' names attached.
     </div>
   </div>
-</section>
-
-<section class="growth" id="growth">
-  <div class="wrap">
-    <div class="ghead">
-      <div class="reveal">
-        <span class="eyebrow">The GROWTH™ Execution Model</span>
-        <h2>One model. Every conversation. <strong>Real results.</strong></h2>
-        <p class="lede">Six steps that structure every consequential conversation in a business, from a CEO's planning session to a frontline leader's Thursday 1:1. Each step ends at a human gate: the question asked out loud before AI-assisted work ships.</p>
-      </div>
-      <img class="ghex ghex-frame reveal" src="assets/growth-hexagon-tracking.png" width="900" height="900" loading="lazy"
-           alt="The GROWTH Execution Model hexagon: Goal, Reflect, Options, What's Next, Tracking, Habits.">
-    </div>
-    <div class="ggrid">
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/><defs><linearGradient id="gg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#75cbc4"/><stop offset="1" stop-color="#6B529E"/></linearGradient></defs></svg><span>G</span></div>
-        <h3>Goal</h3>
-        <p class="std">Define success before execution begins. AI surfaces criteria and precedent; the human sets intent.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Did a human define success before AI touched the work?</p>
-      </div>
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>R</span></div>
-        <h3>Reflect</h3>
-        <p class="std">Surface what is actually true, not what is assumed. AI supplies data; the human interrogates it.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Has this output been interrogated, or accepted?</p>
-      </div>
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>O</span></div>
-        <h3>Options</h3>
-        <p class="std">Explore real alternatives before committing. AI generates paths; the decision stays human-made.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Were real alternatives weighed before committing?</p>
-      </div>
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>W</span></div>
-        <h3>What's Next</h3>
-        <p class="std">Every action gets a named owner, a date, and a consequence. AI drafts the plan; a human owns it.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Who signed this, and will they answer for it?</p>
-      </div>
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>T</span></div>
-        <h3>Tracking</h3>
-        <p class="std">How will progress be visible, and where will it be hardest? Name the hardest moment and plan for it before it arrives. AI watches and flags; the human responds and holds accountable.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Is progress actually visible, or are we assuming it?</p>
-      </div>
-      <div class="gcard reveal">
-        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>H</span></div>
-        <h3>Habits</h3>
-        <p class="std">Repetition and rhythm make the standard permanent, and the person grows from keeping it. This step is OnTheGrow.ai™.</p>
-        <p class="gate"><span class="gate-label">The human gate</span>Is the standard installed in the rhythm, or living in memory?</p>
-      </div>
-    </div>
+<div class="arch">
+  <div class="wrap arch-in">
+    <p class="reveal">AI is the<br><b>amplifier.</b></p>
+    <p class="reveal">Leadership is the<br><b>infrastructure.</b></p>
+    <p class="reveal">GROWTH™ is the<br><b>execution architecture.</b></p>
   </div>
-</section>
-
-<section class="partner" id="partner">
+</div>
+<div class="stats">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>The <strong>GROWTH Execution Partner</strong></h2>
-      <p class="lede">Bring a real conversation you need to have. The Partner walks you through Goal, Reflect, Options, What's Next, Tracking, and Habits.</p>
-      <p class="partner-cta"><a class="btn btn-teal" href="#contact">Call for pricing</a></p>
+    <div class="stats-in">
+      <div class="stat reveal"><div class="pre">At least</div><div class="num">70<span>%</span></div><div class="lbl">of the variance in employee engagement across business units comes down to the manager</div></div>
+      <div class="stat reveal"><div class="pre"></div><div class="num">16<span>%</span></div><div class="lbl">of employees said their last conversation with their manager was extremely meaningful</div></div>
+      <div class="stat reveal"><div class="pre"></div><div class="num">88<span>%</span></div><div class="lbl">of employees with enterprise AI access also use personal AI tools for work</div></div>
+      <div class="stat reveal"><div class="pre"></div><div class="num">69<span>%</span></div><div class="lbl">of organizations suspect or have evidence employees use prohibited public GenAI</div></div>
     </div>
+    <p class="prov">The first two predate AI. The last two landed on top of them. Sources: Gallup, State of the American Manager and a study of nearly 15,000 employees; Gartner, a 1Q26 survey of 12,004 employees and a survey of 302 cybersecurity leaders.</p>
   </div>
+</div>
 </section>
 
-<section class="product dark" id="product">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <img src="assets/otg-ai-mark.png" alt="" width="400" height="320" style="height:44px;width:auto;display:block;margin-bottom:12px">
-      <span class="eyebrow">OnTheGrow.ai™</span>
-      <div><span class="early-badge">In development</span></div>
-      <h2>Every leader gets a <strong style="color:#75cbc4">coach in the room.</strong></h2>
-      <p class="lede">In development. The book's method, built to run inside the work. Every leader will get a partner that preps each 1:1 against the GROWTH™ standard, remembers every commitment, and surfaces the patterns nobody else will name. The method is proven inside midsize companies, including private equity-backed ones. The platform is being built now. Join early access to help shape it.</p>
-    </div>
-    <div class="prod-grid">
-      <div>
-        <div class="feat reveal"><div class="dot"></div><div>
-          <h3>It will prepare you</h3>
-          <p>The prep card will arrive the night before: the agenda, the open commitments, the pattern worth knowing. You will walk in ready instead of winging it.</p>
-        </div></div>
-        <div class="feat reveal"><div class="dot"></div><div>
-          <h3>It will remember for you</h3>
-          <p>Every commitment will carry forward. Your people will feel remembered; nothing will slip into the dark between meetings.</p>
-        </div></div>
-        <div class="feat reveal"><div class="dot"></div><div>
-          <h3>It will hold your standard</h3>
-          <p>Evidence will be separated from assumption. Every action will be owned by a name and a date. The hard moment will be rehearsed before it arrives.</p>
-        </div></div>
-        <div class="feat reveal"><div class="dot"></div><div>
-          <h3>It will know what it shouldn't do</h3>
-          <p>It will never own your goal, make your decision, or ship unsigned work. Anything that deserves a person will be routed to one, warmly, with nothing retained. Restraint is the design.</p>
-        </div></div>
-        <form class="access" id="accessForm" novalidate>
-          <input type="email" name="email" placeholder="you@company.com" aria-label="Email for early access" required>
-          <button class="btn btn-teal" type="submit">Join early access</button>
-          <p class="form-ok">You're in the early access queue.</p>
-          <p class="form-err"></p>
-        </form>
-      </div>
-      <div class="prep reveal" aria-label="Example preparation card">
-        <div class="ph"><span class="t">Thursday 9:00 · 1:1 with Marcus</span><span class="badge">CONCEPT PREVIEW</span></div>
-        <div class="row"><div class="k">Goal</div><div class="v">Re-align on the migration timeline, and find out what's behind two missed check-ins.</div></div>
-        <div class="row"><div class="k">Open commitments</div><div class="v">Vendor escalation (due Tue, <b>open</b>) · Test plan draft (done ✓)</div></div>
-        <div class="row"><div class="k">Tracking · the hard moment</div><div class="v">If he says "it's fine," name the pattern gently and ask what you're not seeing.</div></div>
-        <div class="carry"><b>Carry-forward:</b> Three weeks ago you committed to giving Marcus more autonomy on vendor calls. The last two agendas say otherwise.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="consti" id="constitution">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The GROWTH™ AI Harness</span>
-      <h2>The leadership <strong>constitution</strong> for the AI era.</h2>
-      <p class="lede">Analysts agree: companies will tune their AI systems with rubrics and constitutions that govern how decisions get made. Almost no one can say what that constitution contains. Ours is written, versioned, installable, and enforced in software, not in a policy PDF.</p>
-    </div>
-    <div class="cols reveal">
-      <div class="col ai">
-        <h3>AI accelerates</h3>
-        <ul>
-          <li><b>Surfaces</b> criteria, context, and precedent</li>
-          <li><b>Summarizes</b> data and finds the patterns</li>
-          <li><b>Generates</b> options and models the tradeoffs</li>
-          <li><b>Drafts</b> the plan, the message, the follow-ups</li>
-          <li><b>Stress-tests</b> the plan before it meets reality</li>
-          <li><b>Reinforces</b> the standard, every day</li>
-        </ul>
-      </div>
-      <div class="col hu">
-        <h3>Humans own</h3>
-        <ul>
-          <li><b>Intent</b>: success is defined by a person</li>
-          <li><b>Truth</b>: output is interrogated, not accepted</li>
-          <li><b>Decisions</b>: AI-informed, never AI-made</li>
-          <li><b>Ownership</b>: a name, a date, a consequence</li>
-          <li><b>Courage</b>: the hard conversation, held with grace</li>
-          <li><b>The standard</b>: defined by humans, kept by rhythm</li>
-        </ul>
-      </div>
-    </div>
-    <p class="reveal" style="margin-top:28px;font-size:1.05rem"><b>We build the leader, not the verdict.</b> The system develops the decider and never makes the decision, which is exactly why the leaders who use it get stronger, and the enterprises that install it can trust it.</p>
-  </div>
-</section>
-
-<section class="method" id="method" style="padding-top:0">
+<section class="method" id="method">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The Method</span>
@@ -869,91 +726,174 @@
       </div>
     </div>
 
-    <div class="dlcard reveal" id="overview">
-      <span class="eyebrow">Free Download</span>
-      <h3>The GROWTH™ Execution Model</h3>
-      <p>Six steps. One language for leaders and AI agents. The two-page overview of the model, how it applies to AI, and what it produced.</p>
-      <p class="opener"><button class="btn btn-teal" type="button" id="overviewOpen">Get the overview</button></p>
-      <form class="fgrid2 closed" id="overviewForm" novalidate>
-        <div><label for="ov-first">First name</label><input type="text" id="ov-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="ov-last">Last name</label><input type="text" id="ov-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="ov-email">Email</label><input type="email" id="ov-email" name="email" autocomplete="email" required></div>
-        <div><label for="ov-company">Company</label><input type="text" id="ov-company" name="company" autocomplete="organization" required></div>
-        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn btn-teal" type="submit">Send me the overview</button><p class="form-err"></p></div>
-      </form>
-      <div class="dl-ok" id="overviewOk">
-        <p>Your overview is ready. <a href="assets/GROWTH-Execution-Model-Overview-OnTheGrow-v3.pdf" target="_blank" rel="noopener">Download the GROWTH Execution Model overview.</a></p>
-        <p class="dl-more">See how it installs: <a href="#journey">the Leadership Infrastructure Journey.</a></p>
+  </div>
+  <div class="growth method-growth" id="growth">
+  <div class="wrap">
+    <div class="ghead">
+      <div class="reveal">
+        <span class="eyebrow">The GROWTH Execution Model™</span>
+        <h2>One model. Every conversation. <strong>Real results.</strong></h2>
+        <p class="lede">Six steps that structure every consequential conversation in a business, from a CEO's planning session to a frontline leader's Thursday 1:1. Each step ends at a human gate: the question asked out loud before AI-assisted work ships.</p>
+      </div>
+      <img class="ghex ghex-frame reveal" src="assets/growth-hexagon-tracking.png" width="900" height="900" loading="lazy"
+           alt="The GROWTH Execution Model hexagon: Goal, Reflect, Options, What's Next, Tracking, Habits.">
+    </div>
+    <div class="ggrid">
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/><defs><linearGradient id="gg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#75cbc4"/><stop offset="1" stop-color="#6B529E"/></linearGradient></defs></svg><span>G</span></div>
+        <h3>Goal</h3>
+        <p class="std">Define success before execution begins. AI surfaces criteria and precedent; the human sets intent.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Did a human define success before AI touched the work?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>R</span></div>
+        <h3>Reflect</h3>
+        <p class="std">Surface what is actually true, not what is assumed. AI supplies data; the human interrogates it.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Has this output been interrogated, or accepted?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>O</span></div>
+        <h3>Options</h3>
+        <p class="std">Explore real alternatives before committing. AI generates paths; the decision stays human-made.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Were real alternatives weighed before committing?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>W</span></div>
+        <h3>What's Next</h3>
+        <p class="std">Every action gets a named owner, a date, and a consequence. AI drafts the plan; a human owns it.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Who signed this, and will they answer for it?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>T</span></div>
+        <h3>Tracking</h3>
+        <p class="std">How will progress be visible, and where will it be hardest? Name the hardest moment and plan for it before it arrives. AI watches and flags; the human responds and holds accountable.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Is progress actually visible, or are we assuming it?</p>
+      </div>
+      <div class="gcard reveal">
+        <div class="gletter"><svg viewBox="0 0 52 58"><path d="M26 2 49 15v28L26 56 3 43V15Z" fill="none" stroke="url(#gg1)" stroke-width="2.5"/></svg><span>H</span></div>
+        <h3>Habits</h3>
+        <p class="std">Repetition and rhythm make the standard permanent, and the person grows from keeping it. This step is OnTheGrow.ai™.</p>
+        <p class="gate"><span class="gate-label">The human gate</span>Is the standard installed in the rhythm, or living in memory?</p>
       </div>
     </div>
-
+  </div>
   </div>
 </section>
 
-<section class="work" id="work">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Work With Us</span>
-      <h2>Four ways in. <strong>Start where you are.</strong></h2>
+<div class="roi-strip">
+  <div class="wrap roi-in">
+    <div>
+      <h2>Put a number on it.</h2>
+      <p>Estimate the return before you commit. The ROI calculator takes two minutes.</p>
     </div>
-    <div class="ladder">
-      <div class="rung reveal" id="assessment">
-        <span class="step">Free</span>
-        <h3>The AI Leadership Load Assessment</h3>
-        <p>12 statements. Three minutes. See what AI will scale on your team.</p>
-        <div class="rung-cta"><a class="btn btn-primary" href="/readiness/">Take the assessment</a></div>
-      </div>
-      <div class="rung reveal" id="workshop">
-        <span class="step">Workshop</span>
-        <h3>Write Better Prompts. Coach People Better.</h3>
-        <p class="price">Call for pricing</p>
-        <p>One structure that makes your leaders' AI prompts sharper and their one-on-ones better. 90 minutes. Virtual or in person. Small by design, so every leader gets coached.</p>
-        <div class="rung-cta">
-          <a class="btn btn-primary" href="assets/OTG-Workshop-Write-Better-Prompts.pdf" target="_blank" rel="noopener">Download the one pager</a>
-          <a class="btn btn-outline" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a>
-        </div>
-      </div>
-      <div class="rung reveal" id="first-90-days">
-        <span class="step">For midsize companies, including private equity-backed ones, and the HR teams inside them</span>
-        <h3>The First 90 Days: Prove It on One Process</h3>
-        <p class="price">Call for pricing</p>
-        <p>The 90 day program from the book, run with your HR team. One process redesigned, owners named, a council running, and before and after data for the board. Your team learns the method by doing it.</p>
-        <div class="rung-cta">
-          <a class="btn btn-primary" href="assets/OTG-First-90-Days.pdf" target="_blank" rel="noopener">Download the one pager</a>
-          <a class="btn btn-outline" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a>
-        </div>
-      </div>
-      <div class="rung reveal" id="the-book">
-        <span class="step">The Book</span>
-        <h3>AI Will Scale Good Leadership and Bad Leadership</h3>
-        <img class="rung-cover" src="assets/book-cover-front-v2.webp" width="1000" height="1500" loading="lazy" alt="Cover of AI Will Scale Good Leadership and Bad Leadership by Liz Corey">
-        <p>Available now in paperback and Kindle.</p>
-        <div class="rung-cta">
-          <a class="btn btn-primary" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order on Amazon</a>
-          <a class="rung-also" href="https://bookshop.org/p/books/ai-will-scale-good-leadership-and-bad-leadership-the-chro-s-method-for-redesigning-work-before-ai-scales-what-s-broken/304b945603a34d16" target="_blank" rel="noopener">Also on Bookshop.org</a>
-          <p class="rung-note">Paperback $24.95. Kindle edition available. 238 pages.</p>
-        </div>
-      </div>
-    </div>
-    <p class="platform-note reveal"><b>OnTheGrow.ai™.</b> The GROWTH Execution Model for leaders and their AI agents. Coming. <a href="#product">Join early access.</a></p>
+    <a class="btn btn-teal" href="/work-with-us/#calculator">Open the ROI calculator</a>
+  </div>
+</div>
 
-    <div class="dlcard reveal" id="journey">
-      <span class="eyebrow">Free Download</span>
-      <h3>The Leadership Infrastructure Journey</h3>
-      <p>Five stages. One engine: the GROWTH™ Execution Model. How we redesign the work and install one standard for leaders and AI agents.</p>
-      <p class="opener"><button class="btn btn-teal" type="button" id="journeyOpen">Get the journey</button></p>
-      <form class="fgrid2 closed" id="journeyForm" novalidate>
-        <div><label for="jy-first">First name</label><input type="text" id="jy-first" name="firstName" autocomplete="given-name" required></div>
-        <div><label for="jy-last">Last name</label><input type="text" id="jy-last" name="lastName" autocomplete="family-name" required></div>
-        <div><label for="jy-email">Email</label><input type="email" id="jy-email" name="email" autocomplete="email" required></div>
-        <div><label for="jy-company">Company</label><input type="text" id="jy-company" name="company" autocomplete="organization" required></div>
-        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <div class="actions"><button class="btn btn-teal" type="submit">Send me the journey</button><p class="form-err"></p></div>
-      </form>
-      <div class="dl-ok" id="journeyOk">
-        <p>Your journey is ready. <a href="assets/Leadership-Infrastructure-Journey-OnTheGrow-v2.pdf" target="_blank" rel="noopener">Download the Leadership Infrastructure Journey.</a></p>
-        <p class="dl-more">See the engine: <a href="#overview">the GROWTH Execution Model overview.</a></p>
+<section class="ways" id="work">
+  <div class="wrap">
+    <h2>Two ways <strong>to start</strong></h2>
+    <div class="ways-grid">
+      <div class="way reveal">
+        <h3>Workshop: Write Better Prompts. Coach People Better.</h3>
+        <p>A half-day working session for up to 12 leaders. Your team learns the GROWTH Execution Model™ and leaves with one common language for every working conversation, with people and with AI. They practice it on their own real work, not case studies.</p>
+        <p class="price">Call for pricing</p>
+        <a class="btn btn-primary" href="/work-with-us/#workshop">See the workshop</a>
+      </div>
+      <div class="way reveal">
+        <h3>The First 90 Days: Prove It on One Process</h3>
+        <p>We take one process and redesign it before AI scales what's broken. At 90 days you have an AI-enabled process running, a named owner on every task, and before-and-after numbers. Your team can run the method on the next process without me.</p>
+        <p class="price">Call for pricing</p>
+        <a class="btn btn-primary" href="/work-with-us/#first-90-days">See the 90 days</a>
+      </div>
+    </div>
+    <p class="built">Built for midsize companies, including private equity-backed ones, and the HR teams inside them.</p>
+    <p class="ways-custom"><b>Need an operator inside the business, or fractional support?</b> I take a small number of custom engagements each year, working alongside the CEO or CHRO. Let's talk about what you need.</p>
+    <p class="ways-call"><a class="btn btn-teal" href="#contact">Book a call</a></p>
+  </div>
+</section>
+
+<section class="about-sec" id="about">
+  <div class="northstar dark">
+    <div class="wrap">
+      <span class="eyebrow">Our North Star</span>
+      <p class="line reveal">Everyone deserves to be led well.</p>
+    </div>
+  </div>
+  <div class="about-block" id="values">
+    <div class="wrap">
+      <span class="eyebrow">Our Values</span>
+      <div class="vcards reveal">
+        <p class="v"><b>Leadership That Lifts™</b> is how we lead.</p>
+        <p class="v"><b>Grace + Grit™</b> is how we behave.</p>
+        <p class="v"><b>GROWTH™</b> is how we scale it.</p>
+        <p class="v"><b>Client Dedication</b> is how we partner.</p>
+      </div>
+      <span class="eyebrow">Our Pledge</span>
+      <div class="vcards reveal">
+        <p class="v">We build up.</p>
+        <p class="v">We speak truth.</p>
+        <p class="v">We put people first and let technology serve them.</p>
+        <p class="v">We grow people, and results follow.</p>
+      </div>
+    </div>
+  </div>
+  <div class="ggsec" id="grace-grit">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">The Competencies</span>
+        <h2>Grace + Grit™:<br><strong>The Competencies Behind Leadership That Lifts™</strong></h2>
+        <p class="lede">Leadership that lifts requires both Grace and Grit, held at the same time.</p>
+      </div>
+      <div class="ggcards">
+        <div class="ggcard reveal">
+          <h3>Grace</h3>
+          <p class="leadline">Grace governs how leadership is delivered.</p>
+          <p>It creates trust, dignity, and psychological safety so people can think clearly, speak honestly, and grow.</p>
+          <p class="shows">Grace shows up as:</p>
+          <ul>
+            <li>Psychological safety and respect</li>
+            <li>Empathy and active listening</li>
+            <li>Clarity without judgment</li>
+          </ul>
+        </div>
+        <div class="ggcard reveal">
+          <h3>Grit</h3>
+          <p class="leadline">Grit governs what leadership produces.</p>
+          <p>It ensures execution through clarity, ownership, and disciplined follow-through.</p>
+          <p class="shows">Grit shows up as:</p>
+          <ul>
+            <li>Clear expectations and standards</li>
+            <li>Courageous truth-telling</li>
+            <li>Ownership and follow-through</li>
+          </ul>
+        </div>
+      </div>
+      <div class="lens reveal">
+        <p class="big">Too much grace creates drift. Too much grit creates friction.</p>
+        <p class="small">Leadership systems that engineer both reduce risk and accelerate results.</p>
+      </div>
+    </div>
+  </div>
+  <div class="about-block" id="our-mark">
+    <div class="wrap markrow reveal">
+      <img src="assets/otg-mark.png" alt="The OnTheGrow Leadership hexagon mark" width="337" height="400">
+      <div>
+        <span class="eyebrow">Our Mark</span>
+        <h2>More than a logo.<br><strong>It represents modern leadership.</strong></h2>
+        <p class="mline">The form points upward because leadership lifts.</p>
+        <p class="mline">It expands outward because growth spreads.</p>
+        <p class="mline">Its edges reflect grit. Its glow reflects grace.</p>
+        <p class="mline">This symbol embodies our North Star: everyone deserves to be led well.</p>
+      </div>
+    </div>
+  </div>
+  <div class="founder">
+    <div class="wrap founder-in">
+      <img class="about-card reveal" src="assets/liz-quote-card.webp" width="1200" height="1200" loading="lazy" alt="Liz Corey, Founder and CEO of OnTheGrow Leadership">
+      <div>
+        <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
+        <p class="who reveal"><b>Liz Corey</b>, Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
       </div>
     </div>
   </div>
@@ -980,117 +920,15 @@
   </div>
 </section>
 
-<section class="founder" id="about">
-  <div class="wrap founder-in">
-    <img class="about-card reveal" src="assets/liz-quote-card.webp" width="1200" height="1200" loading="lazy" alt="Liz Corey, Founder and CEO of OnTheGrow Leadership">
-    <div>
-      <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
-      <p class="who reveal"><b>Liz Corey</b>, Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
-    </div>
-  </div>
-</section>
-
-<section class="northstar dark">
-  <div class="wrap">
-    <span class="eyebrow">Our North Star</span>
-    <p class="line reveal">Everyone deserves to be led well.</p>
-  </div>
-</section>
-
-<section id="values">
-  <div class="wrap">
-    <div class="vp">
-      <div class="reveal">
-        <span class="eyebrow">Our Values</span>
-        <p class="v"><b>Leadership That Lifts™</b> is how we lead.</p>
-        <p class="v"><b>Grace + Grit™</b> is how we behave.</p>
-        <p class="v"><b>GROWTH™</b> is how we scale it.</p>
-        <p class="v"><b>Client Dedication</b> is how we partner.</p>
-      </div>
-      <div class="reveal">
-        <span class="eyebrow">Our Pledge</span>
-        <p class="v">We build up.</p>
-        <p class="v">We speak truth.</p>
-        <p class="v">We put people first and let technology serve them.</p>
-        <p class="v">We grow people, and results follow.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ggsec" id="grace-grit">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The Competencies</span>
-      <h2>Grace + Grit™:<br><strong>The Competencies Behind Leadership That Lifts™</strong></h2>
-      <p class="lede">Leadership that lifts requires both Grace and Grit, held at the same time.</p>
-    </div>
-    <div class="ggcards">
-      <div class="ggcard reveal">
-        <h3>Grace</h3>
-        <p class="leadline">Grace governs how leadership is delivered.</p>
-        <p>It creates trust, dignity, and psychological safety so people can think clearly, speak honestly, and grow.</p>
-        <p class="shows">Grace shows up as:</p>
-        <ul>
-          <li>Psychological safety and respect</li>
-          <li>Empathy and active listening</li>
-          <li>Clarity without judgment</li>
-        </ul>
-      </div>
-      <div class="ggcard reveal">
-        <h3>Grit</h3>
-        <p class="leadline">Grit governs what leadership produces.</p>
-        <p>It ensures execution through clarity, ownership, and disciplined follow-through.</p>
-        <p class="shows">Grit shows up as:</p>
-        <ul>
-          <li>Clear expectations and standards</li>
-          <li>Courageous truth-telling</li>
-          <li>Ownership and follow-through</li>
-        </ul>
-      </div>
-    </div>
-    <div class="lens reveal">
-      <p class="big">Too much grace creates drift. Too much grit creates friction.</p>
-      <p class="small">Leadership systems that engineer both reduce risk and accelerate results.</p>
-    </div>
-  </div>
-</section>
-
-<section class="ourmark" id="our-mark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Our Mark</span>
-      <h2>More than a logo.<br><strong>It represents modern leadership.</strong></h2>
-    </div>
-    <div class="reveal">
-      <p class="mline">The form points upward because leadership lifts.</p>
-      <p class="mline">It expands outward because growth spreads.</p>
-      <p class="mline">Its edges reflect grit. Its glow reflects grace.</p>
-      <p class="mline">This symbol embodies our North Star: everyone deserves to be led well.</p>
-      <img src="assets/otg-mark.png" alt="The OnTheGrow Leadership hexagon mark" width="337" height="400">
-    </div>
-  </div>
-</section>
-
-<section class="cta dark">
-  <div class="wrap cta-in">
-    <span class="eyebrow">Early Access</span>
-    <h2>Twelve statements from now, <strong style="color:#75cbc4">you'll know.</strong></h2>
-    <p>AI doesn't fix leadership. It scales it. Take the AI Leadership Load Assessment and see what your leaders can carry.</p>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
-      <a class="btn btn-teal" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap foot-in">
     <div>
       <div class="foot-brand">
-        <img class="foot-icon" src="assets/otg-mark.png" alt="" width="337" height="400">
+        <img class="foot-icon" src="assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
         <span class="wm-text" style="color:#fff"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
       </div>
       <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
+      <p class="tag"><a href="/platform/">Platform</a> · <a href="#about">About</a></p>
     </div>
     <div class="foot-right">
       <p><a class="btn foot-cta" href="#contact">Contact Us</a></p>
@@ -1119,28 +957,7 @@
 
   // Go High Level inbound webhook. All submissions carry a `tag` field to branch on.
   const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/CH6hbzpcMHz9c8FHItiO/webhook-trigger/f12f0892-5189-44b2-8548-f5aa301a5a7a";
-  async function otgSubmit(form, tag){
-    const email = form.querySelector('input[type=email]').value.trim();
-    const ok = form.querySelector('.form-ok'), err = form.querySelector('.form-err');
-    ok.style.display = 'none'; err.style.display = 'none';
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-      err.textContent = "That email doesn't look complete. Check it and try again.";
-      err.style.display = 'block'; return;
-    }
-    try {
-      if (!WEBHOOK_URL) throw new Error('no webhook configured');
-      const res = await fetch(WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({tag, email, source:'onthegrow.ai', submittedAt:new Date().toISOString()})});
-      if (!res.ok) throw new Error('bad response');
-      ok.style.display = 'block'; form.reset();
-    } catch(_) {
-      err.innerHTML = 'Something went wrong on our end. Please try again in a moment, or <a href="#contact">use the contact form</a>.';
-      err.style.display = 'block';
-    }
-  }
-  document.getElementById('accessForm').addEventListener('submit', e => {e.preventDefault(); otgSubmit(e.target, 'early-access');});
-
-  // Forms with several fields. Same webhook, branched on tag like every other submission.
+  // Contact form. Same webhook, branched on tag like every other submission.
   const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   function postWebhook(body){
     if (!WEBHOOK_URL) return Promise.reject(new Error('no webhook configured'));
@@ -1154,33 +971,6 @@
   }
   function showErr(form, msg){ const err = form.querySelector('.form-err'); err.textContent = msg; err.style.display = 'block'; }
   function hideErr(form){ form.querySelector('.form-err').style.display = 'none'; }
-
-  // Gated downloads. The download is never blocked on a webhook error.
-  // tag names the download; source names the page it was requested from.
-  function wireDownload(id, tag, source){
-    const open = document.getElementById(id + 'Open'), form = document.getElementById(id + 'Form');
-    open.addEventListener('click', () => {
-      open.parentElement.style.display = 'none';
-      form.classList.remove('closed');
-      form.elements.firstName.focus();
-    });
-    form.addEventListener('submit', async e => {
-      e.preventDefault(); hideErr(form);
-      const f = readFields(form, ['firstName','lastName','email','company']);
-      if (!f.firstName || !f.lastName || !f.email || !f.company){ showErr(form, 'Please fill in every field.'); return; }
-      if (!EMAIL_RE.test(f.email)){ showErr(form, "That email doesn't look complete. Check it and try again."); return; }
-      const btn = form.querySelector('button[type=submit]');
-      btn.disabled = true; btn.textContent = 'Sending';
-      if (!form.elements.website.value){
-        try { await postWebhook({tag, source, ...f, submittedAt:new Date().toISOString()}); }
-        catch(_) {}
-      }
-      form.style.display = 'none';
-      document.getElementById(id + 'Ok').style.display = 'block';
-    });
-  }
-  wireDownload('overview', 'growth-overview', 'growth-overview');
-  wireDownload('journey', 'journey', 'journey');
 
   // Contact Us. On a webhook error the typed text stays in the form.
   const ctForm = document.getElementById('contactForm');

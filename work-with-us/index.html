@@ -66,6 +66,20 @@
   .wm-text .w1{font-weight:300}.wm-text .w2{font-weight:400}.wm-text .w3{font-weight:600}
   .wlead{font-weight:300;letter-spacing:.04em}
 
+  /* the two offers above the calculator: the same cards the home page used */
+  :where(.offers) :where(*){margin:0;padding:0}
+  .offers{padding:72px 0 0}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px}
+  @media(max-width:760px){.offer-grid{grid-template-columns:1fr}}
+  .rung{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;display:flex;flex-direction:column;scroll-margin-top:84px}
+  .rung .step{font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+  .rung h3{font-weight:600;font-size:1.15rem;line-height:1.15;color:var(--onyx);margin:10px 0 10px;text-wrap:balance}
+  .rung .price{font-weight:600;color:var(--deep);font-size:.98rem;margin-bottom:10px}
+  .rung p{font-size:.94rem;color:var(--muted);max-width:64ch}
+  .rung-cta{margin-top:auto;padding-top:18px;display:flex;flex-direction:column;gap:10px}
+  .rung-cta .btn{width:100%;min-height:52px;padding:10px 12px;font-size:.92rem;line-height:1.3;text-align:center}
+  .rung-cta .btn-outline{background:#fff;border:1.5px solid var(--teal);color:var(--teal)}
+
   /* the intro: eyebrow and one paragraph. The headline is the block's own title. */
   #calculator{scroll-margin-top:72px;padding-bottom:72px}
   .page-head{padding:84px 24px 40px}
@@ -94,23 +108,50 @@
 <nav>
   <div class="wrap nav-in">
     <a class="wordmark" href="/" aria-label="OnTheGrow Leadership home">
-      <img src="/assets/otg-mark.png" alt="" width="337" height="400">
+      <img src="/assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
       <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
     </a>
     <button class="navtoggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     <div class="navlinks" id="navlinks">
-      <a href="/#thesis">The Thesis</a>
       <a href="/#book">The Book</a>
-      <a href="/#partner">GROWTH Partner</a>
+      <a href="/#thesis">The Thesis</a>
       <a href="/#method">The Method</a>
       <a href="/#work">Work With Us</a>
       <a href="/#about">About</a>
       <a href="/resources/">Resources</a>
       <a href="/#contact">Contact</a>
-      <a class="btn" href="/readiness/">Take the AI Leadership Load Assessment</a>
+      <a class="btn" href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Order the Book</a>
     </div>
   </div>
 </nav>
+
+<section class="offers" id="offers">
+  <div class="wrap">
+    <span class="eyebrow">Work With Us</span>
+    <div class="offer-grid">
+      <div class="rung" id="workshop">
+        <span class="step">Workshop</span>
+        <h3>Write Better Prompts. Coach People Better.</h3>
+        <p class="price">Call for pricing</p>
+        <p>One structure that makes your leaders' AI prompts sharper and their one-on-ones better. A half-day session for up to 12 leaders. Virtual or in person. Small by design, so every leader gets coached.</p>
+        <div class="rung-cta">
+          <a class="btn btn-primary" href="/assets/OTG-Workshop-Write-Better-Prompts.pdf" target="_blank" rel="noopener">Download the one pager</a>
+          <a class="btn btn-outline" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+      <div class="rung" id="first-90-days">
+        <span class="step">For midsize companies, including private equity-backed ones, and the HR teams inside them</span>
+        <h3>The First 90 Days: Prove It on One Process</h3>
+        <p class="price">Call for pricing</p>
+        <p>The 90 day program from the book, run with your HR team. One process redesigned, owners named, a council running, and before and after data for the board. Your team learns the method by doing it.</p>
+        <div class="rung-cta">
+          <a class="btn btn-primary" href="/assets/OTG-First-90-Days.pdf" target="_blank" rel="noopener">Download the one pager</a>
+          <a class="btn btn-outline" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <main id="calculator">
   <header class="wrap page-head">
@@ -500,10 +541,11 @@ renderRates();renderTasks();render();
   <div class="wrap foot-in">
     <div>
       <div class="foot-brand">
-        <img src="/assets/otg-mark.png" alt="" width="337" height="400">
+        <img src="/assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
         <span class="wm-text"><span class="w1">ON</span><span class="w2">THE</span><span class="w3">GROW</span><span class="wlead"> LEADERSHIP</span></span>
       </div>
       <p class="tag">Leadership as Infrastructure™ · GROWTH™ · Grace + Grit™<br>One model. Every conversation. Real results.</p>
+      <p class="tag"><a href="/platform/">Platform</a> · <a href="/#about">About</a></p>
     </div>
     <div class="foot-right">
       <p><a class="btn foot-cta" href="/#contact">Contact Us</a></p>

@@ -141,7 +141,7 @@
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="/" aria-label="OnTheGrow Leadership home">
-      <img src="../assets/otg-mark.png" alt="" width="337" height="400">
+      <img src="../assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400">
       <span>OnTheGrow Leadership™</span>
     </a>
   </div>
@@ -195,8 +195,8 @@
 
       <div class="nextstep" id="nextStep">
         <p class="k">Your next step</p>
-        <p><a class="btn" id="nsPrimary" href="/#first-90-days">Prove it on one process in 90 days</a></p>
-        <p class="alt"><a class="link" id="nsAlt" href="/#workshop">Or start with a 90 minute workshop.</a></p>
+        <p><a class="btn" id="nsPrimary" href="/work-with-us/#first-90-days">Prove it on one process in 90 days</a></p>
+        <p class="alt"><a class="link" id="nsAlt" href="/work-with-us/#workshop">Or start with a half-day workshop.</a></p>
         <p class="call"><a class="link" href="https://api.leadconnectorhq.com/widget/booking/d4bN3CjJ3Qj2LSD3SXP9" target="_blank" rel="noopener">Book a call</a></p>
       </div>
 
@@ -260,7 +260,7 @@
 
 <footer>
   <div class="wrap foot-in">
-    <a href="/" aria-label="OnTheGrow Leadership home"><img src="../assets/otg-mark.png" alt="" width="337" height="400"></a>
+    <a href="/" aria-label="OnTheGrow Leadership home"><img src="../assets/otg-mark.png" alt="OnTheGrow Leadership" width="337" height="400"></a>
     <div>
       <p>OnTheGrow Leadership™ · <a href="/">onthegrow.ai</a></p>
       <p>© 2026 OnTheGrow Leadership LLC. All rights reserved.</p>
@@ -513,8 +513,8 @@ function renderResult(){
   // Next step, mapped to the weakest group. Leaders points to the workshop;
   // Truth, Work, and Ownership point to The First 90 Days. Display only; the payload is untouched.
   const next = GROUPS[gi] === "Leaders"
-    ? {primary:"Run the workshop with your leaders", primaryHref:"/#workshop", alt:"Or prove it on one process in 90 days.", altHref:"/#first-90-days"}
-    : {primary:"Prove it on one process in 90 days", primaryHref:"/#first-90-days", alt:"Or start with a 90 minute workshop.", altHref:"/#workshop"};
+    ? {primary:"Run the workshop with your leaders", primaryHref:"/work-with-us/#workshop", alt:"Or prove it on one process in 90 days.", altHref:"/work-with-us/#first-90-days"}
+    : {primary:"Prove it on one process in 90 days", primaryHref:"/work-with-us/#first-90-days", alt:"Or start with a half-day workshop.", altHref:"/work-with-us/#workshop"};
   $("nsPrimary").textContent = next.primary; $("nsPrimary").href = next.primaryHref;
   $("nsAlt").textContent = next.alt; $("nsAlt").href = next.altHref;
   const lines = flagLines(flags);
