@@ -1,19 +1,15 @@
 // ============================================================
 //  BOOK LAUNCH SWITCH  (onthegrow.ai)
 //
-//  On launch day (Monday, November 16) change the two lines
-//  below, save this file, and redeploy the site:
-//
-//    1. Change   false   to   true
-//    2. Paste the book's Amazon page address between the quotes
-//
-//  That is all. Every page reads this file. With BOOK_LIVE true the
-//  "November 16" banner disappears and every book button becomes
-//  "Buy on Amazon" linking to AMAZON_URL in a new tab.
+//  The book is live. BOOK_LIVE is true and AMAZON_URL points at
+//  the book's Amazon page. The home page carries its own order
+//  buttons. On the other pages that read this file, every book
+//  link becomes "Order on Amazon" linking to AMAZON_URL in a new
+//  tab, and the "now available" wording shows.
 // ============================================================
 
-const BOOK_LIVE = false;
-const AMAZON_URL = "";
+const BOOK_LIVE = true;
+const AMAZON_URL = "https://a.co/d/0cgWKSJA";
 
 // ---------- Nothing below this line needs to change ----------
 (function () {
@@ -22,7 +18,7 @@ const AMAZON_URL = "";
   document.documentElement.classList.add("book-live");
   function go() {
     document.querySelectorAll("[data-book-cta]").forEach(function (a) {
-      a.textContent = "Buy on Amazon";
+      a.textContent = "Order on Amazon";
       if (AMAZON_URL) { a.href = AMAZON_URL; a.target = "_blank"; a.rel = "noopener"; }
     });
   }
