@@ -136,7 +136,7 @@
   /* book */
   .book .bgrid{display:grid;grid-template-columns:minmax(0,1.05fr) 1fr;gap:56px;align-items:center}
   @media(max-width:860px){.book .bgrid{grid-template-columns:1fr;justify-items:start}}
-  .book img.cover{width:100%;max-width:560px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 24px 30px rgba(54,41,79,.35))}
+  .book img.cover{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
   .book .subtitle{font-size:1.12rem;color:var(--muted);margin:14px 0 20px;max-width:44ch}
   .book .status{font-size:.88rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:22px 0 26px}
   .book .note{font-size:.85rem;color:var(--muted);margin-top:12px}
@@ -472,6 +472,10 @@
   .about-sec .ggcard{padding:26px 30px}
   .about-sec .ggcard h3{font-size:1.3rem}
   .about-sec .lens{margin-top:30px}
+  .about-block .lede{margin-top:12px;max-width:72ch}
+  .founder h2{margin:8px 0 14px}
+  .founder .bio{font-size:1rem;margin-bottom:24px}
+  @media(max-width:760px){.founder-in .about-card{order:2}}
   .markrow{display:grid;grid-template-columns:120px 1fr;gap:40px;align-items:center}
   @media(max-width:600px){.markrow{grid-template-columns:1fr;gap:20px}}
   .markrow img{width:110px;height:auto;display:block}
@@ -504,7 +508,7 @@
 <section class="book book-first" id="book">
   <div class="wrap">
     <div class="bgrid">
-      <img class="cover reveal" src="assets/book-front-back.webp" width="1440" height="1600"
+      <img class="cover reveal" src="assets/book-front-back-cutout.webp" width="1580" height="1780"
            alt="Front and back cover of AI Will Scale Good Leadership and Bad Leadership">
       <div>
         <span class="eyebrow">The Book</span>
@@ -814,6 +818,24 @@
 </section>
 
 <section class="about-sec" id="about">
+  <div class="about-block">
+    <div class="wrap">
+      <span class="eyebrow">About OnTheGrow Leadership</span>
+      <p class="lede reveal">We help midsize companies redesign work for AI and build the leadership system that makes the change hold. We start with the work, not the tool: what stays human, what AI assists, what an agent owns, and who answers for each. Then we give every leader one model for leading the people and the agents on their team.</p>
+    </div>
+  </div>
+  <div class="founder">
+    <div class="wrap founder-in">
+      <img class="about-card reveal" src="assets/liz-quote-card.webp" width="1200" height="1200" loading="lazy" alt="Liz Corey, Founder and CEO of OnTheGrow Leadership">
+      <div>
+        <span class="eyebrow">Founder</span>
+        <h2 class="reveal">Liz Corey</h2>
+        <p class="bio reveal">Liz Corey is the founder and CEO of OnTheGrow Leadership and the author of AI Will Scale Good Leadership and Bad Leadership. She has served as CHRO and Chief People Officer at private equity backed companies, including Velosio, ISN, and Pilgrim Quality Solutions, and as a senior HR leader at large public companies, including Masonite International. She spent 15 years at PwC in change integration, project management, and process improvement. She is the creator of the GROWTH Execution Model™, a member of the Forbes Human Resources Council, and holds a Master of Human Resource Management from Rutgers.</p>
+        <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
+        <p class="who reveal">The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
+      </div>
+    </div>
+  </div>
   <div class="northstar dark">
     <div class="wrap">
       <span class="eyebrow">Our North Star</span>
@@ -885,15 +907,6 @@
         <p class="mline">It expands outward because growth spreads.</p>
         <p class="mline">Its edges reflect grit. Its glow reflects grace.</p>
         <p class="mline">This symbol embodies our North Star: everyone deserves to be led well.</p>
-      </div>
-    </div>
-  </div>
-  <div class="founder">
-    <div class="wrap founder-in">
-      <img class="about-card reveal" src="assets/liz-quote-card.webp" width="1200" height="1200" loading="lazy" alt="Liz Corey, Founder and CEO of OnTheGrow Leadership">
-      <div>
-        <blockquote class="reveal">"Everyone deserves to be led well. The organizations that treat that sentence as infrastructure, rather than aspiration, are the ones whose strategies will survive contact with the AI era."</blockquote>
-        <p class="who reveal"><b>Liz Corey</b>, Founder &amp; CEO, OnTheGrow Leadership™. Fifteen years at PwC, then CHRO and Chief People Officer across four private-equity-backed companies. The system behind OnTheGrow was built where EBITDA was the scoreboard, and results were the only argument that counted.</p>
       </div>
     </div>
   </div>
