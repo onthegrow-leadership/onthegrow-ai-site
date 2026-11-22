@@ -62,7 +62,7 @@ Also ship in this build. The file `roi-embed.html` (Liz will place it in the pro
 - Paste the block as is. Do not restyle it, rename ids, or move its script. Everything is scoped to `#otg-roi` so it will not change the rest of the page.
 - The engagement fee field is blank by default and must stay blank. No price appears publicly.
 - If the site uses a bundler or framework that strips inline scripts, load the block as a static HTML include or an iframe to a standalone page at `/calculator` that contains only the block, the site header, and footer. Prefer the inline include.
-- Confirm "Load sample" works on the live page and shows the shared services example ($186,139 EBITDA a year by year 3, $1.86M at 10x).
+- Confirm "Load sample" works on the live page and shows the shared services example ($97,742 net EBITDA a year by year 3 on the default inputs, and $977K at 10x once the value at exit box is checked).
 
 ### Test
 - Sample loads and the bottom line populates.

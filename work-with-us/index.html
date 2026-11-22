@@ -166,7 +166,7 @@
 /* Layout: working sheet left (assumptions, how time converts, tasks), bottom line pinned right; stacks with the bottom line first on phones. All rules scoped to #otg-roi so the block can be pasted into a website page. */
 #otg-roi{
   --ink:#231B33;--muted:#6B6480;--bg:#F4F2F8;--surface:#FFFFFF;--line:#E2DDEB;
-  --brand:#36294F;--brand-ink:#FFFFFF;--brand-sub:#9FDCD7;--accent:#39989E;--accent-soft:#E2F1F1;--good:#2F7D5B;--warn:#8A3B2E;
+  --field:#B5ADC8;--shade:#E9E5F1;--brand:#36294F;--brand-ink:#FFFFFF;--brand-sub:#9FDCD7;--accent:#39989E;--accent-soft:#E2F1F1;--good:#2F7D5B;--warn:#8A3B2E;
   --human:#441985;--human-ink:#FFFFFF;--assist:#39989E;--assist-ink:#FFFFFF;
   --agent:#BFE6E2;--agent-ink:#16323A;--automate:#E6F4F2;--automate-ink:#16323A;--cut:#D9D4E2;--cut-ink:#3B3450;
   --p-hire:#36294F;--p-spend:#39989E;--p-rev:#75CBC4;--p-none:#D9D4E2;
@@ -188,7 +188,7 @@
 #otg-roi .hint{color:var(--muted);font-size:13px;margin:0 0 14px}
 #otg-roi .fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px 14px}
 #otg-roi label.f{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:500}
-#otg-roi input,#otg-roi select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0;margin:0}
+#otg-roi input,#otg-roi select{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--field);border-radius:8px;padding:8px 10px;width:100%;min-width:0;margin:0}
 #otg-roi input:focus-visible,#otg-roi select:focus-visible,#otg-roi button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #otg-roi .money,#otg-roi .pct,#otg-roi .mult{position:relative}
 #otg-roi .money span{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
@@ -202,8 +202,7 @@
 #otg-roi th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--bg);white-space:nowrap}
 #otg-roi tr:last-child td{border-bottom:0}
 #otg-roi td.num,#otg-roi th.num{text-align:right}
-#otg-roi .tasks td input{background:transparent;border-color:transparent;padding:6px 8px}
-#otg-roi .tasks td input:hover{border-color:var(--line)}
+#otg-roi .tasks td input{padding:6px 8px}
 #otg-roi .tasks td input.hrs{width:76px;text-align:right}
 #otg-roi .tasks td select{width:118px;padding:6px 8px}
 #otg-roi .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
@@ -225,9 +224,6 @@
 #otg-roi .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2)}
 #otg-roi .kpi b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
 #otg-roi .kpi span{font-size:12px;opacity:.85}
-#otg-roi .evtoggle{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);cursor:pointer}
-#otg-roi .evtoggle input{width:16px;height:16px;padding:0;flex:none;accent-color:var(--brand-sub);cursor:pointer}
-#otg-roi .evbox .big2{margin-top:12px}
 #otg-roi .line{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:14px}
 #otg-roi .line p{margin:0 0 10px;font-size:14px}
 #otg-roi .copied{font-size:12px;color:var(--good);margin-left:8px}
@@ -252,58 +248,111 @@
 #otg-roi .tag{font-size:12px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;margin-left:6px}
 #otg-roi .foot{margin-top:24px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 #otg-roi .sr{position:absolute;left:-9999px}
+#otg-roi input:disabled{background:var(--shade);border-color:var(--shade);color:var(--muted)}
+#otg-roi .who{display:inline-block;font-style:normal;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.5;border-radius:4px;padding:0 6px;margin-left:6px;white-space:nowrap;vertical-align:middle}
+#otg-roi .who.in{color:#256C71;background:#fff;border:1px solid var(--accent)}
+#otg-roi .who.calc{color:var(--brand);background:var(--shade);border:1px solid var(--shade)}
+#otg-roi th .who{display:block;width:max-content;margin:3px 0 0}
+#otg-roi th.num .who{margin-left:auto}
+#otg-roi td.calc{background:var(--shade)}
+#otg-roi .key{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-weight:600;color:var(--ink);margin:0 0 8px}
+#otg-roi .key i{display:inline-block;width:22px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+#otg-roi .key i.w{background:#fff;border:1px solid var(--field)}
+#otg-roi .key i.s{background:var(--shade);border:1px solid var(--shade)}
+#otg-roi .calcbox{background:var(--shade);border-radius:8px;padding:10px 12px;margin-top:14px;font-size:13px;color:var(--muted)}
+#otg-roi .calcbox .who{margin:0 0 4px;border-color:var(--field)}
+#otg-roi .calcbox p{margin:0}
+#otg-roi .calcbox b{color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums}
+#otg-roi .step{color:var(--accent)}
+#otg-roi .bottom h3{color:#fff;font-size:19px;margin:0 0 10px}
+#otg-roi .bottom .who.calc{background:rgba(255,255,255,.16);border-color:transparent;color:#fff;margin-left:0}
+#otg-roi .evtoggle{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;cursor:pointer}
+#otg-roi .evtoggle input{width:16px;height:16px;padding:0;flex:none;accent-color:var(--accent);cursor:pointer}
+#otg-roi .evbox{margin-top:12px}
+#otg-roi details.method summary{cursor:pointer;font-size:17px;font-weight:700;color:var(--ink)}
+#otg-roi details.method[open] summary{margin-bottom:10px}
+#otg-roi .mathlist{list-style:none;margin:0;padding:0}
+#otg-roi .mathlist li{padding:8px 0;border-bottom:1px solid var(--line);margin:0}
+#otg-roi .mathlist li span{display:block;font-variant-numeric:tabular-nums;color:var(--ink)}
+#otg-roi .note{display:block;font-size:12px;color:var(--muted);font-weight:400;line-height:1.4}
+#otg-roi div.f{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:500}
+#otg-roi .fields.wide{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px 18px;align-items:start}
+#otg-roi .trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#otg-roi .trio small{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}
+#otg-roi .f.span{grid-column:1/-1}
+#otg-roi .switch{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;margin:18px 0 4px}
+#otg-roi .switch input{appearance:none;-webkit-appearance:none;width:40px;height:22px;border-radius:999px;background:var(--cut);border:0;padding:0;position:relative;flex:none;cursor:pointer;transition:background .15s}
+#otg-roi .switch input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s}
+#otg-roi .switch input:checked{background:var(--accent)}
+#otg-roi .switch input:checked::after{transform:translateX(18px)}
+#otg-roi .switch em{font-style:normal;font-weight:500;color:var(--muted)}
+#otg-roi .steps{list-style:none;margin:0;padding:0;font-size:13px;font-variant-numeric:tabular-nums}
+#otg-roi .steps li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+#otg-roi .steps li:last-child{border-bottom:0}
+#otg-roi .steps li span:last-child{white-space:nowrap;color:var(--muted)}
+#otg-roi .steps li.tot{font-weight:700}
+#otg-roi .steps li.tot span:last-child{color:var(--ink)}
+#otg-roi .steps li.net{background:var(--accent-soft);margin:4px -8px 0;padding:8px;border-radius:6px}
+#otg-roi .line .tbl-wrap{margin-top:12px}
+#otg-roi .line .yrs th,#otg-roi .line .yrs td{padding:7px 8px;font-size:13px}
+#otg-roi .cfo{font-weight:600;font-size:14px;color:var(--brand);margin:14px 0 10px!important}
+@media (min-width:921px){#otg-roi .side{max-height:calc(100vh - 104px);overflow-y:auto;scrollbar-width:thin}}
 @media (prefers-reduced-motion:reduce){#otg-roi *{transition:none!important}}
+/* The one page case. Built on demand as a direct child of body, so print can hide the rest of the page. */
+#otg-roi-sheet{display:none}
+@media print{
+  body.otg-printing>*:not(#otg-roi-sheet){display:none!important}
+  body.otg-printing{background:#fff!important;margin:0!important;padding:0!important}
+  body.otg-printing #otg-roi-sheet{display:block}
+}
+#otg-roi-sheet{font-family:"Work Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#231B33;font-size:10.5px;line-height:1.4;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#otg-roi-sheet *{box-sizing:border-box}
+#otg-roi-sheet .ph{border-bottom:3px solid #36294F;padding-bottom:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+#otg-roi-sheet .ph h1{font-size:19px;line-height:1.15;margin:2px 0 0;color:#36294F;font-weight:700}
+#otg-roi-sheet .ph .ey{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#39989E;font-weight:600}
+#otg-roi-sheet .ph .meta{text-align:right;font-size:10px;color:#6B6480}
+#otg-roi-sheet .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#otg-roi-sheet h2{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#39989E;margin:12px 0 4px;font-weight:700}
+#otg-roi-sheet h2:first-child{margin-top:0}
+#otg-roi-sheet table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+#otg-roi-sheet td,#otg-roi-sheet th{padding:3px 0;border-bottom:1px solid #E2DDEB;text-align:left;vertical-align:top;font-size:10.5px}
+#otg-roi-sheet td:not(:first-child),#otg-roi-sheet th:not(:first-child){text-align:right;padding-left:10px;white-space:nowrap}
+#otg-roi-sheet th{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#6B6480;font-weight:600}
+#otg-roi-sheet tr.tot td{font-weight:700}
+#otg-roi-sheet tr.net td{font-weight:700;background:#E2F1F1;padding-left:4px;padding-right:4px}
+#otg-roi-sheet .hero{background:#36294F;color:#fff;border-radius:6px;padding:10px 12px;margin-bottom:10px;display:flex;justify-content:space-between;gap:12px}
+#otg-roi-sheet .hero b{display:block;font-size:20px;line-height:1.1}
+#otg-roi-sheet .hero span{font-size:9.5px;opacity:.9}
+#otg-roi-sheet .memo{margin:12px 0 0;font-size:10.5px}
+#otg-roi-sheet .cfo{margin:10px 0 0;font-weight:700;font-size:12px;color:#36294F}
+#otg-roi-sheet .pf{margin-top:12px;padding-top:6px;border-top:1px solid #E2DDEB;font-size:9px;color:#6B6480;display:flex;justify-content:space-between;gap:12px}
 </style>
 
 <div class="wrap">
   <div class="eyebrow">OnTheGrow Leadership · For PE-backed companies</div>
   <h2 class="title">Work Redesign Value Calculator</h2>
-  <p class="lede">Most AI tools count hours saved. This one shows what the redesign adds to EBITDA.</p>
+  <p class="key"><span><i class="w"></i>Type your numbers in the white boxes.</span><span><i class="s"></i>The shaded boxes calculate.</span></p>
+  <p class="lede">Most AI tools count hours saved. This one shows the net value a year the redesign delivers.</p>
 
   <div class="grid">
     <div class="stack">
 
       <section class="panel" aria-labelledby="roi-h-a">
-        <h3 id="roi-h-a">The company and the deal</h3>
-        <p class="hint">Use loaded cost: salary plus benefits and taxes, per hour.</p>
+        <h3 id="roi-h-a"><span class="step">Step 1.</span> Your team: what an hour costs</h3>
+        <p class="hint">What one hour of this team costs you: salary plus benefits and payroll taxes, divided by hours worked. Example: $85,000 in salary plus $25,000 in benefits and taxes, over 2,000 hours, is $55 an hour.</p>
         <div class="fields">
-          <label class="f">Function being redesigned<input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
-          <label class="f">Loaded cost per hour<div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
-          <label class="f">Working weeks a year<input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
-          <label class="f" id="roi-multwrap" hidden>Exit multiple (EV / EBITDA)<div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div></label>
+          <label class="f"><span>Function being redesigned <i class="who in">You enter</i></span><input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
+          <label class="f"><span>Loaded cost per hour <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
+          <label class="f"><span>Working weeks a year <i class="who in">You enter</i></span><input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
         </div>
-
-        <div class="sub">Investment</div>
-        <div class="fields">
-          <label class="f">Redesign engagement (one time)<div class="money"><span>$</span><input id="roi-fee" type="number" min="0" step="1000" placeholder="Enter your quote"></div></label>
-          <label class="f">AI tools and agents (per year, your cost)<div class="money"><span>$</span><input id="roi-tools" type="number" min="0" step="1000" value="18000"></div></label>
-        </div>
-      </section>
-
-      <section class="panel" aria-labelledby="roi-h-c">
-        <h3 id="roi-h-c">How freed time becomes EBITDA</h3>
-        <p class="hint">Freed hours are not EBITDA until leadership decides where they go. Split them across three paths. Whatever is left has no destination and counts as zero.</p>
-        <div class="fields">
-          <label class="f">Avoided hires already in the plan<div class="pct"><input id="roi-sh" type="number" min="0" max="100" step="5" value="40"><span>%</span></div></label>
-          <label class="f">Cut spend (agencies, contractors, overtime)<div class="pct"><input id="roi-ss" type="number" min="0" max="100" step="5" value="15"><span>%</span></div></label>
-          <label class="f">Revenue capacity<div class="pct"><input id="roi-sr" type="number" min="0" max="100" step="5" value="10"><span>%</span></div></label>
-        </div>
-        <div class="fields" style="margin-top:12px">
-          <label class="f">Revenue per redirected hour<div class="money"><span>$</span><input id="roi-revhr" type="number" min="0" step="5" value="150"></div></label>
-          <label class="f">Contribution margin on that revenue<div class="pct"><input id="roi-margin" type="number" min="0" max="100" step="5" value="35"><span>%</span></div></label>
-        </div>
-        <div class="sub">Where the freed time goes</div>
-        <div class="split" id="roi-split" aria-hidden="true"></div>
-        <div class="legend" id="roi-legend"></div>
-        <div class="msg" id="roi-sharemsg" role="status"></div>
       </section>
 
       <section class="panel" aria-labelledby="roi-h-t">
-        <h3 id="roi-h-t">Tasks and where they land <span class="tag">Sample: shared services team at a 600-person company</span></h3>
+        <h3 id="roi-h-t"><span class="step">Step 2.</span> The work: tasks and where each one goes <span class="tag">Sample: shared services team at a 600-person company</span></h3>
         <p class="hint">Hours are per week for the whole team. Import the matrix CSV from the Work Assignment Agent, or enter tasks here.</p>
         <div class="tbl-wrap">
           <table class="tasks">
-            <thead><tr><th>Task</th><th class="num">Hrs / wk</th><th>Placement</th><th class="num">Freed / wk</th><th><span class="sr">Remove</span></th></tr></thead>
+            <thead><tr><th>Task <i class="who in">You enter</i></th><th class="num">Hrs / wk <i class="who in">You enter</i></th><th>Placement <i class="who in">You enter</i></th><th class="num">Freed / wk <i class="who calc">Calculated</i></th><th><span class="sr">Remove</span></th></tr></thead>
             <tbody id="roi-tasks"></tbody>
           </table>
         </div>
@@ -319,55 +368,113 @@
         <div class="sub">Time freed by placement, net of checking</div>
         <div class="tbl-wrap">
           <table class="rates">
-            <thead><tr><th>Placement</th><th class="num">Time saved</th><th class="num">Checking and oversight</th><th class="num">Net freed</th></tr></thead>
+            <thead><tr><th>Placement</th><th class="num">Time saved <i class="who in">You enter</i></th><th class="num">Checking and oversight <i class="who in">You enter</i></th><th class="num">Net freed <i class="who calc">Calculated</i></th></tr></thead>
             <tbody id="roi-rates"></tbody>
           </table>
         </div>
         <p class="hint" style="margin-top:8px">Hard-to-check work keeps more of its hours for review, which is why Agent and Assist net less than Automate. Human work frees nothing. Cut work frees all of it.</p>
+        <div class="calcbox"><i class="who calc">Calculated</i><p id="roi-m2"></p></div>
       </section>
 
-      <section class="panel" aria-labelledby="roi-h-y">
-        <h3 id="roi-h-y">EBITDA added, year by year</h3>
-        <div class="tbl-wrap" style="margin-top:10px">
-          <table class="yrs">
-            <thead><tr><th></th><th class="num">EBITDA added</th></tr></thead>
-            <tbody id="roi-years"></tbody>
-          </table>
+      <section class="panel" aria-labelledby="roi-h-c">
+        <h3 id="roi-h-c"><span class="step">Step 3.</span> Where the freed hours go</h3>
+        <p class="hint">Freed hours are not value until leadership decides where they go. Split them across three paths. Whatever is left has no destination and counts as zero.</p>
+        <div class="fields">
+          <label class="f"><span>Avoided hires already in the plan <i class="who in">You enter</i></span><div class="pct"><input id="roi-sh" type="number" min="0" max="100" step="5" value="40"><span>%</span></div></label>
+          <label class="f"><span>Cut spend (agencies, contractors, overtime) <i class="who in">You enter</i></span><div class="pct"><input id="roi-ss" type="number" min="0" max="100" step="5" value="15"><span>%</span></div></label>
+          <label class="f"><span>Revenue capacity <i class="who in">You enter</i></span><div class="pct"><input id="roi-sr" type="number" min="0" max="100" step="5" value="10"><span>%</span></div></label>
         </div>
-        <p class="hint" style="margin-top:8px">EBITDA added is net of the annual AI tool cost.</p>
+        <div class="fields" style="margin-top:12px">
+          <label class="f"><span>Revenue per redirected hour <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-revhr" type="number" min="0" step="5" value="150"></div></label>
+          <label class="f"><span>Contribution margin on that revenue <i class="who in">You enter</i></span><div class="pct"><input id="roi-margin" type="number" min="0" max="100" step="5" value="35"><span>%</span></div></label>
+        </div>
+        <div class="calcbox"><i class="who calc">Calculated</i>
+          <div class="split" id="roi-split" aria-hidden="true" style="margin-top:6px"></div>
+          <div class="legend" id="roi-legend"></div>
+          <div class="msg" id="roi-sharemsg" role="status"></div>
+          <p id="roi-m3" style="margin-top:8px"></p>
+        </div>
       </section>
 
-      <section class="panel method" aria-labelledby="roi-h-m">
-        <h3 id="roi-h-m">How the number is built</h3>
-        <ol>
-          <li><b>Freed hours.</b> Each task's weekly hours times the net freed rate for its placement.</li>
-          <li><b>Conversion.</b> Avoided hires and cut spend are valued at loaded cost. Revenue capacity is valued at revenue per hour times contribution margin. Unassigned time counts as zero.</li>
-          <li><b>EBITDA added.</b> The converted value, scaled by the ramp for each year, minus the annual AI tool cost.</li>
-          <li id="roi-evstep" hidden><b>Value at exit.</b> EBITDA added in the exit year times the exit multiple.</li>
-        </ol>
-        <p style="margin:8px 0 0">Most AI calculators count hours saved and stop. This one subtracts the time it takes to check the work and counts only the time leadership puts to use.</p>
+      <section class="panel" aria-labelledby="roi-h-r">
+        <h3 id="roi-h-r"><span class="step">Step 4.</span> Reality check: how much you will really get</h3>
+        <p class="hint">Full value assumes everyone works the new way, everything is ready, and nothing goes wrong. These inputs take it down to what holds up.</p>
+        <div class="fields wide">
+          <div class="f span"><span>Adoption by year <i class="who in">You enter</i></span>
+            <div class="trio">
+              <div><small>Year 1</small><div class="pct"><input id="roi-a1" type="number" min="0" max="100" step="5" value="30" aria-label="Adoption in year 1, percent"><span>%</span></div></div>
+              <div><small>Year 2</small><div class="pct"><input id="roi-a2" type="number" min="0" max="100" step="5" value="60" aria-label="Adoption in year 2, percent"><span>%</span></div></div>
+              <div><small>Year 3</small><div class="pct"><input id="roi-a3" type="number" min="0" max="100" step="5" value="80" aria-label="Adoption in year 3, percent"><span>%</span></div></div>
+            </div>
+            <span class="note">The share of the redesigned work your team is doing the new way in each year.</span>
+          </div>
+          <label class="f"><span>Readiness <i class="who in">You enter</i></span><div class="pct"><input id="roi-ready" type="number" min="0" max="100" step="5" value="70"><span>%</span></div>
+            <span class="note">How much of the work is ready to move. Clean data, a clear process, and leaders prepared to run it.</span></label>
+          <label class="f"><span>Leader review time <i class="who in">You enter</i></span><div class="pct"><input id="roi-check" type="number" min="0" max="100" step="5" value="10"><span>%</span></div>
+            <span class="note">Review beyond the task level checks already counted in the task list.</span></label>
+          <label class="f"><span>Cost of being wrong <i class="who in">You enter</i></span><div class="pct"><input id="roi-wrong" type="number" min="0" max="100" step="1" value="5"><span>%</span></div>
+            <span class="note">The share of value lost to errors that get through and have to be fixed.</span></label>
+        </div>
+        <label class="switch"><input id="roi-stress" type="checkbox" role="switch">Stress test: six months late <em id="roi-stresslabel">Off</em> <i class="who in">You enter</i></label>
+        <span class="note">Shows the same plan landing six months late, next to the plan as written.</span>
+        <div class="calcbox"><i class="who calc">Calculated</i><p id="roi-m4"></p></div>
       </section>
+
+      <section class="panel" aria-labelledby="roi-h-k">
+        <h3 id="roi-h-k"><span class="step">Step 5.</span> What it costs</h3>
+        <p class="hint">Your own numbers. Both start blank.</p>
+        <div class="fields wide">
+          <label class="f"><span>Annual upkeep <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-upkeep" type="number" min="0" step="1000" placeholder="Enter your cost"></div>
+            <span class="note">What you spend each year to keep this running. AI tools, agents, and maintenance.</span></label>
+          <label class="f"><span>Redesign engagement (one time) <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-fee" type="number" min="0" step="1000" placeholder="Enter your quote"></div>
+            <span class="note">Used only for payback and return. It does not change net value a year.</span></label>
+        </div>
+      </section>
+
+      <details class="panel method" id="roi-h-m">
+        <summary>Show the math</summary>
+        <ul class="mathlist" id="roi-math"></ul>
+        <p style="margin:10px 0 0">Most AI calculators count hours saved and stop. This one subtracts the time it takes to check the work and counts only the time leadership puts to use.</p>
+      </details>
     </div>
 
     <aside class="side" aria-labelledby="roi-h-b">
       <div class="bottom">
-        <div class="eyebrow" id="roi-h-b">The bottom line</div>
+        <h3 id="roi-h-b">Your results</h3>
+        <i class="who calc">Calculated</i>
         <div class="big" id="roi-ebitda">$0</div>
-        <p class="cap" id="roi-ebitdacap">EBITDA added a year, by exit</p>
+        <p class="cap" id="roi-ebitdacap">Net, year 3</p>
         <div class="kpis">
           <div class="kpi"><b id="roi-kpay">n/a</b><span>Payback</span></div>
           <div class="kpi"><b id="roi-kmult">n/a</b><span>Return on the engagement</span></div>
           <div class="kpi"><b id="roi-khrs">0</b><span>Hours freed a week</span></div>
         </div>
+      </div>
+
+      <div class="line">
+        <div class="eyebrow" style="margin-bottom:6px">Net value a year <i class="who calc">Calculated</i></div>
+        <div class="tbl-wrap" style="margin-top:6px">
+          <table class="yrs">
+            <thead id="roi-yhead"></thead>
+            <tbody id="roi-years"></tbody>
+          </table>
+        </div>
+        <div class="eyebrow" style="margin:16px 0 6px">How full value steps down, year 3 <i class="who calc">Calculated</i></div>
+        <ol class="steps" id="roi-steps"></ol>
+        <p class="cfo">Every number here is one your CFO can change.</p>
+        <button id="roi-print" type="button" class="primary">Print the one-page case</button>
+      </div>
+
+      <div class="line">
         <label class="evtoggle"><input id="roi-showev" type="checkbox"><span id="roi-evlabel">Show value at a 10x exit multiple</span></label>
         <div class="evbox" id="roi-evbox" hidden>
-          <div class="big2" id="roi-ev">$0</div>
-          <p class="cap" id="roi-evcap">Enterprise value at exit</p>
+          <label class="f" id="roi-multwrap" hidden><span>Exit multiple (EV / EBITDA) <i class="who in">You enter</i></span><div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div></label>
+          <div class="calcbox"><i class="who calc">Calculated</i><p><b id="roi-ev">$0</b> <span id="roi-evcap">Enterprise value at exit</span></p></div>
         </div>
       </div>
 
       <div class="line">
-        <div class="eyebrow" style="margin-bottom:6px">For the investment memo</div>
+        <div class="eyebrow" style="margin-bottom:6px">For the investment memo <i class="who calc">Calculated</i></div>
         <p id="roi-summary"></p>
         <button id="roi-copy" type="button" class="primary">Copy summary</button><span class="copied" id="roi-copied" role="status"></span>
       </div>
@@ -396,7 +503,7 @@ const SAMPLE=[
  ["Screen resumes (AI ranks, recruiter reviews every list)",22,"Assist"],
  ["Schedule and reschedule interviews",16,"Agent"],
  ["Employee relations investigations",10,"Human"],
- ["Pay and performance decisions with managers",8,"Human"],
+ ["Pay and performance decisions with leaders",8,"Human"],
  ["Reconcile timesheets and flag exceptions",18,"Agent"],
  ["Rekey new-hire data from the ATS into HRIS and payroll",8,"Cut"],
  ["Answer paycheck questions",10,"Agent"],
@@ -407,16 +514,17 @@ const SAMPLE=[
  ["Code expenses to GL accounts",14,"Assist"],
  ["Month-end reports nobody uses",6,"Cut"]
 ].map(([name,hours,place])=>({name,hours,place}));
-const FIELDS=["team","rate","weeks","mult","fee","tools","sh","ss","sr","revhr","margin"];
-const KEY="otg-roi-pe-v1";
+const FIELDS=["team","rate","weeks","mult","fee","sh","ss","sr","revhr","margin","a1","a2","a3","ready","check","wrong","upkeep"];
+const KEY="otg-roi-pe-v3",OLDKEY="otg-roi-pe-v1";
 const fmt$=n=>(n<0?"-":"")+"$"+Math.round(Math.abs(n)).toLocaleString("en-US");
 const short$=n=>{const a=Math.abs(n),s=n<0?"-":"";if(a>=1e6)return s+"$"+(a/1e6).toFixed(2).replace(/0$/,"")+"M";if(a>=1e3)return s+"$"+Math.round(a/1e3)+"K";return fmt$(n)};
 const num=(v,d=0)=>{const x=parseFloat(v);return isFinite(x)?x:d};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 let state={tasks:SAMPLE.map(t=>({...t})),rates:JSON.parse(JSON.stringify(DEF_RATES))};
-try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s){if(Array.isArray(s.tasks))state.tasks=s.tasks;if(s.rates)state.rates=Object.assign(JSON.parse(JSON.stringify(DEF_RATES)),s.rates);if(s.fields)for(const k of FIELDS)if(s.fields[k]!=null&&$(k))$(k).value=s.fields[k];}}catch(e){}
-function save(){try{const fields={};for(const k of FIELDS)fields[k]=$(k).value;localStorage.setItem(KEY,JSON.stringify({tasks:state.tasks,rates:state.rates,fields}))}catch(e){}}
+try{const s=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem(OLDKEY)||"null");if(s){if(Array.isArray(s.tasks))state.tasks=s.tasks;if(s.rates)state.rates=Object.assign(JSON.parse(JSON.stringify(DEF_RATES)),s.rates);if(s.fields)for(const k of FIELDS)if(s.fields[k]!=null&&$(k))$(k).value=s.fields[k];if(s.stress)$("stress").checked=true;}}catch(e){}
+state.tasks.forEach(t=>{if(t.name==="Pay and performance decisions with managers")t.name="Pay and performance decisions with leaders"});
+function save(){try{const fields={};for(const k of FIELDS)fields[k]=$(k).value;localStorage.setItem(KEY,JSON.stringify({tasks:state.tasks,rates:state.rates,fields,stress:$("stress").checked}))}catch(e){}}
 const net=p=>{const r=state.rates[p]||[0,0];return Math.max(0,Math.min(100,r[0]-r[1]))/100};
 
 function renderRates(){
@@ -424,7 +532,7 @@ function renderRates(){
     return `<tr><td><span class="pill p-${p}">${p}</span></td>
     <td class="num"><input aria-label="${p} time saved percent" data-rp="${p}" data-i="0" type="number" min="0" max="100" step="5" value="${r[0]}" ${lock?"disabled":""}>%</td>
     <td class="num"><input aria-label="${p} checking percent" data-rp="${p}" data-i="1" type="number" min="0" max="100" step="5" value="${r[1]}" ${lock||p==="Cut"?"disabled":""}>%</td>
-    <td class="num" data-net="${p}"><b>${Math.round(net(p)*100)}%</b></td></tr>`}).join("");
+    <td class="num calc" data-net="${p}"><b>${Math.round(net(p)*100)}%</b></td></tr>`}).join("");
 }
 function renderTasks(){
   const b=$("tasks");
@@ -433,14 +541,15 @@ function renderTasks(){
     <td style="min-width:220px"><input aria-label="Task name" data-t="${i}" data-k="name" value="${esc(t.name)}"></td>
     <td class="num"><input class="hrs" aria-label="Hours per week" data-t="${i}" data-k="hours" type="number" min="0" step="1" value="${t.hours}"></td>
     <td><select aria-label="Placement" data-t="${i}" data-k="place">${PL.map(p=>`<option${p===t.place?" selected":""}>${p}</option>`).join("")}</select></td>
-    <td class="num" data-freed="${i}">${(num(t.hours)*net(t.place)).toFixed(1)}</td>
+    <td class="num calc" data-freed="${i}">${(num(t.hours)*net(t.place)).toFixed(1)}</td>
     <td><button class="x" type="button" data-del="${i}" aria-label="Remove ${esc(t.name)}">✕</button></td></tr>`).join("");
 }
 
 function calc(){
   const rate=num($("rate").value),weeks=num($("weeks").value,48),hold=3,mult=num($("mult").value);
-  const ramp=[.5,.85,1]; // built-in ramp to full value over the three years
-  const fee=num($("fee").value),tools=num($("tools").value);
+  const pc=id=>Math.max(0,Math.min(100,num($(id).value)))/100;
+  const fee=num($("fee").value),upkeep=Math.max(0,num($("upkeep").value));
+  const adopt=[pc("a1"),pc("a2"),pc("a3")],ready=pc("ready"),check=pc("check"),wrong=pc("wrong");
   let sh=Math.max(0,num($("sh").value))/100,ss=Math.max(0,num($("ss").value))/100,sr=Math.max(0,num($("sr").value))/100;
   const over=sh+ss+sr>1.0001;if(over){const t=sh+ss+sr;sh/=t;ss/=t;sr/=t}
   const none=Math.max(0,1-sh-ss-sr);
@@ -448,47 +557,115 @@ function calc(){
   let hrs=0,total=0;for(const t of state.tasks){const h=num(t.hours);total+=h;hrs+=h*net(t.place)}
   const annual=hrs*weeks;
   const vHire=annual*sh*rate,vSpend=annual*ss*rate,vRev=annual*sr*revhr*margin,vNone=annual*none*rate;
-  const gross=vHire+vSpend+vRev;
-  const years=[];let cum=0;
-  for(let y=1;y<=hold;y++){const r=ramp[Math.min(y,3)-1];const e=gross*r-tools;const c=y===1?fee:0;cum+=e-c;years.push({e,c,net:e-c,cum})}
-  const exitE=years[hold-1].e,ev=exitE*mult;
-  const sumE=years.reduce((a,y)=>a+y.e,0);
-  let pay=null;if(fee>0){let bal=-fee;for(let m=1;m<=hold*12;m++){bal+=years[Math.floor((m-1)/12)].e/12;if(bal>=0){pay=m;break}}}
-  return{rate,weeks,hold,mult,fee,tools,sh,ss,sr,none,over,hrs,total,annual,vHire,vSpend,vRev,vNone,gross,years,exitE,ev,sumE,pay};
+  const gross=vHire+vSpend+vRev; // B: the annual benefit at full value
+  // Net(n) = B x Adoption(n) x Readiness x (1 - Leader review time) x (1 - Cost of being wrong) - Annual upkeep
+  const ben=adopt.map(a=>gross*a*ready*(1-check)*(1-wrong)); // Benefit(n): net before upkeep
+  const plan=ben.map(b=>b-upkeep);
+  // Six months late: the delay hits the benefit only. Year 1 is halved, years 2 and 3 are each averaged with the year before. Upkeep stays whole.
+  const late=[ben[0]/2-upkeep,(ben[0]+ben[1])/2-upkeep,(ben[1]+ben[2])/2-upkeep];
+  const s1=gross*adopt[2],s2=s1*ready,s3=s2*(1-check),s4=s3*(1-wrong);
+  const steps=[["Adoption in year 3",adopt[2],gross-s1],["Readiness",ready,s1-s2],["Leader review time",check,s2-s3],["Cost of being wrong",wrong,s3-s4]];
+  const exitE=plan[2],ev=exitE*mult,lateEv=late[2]*mult;
+  const sumE=plan.reduce((a,y)=>a+y,0);
+  let pay=null;if(fee>0){let bal=-fee;for(let m=1;m<=hold*12;m++){bal+=plan[Math.floor((m-1)/12)]/12;if(bal>=0){pay=m;break}}}
+  const keep=adopt[2]*ready*(1-check)*(1-wrong); // share of full value kept in year 3
+  return{keep,ben,rate,weeks,hold,mult,fee,upkeep,adopt,ready,check,wrong,sh,ss,sr,none,over,revhr,margin,hrs,total,annual,vHire,vSpend,vRev,vNone,gross,plan,late,steps,exitE,ev,lateEv,sumE,pay,stress:$("stress").checked,showEv:$("showev").checked};
+}
+const pctTxt=x=>(Math.round(x*1000)/10)+"%";
+const pct2=x=>(Math.round(x*10000)/100)+"%";
+const n0=x=>Math.round(x).toLocaleString("en-US");
+const netMath=c=>`${fmt$(c.gross)} x ${pct2(c.keep)}, less upkeep${c.upkeep>0?" of "+fmt$(c.upkeep):""}.`;
+const artFor=m=>/^(8|11|18)/.test(String(m))?"an":"a";
+const payTxt=c=>c.pay?c.pay+(c.pay===1?" month":" months"):"Over 3 years";
+function stepRows(c){
+  return [{l:"Annual value at full run rate",v:fmt$(c.gross),k:"tot"}]
+    .concat(c.steps.map(s=>({l:`${s[0]}, ${pctTxt(s[1])}`,v:"less "+fmt$(s[2]),k:""})))
+    .concat([{l:"Annual upkeep",v:"less "+fmt$(c.upkeep),k:""},{l:"Net, year 3",v:fmt$(c.exitE),k:"tot net",neg:c.exitE<0}]);
+}
+function yearRows(c){
+  return c.plan.map((p,i)=>({l:`Year ${i+1} net`,a:fmt$(p),b:fmt$(c.late[i]),an:p<0,bn:c.late[i]<0,k:""}))
+    .concat(c.showEv?[{l:"Value at exit",a:short$(c.ev),b:short$(c.lateEv),an:c.ev<0,bn:c.lateEv<0,k:"total"}]:[]);
+}
+function summaryText(c,team){
+  const conv=Math.round((1-c.none)*100),art=artFor(c.mult);
+  let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the annual value at full run rate is ${fmt$(c.gross)}. After adoption, readiness, leader review time, the cost of being wrong, and upkeep, the redesign delivers ${fmt$(c.exitE)} in net value a year by year ${c.hold}${c.showEv?`, worth ${short$(c.ev)} in enterprise value at ${art} ${c.mult}x exit multiple`:""}.`;
+  if(c.stress)s+=c.showEv?` Six months late, those numbers are ${fmt$(c.late[2])} and ${short$(c.lateEv)}.`:` Six months late, that number is ${fmt$(c.late[2])}.`;
+  if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within three years.`;
+  return s;
 }
 
 function render(){
   const c=calc();const team=$("team").value.trim()||"the function";
-  const showEv=$("showev").checked,art=/^(8|11|18)/.test(String(c.mult))?"an":"a";
-  $("evlabel").textContent=`Show value at ${art} ${c.mult}x exit multiple`;$("evbox").hidden=!showEv;$("multwrap").hidden=!showEv;$("evstep").hidden=!showEv;
+  const art=artFor(c.mult);
+  $("stresslabel").textContent=c.stress?"On":"Off";
+  $("evlabel").textContent=`Show value at ${art} ${c.mult}x exit multiple`;$("evbox").hidden=!c.showEv;$("multwrap").hidden=!c.showEv;
   $("ev").textContent=short$(c.ev);$("ev").classList.toggle("neg",c.ev<0);
-  $("evcap").textContent=`Enterprise value at ${art} ${c.mult}x exit multiple`;
+  $("evcap").textContent=`in enterprise value at ${art} ${c.mult}x exit multiple${c.stress?`, or ${short$(c.lateEv)} six months late`:""}. Year 3 net, as EBITDA added, x the exit multiple.`;
   $("ebitda").textContent=fmt$(c.exitE);$("ebitda").classList.toggle("neg",c.exitE<0);
-  $("ebitdacap").textContent=`EBITDA added a year, by year ${c.hold}`;
+  $("ebitdacap").textContent=`Net, year 3. ${netMath(c)} This is your net value a year.`;
   $("kmult").textContent=c.fee>0?(c.sumE/c.fee).toFixed(1)+"x":"Add cost";
-  $("kpay").textContent=c.fee>0?(c.pay?c.pay+(c.pay===1?" month":" months"):"Over 3 years"):"Add cost";
+  $("kpay").textContent=c.fee>0?payTxt(c):"Add cost";
   $("khrs").textContent=Math.round(c.hrs).toLocaleString("en-US");
   // split bar
   const parts=[["hire","Avoided hires",c.sh,c.vHire],["spend","Cut spend",c.ss,c.vSpend],["rev","Revenue capacity",c.sr,c.vRev],["none","No destination yet",c.none,0]];
   $("split").innerHTML=parts.map(p=>`<div class="c-${p[0]}" style="width:${(p[2]*100).toFixed(1)}%"></div>`).join("");
   $("legend").innerHTML=parts.map(p=>`<div><i class="c-${p[0]}"></i><span>${p[1]} · ${Math.round(p[2]*100)}% · ${Math.round(c.hrs*p[2])} hrs/wk</span><b>${p[0]==="none"?"$0":fmt$(p[3])+" / yr"}</b></div>`).join("");
   const sm=$("sharemsg");sm.classList.toggle("err",c.over);sm.textContent=c.over?"The three paths add to more than 100%. They have been scaled down to fit. Lower one to set them exactly.":"";
-  // years
-  $("years").innerHTML=c.years.map((y,i)=>`<tr><td>Year ${i+1}</td><td class="num${y.e<0?" neg":""}">${fmt$(y.e)}</td></tr>`).join("")
-    +`<tr class="total"><td>Total</td><td class="num${c.sumE<0?" neg":""}">${fmt$(c.sumE)}</td></tr>`;
+  // step down, then the years
+  $("steps").innerHTML=stepRows(c).map(r=>`<li class="${r.k}"><span>${r.l}</span><span${r.neg?' class="neg"':""}>${r.v}</span></li>`).join("");
+  $("yhead").innerHTML=`<tr><th></th><th class="num">On plan</th>${c.stress?'<th class="num">Six months late</th>':""}</tr>`;
+  $("years").innerHTML=yearRows(c).map(r=>`<tr class="${r.k}"><td>${r.l}</td><td class="num${r.an?" neg":""}">${r.a}</td>${c.stress?`<td class="num${r.bn?" neg":""}">${r.b}</td>`:""}</tr>`).join("");
   state.tasks.forEach((t,i)=>{const el=root.querySelector(`[data-freed="${i}"]`);if(el)el.textContent=(num(t.hours)*net(t.place)).toFixed(1)});
   PL.forEach(p=>{const el=root.querySelector(`[data-net="${p}"]`);if(el)el.innerHTML=`<b>${Math.round(net(p)*100)}%</b>`});
-  // summary
-  const conv=Math.round((1-c.none)*100);
-  let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the redesign adds ${fmt$(c.exitE)} a year to EBITDA by year ${c.hold}${showEv?`, worth ${short$(c.ev)} in enterprise value at ${art} ${c.mult}x exit multiple`:""}.`;
-  if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within three years.`;
-  $("summary").textContent=s;
+  $("summary").textContent=summaryText(c,team);
+  // the math, shown where it happens
+  $("m2").innerHTML=`Hours freed each week: <b>${n0(c.hrs)}</b>. Each task's hours x (time saved minus checking).`;
+  $("m3").innerHTML=`Annual value at full run rate: <b>${fmt$(c.gross)}</b>. Freed hours x working weeks, valued by where the hours go.`;
+  $("m4").innerHTML=`You keep <b>${pct2(c.keep)}</b> of full value in year 3. ${pctTxt(c.adopt[2])} x ${pctTxt(c.ready)} x (1 minus ${pctTxt(c.check)}) x (1 minus ${pctTxt(c.wrong)}).`;
+  const yr=i=>`Year ${i+1}: ${fmt$(c.gross)} x ${pctTxt(c.adopt[i])} x ${pctTxt(c.ready)} x ${pctTxt(1-c.check)} x ${pctTxt(1-c.wrong)}, minus ${fmt$(c.upkeep)} upkeep, is ${fmt$(c.plan[i])}.`;
+  const L=[
+    ["Freed hours.","Each task's hours x (time saved minus checking), added up.",`${n0(c.total)} hours a week today frees ${n0(c.hrs)} hours a week.`],
+    ["Annual value at full run rate.","Freed hours x working weeks, valued by where the hours go. Avoided hires and cut spend at loaded cost. Revenue capacity at revenue per hour x contribution margin. Hours with no destination count as zero.",`${c.hrs.toFixed(1)} freed hours x ${c.weeks} weeks is ${n0(c.annual)} hours a year. Avoided hires ${fmt$(c.vHire)}, plus cut spend ${fmt$(c.vSpend)}, plus revenue capacity ${fmt$(c.vRev)}, is ${fmt$(c.gross)}.`],
+    ["Net by year.","Full value x adoption x readiness x (1 minus leader review) x (1 minus cost of being wrong), minus annual upkeep.",[0,1,2].map(yr).join("</span><span>")],
+    ["Six months late.","The delay applies to the benefit before upkeep. Year 1 is half of year 1. Year 2 is the average of years 1 and 2. Year 3 is the average of years 2 and 3. Upkeep is charged in full every year.",`Year 1 is ${fmt$(c.late[0])}. Year 2 is ${fmt$(c.late[1])}. Year 3 is ${fmt$(c.late[2])}.`],
+    c.showEv?["Value at exit.","Year 3 net, as EBITDA added, x the exit multiple.",`${fmt$(c.exitE)} x ${c.mult} is ${short$(c.ev)} on plan. ${fmt$(c.late[2])} x ${c.mult} is ${short$(c.lateEv)} six months late.`]:null,
+    ["Payback.","The month when net value to date covers the engagement cost. Return is three years of net divided by the engagement cost.",c.fee>0?(c.pay?`${fmt$(c.fee)} is covered in ${c.pay} month${c.pay===1?"":"s"}.`:`${fmt$(c.fee)} is not covered within three years.`)+` ${fmt$(c.sumE)} over ${fmt$(c.fee)} is ${(c.sumE/c.fee).toFixed(1)}x.`:"Enter the engagement cost in Step 5 to see it."]
+  ].filter(Boolean);
+  $("math").innerHTML=L.map(r=>`<li><b>${r[0]}</b> ${r[1]}<span>${r[2]}</span></li>`).join("");
   // callout
   $("callout").innerHTML=c.none>0.001
-    ?`<b>${Math.round(c.none*100)}% of the freed time has no destination yet.</b> That is ${Math.round(c.hrs*c.none)} hours a week, worth ${fmt$(c.vNone)} a year at loaded cost${showEv?`, and ${short$(c.vNone*c.mult)} at exit`:""}. Deciding where it goes is a leadership decision, not a technology one.`
+    ?`<b>${Math.round(c.none*100)}% of the freed time has no destination yet.</b> That is ${Math.round(c.hrs*c.none)} hours a week, worth ${fmt$(c.vNone)} a year at loaded cost before any of the reductions above. Deciding where it goes is a leadership decision, not a technology one.`
     :`<b>Every freed hour has a destination.</b> That is reinvestment discipline, and it is why this number holds up in diligence.`;
   save();
 }
+
+// The one page case: inputs on the left, results on the right, built fresh at print time.
+function sheetHTML(){
+  const c=calc(),team=$("team").value.trim()||"the function",art=artFor(c.mult);
+  const row=(l,v)=>`<tr><td>${esc(l)}</td><td>${esc(v)}</td></tr>`;
+  const byPlace=PL.map(p=>{const h=state.tasks.filter(t=>t.place===p).reduce((a,t)=>a+num(t.hours),0);return row(`${p}, ${Math.round(net(p)*100)}% net freed`,`${Math.round(h)} hrs / wk`)}).join("");
+  const today=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+  return `<div class="ph"><div><div class="ey">OnTheGrow Leadership · Work Redesign Value Calculator</div><h1>The case for redesigning ${esc(team)}</h1></div><div class="meta">${today}</div></div>
+<div class="cols"><div>
+<h2>Step 1. Your team: what an hour costs</h2><table>${row("Loaded cost per hour",fmt$(c.rate))}${row("Working weeks a year",String(c.weeks))}</table>
+<h2>Step 2. The work</h2><table>${row("Tasks reviewed",String(state.tasks.length))}${row("Hours a week today",n0(c.total))}${byPlace}${row("Hours freed each week",n0(c.hrs))}</table>
+<h2>Step 3. Where the freed hours go</h2><table>${row("Avoided hires already in the plan",pctTxt(c.sh))}${row("Cut spend",pctTxt(c.ss))}${row("Revenue capacity",pctTxt(c.sr))}${row("No destination yet, counted as zero",pctTxt(c.none))}${row("Revenue per redirected hour",fmt$(c.revhr))}${row("Contribution margin on that revenue",pctTxt(c.margin))}${row("Annual value at full run rate",fmt$(c.gross))}</table>
+<h2>Step 4. Reality check</h2><table>${row("Adoption, years 1, 2, and 3",c.adopt.map(pctTxt).join(", "))}${row("Readiness",pctTxt(c.ready))}${row("Leader review time",pctTxt(c.check))}${row("Cost of being wrong",pctTxt(c.wrong))}${row("Share of full value kept in year 3",pct2(c.keep))}</table>
+<h2>Step 5. What it costs</h2><table>${row("Annual upkeep",c.upkeep>0?fmt$(c.upkeep):"Not entered")}${row("Redesign engagement, one time",c.fee>0?fmt$(c.fee):"Not entered")}</table>
+</div><div>
+<div class="hero"><div><b>${fmt$(c.exitE)}</b><span>Net value a year, by year 3</span></div>${c.showEv?`<div><b>${short$(c.ev)}</b><span>Enterprise value at ${art} ${c.mult}x exit multiple</span></div>`:""}</div>
+<h2>Net value a year</h2><table><tr><th></th><th>On plan</th>${c.stress?"<th>Six months late</th>":""}</tr>${yearRows(c).map(r=>`<tr class="${r.k==="total"?"tot":""}"><td>${r.l}</td><td>${r.a}</td>${c.stress?`<td>${r.b}</td>`:""}</tr>`).join("")}</table>
+<h2>How full value steps down, year 3</h2><table>${stepRows(c).map(r=>`<tr class="${r.k}"><td>${esc(r.l)}</td><td>${r.v}</td></tr>`).join("")}</table>
+<p class="memo">Net, year 3: ${fmt$(c.exitE)}. ${netMath(c)}</p>
+${c.fee>0?`<h2>Return on the engagement</h2><table>${row("Payback",payTxt(c))}${row("Three year net over engagement cost",(c.sumE/c.fee).toFixed(1)+"x")}</table>`:""}
+<p class="memo">${esc(summaryText(c,team))}</p>
+<p class="cfo">Every number here is one your CFO can change.</p>
+</div></div>
+<div class="pf"><span>© 2026 Elizabeth A. Corey. OnTheGrow Leadership · onthegrow.ai</span><span>Planning estimates. Results depend on the redesign actually being run.</span></div>`;
+}
+function clearSheet(){const o=document.getElementById("otg-roi-sheet");if(o)o.remove();document.body.classList.remove("otg-printing")}
+$("print").onclick=()=>{clearSheet();const d=document.createElement("div");d.id="otg-roi-sheet";d.innerHTML=sheetHTML();document.body.appendChild(d);document.body.classList.add("otg-printing");window.print()};
+window.addEventListener("afterprint",clearSheet);
 
 root.addEventListener("input",e=>{const t=e.target;
   if(t.dataset.t!=null){const i=+t.dataset.t,k=t.dataset.k;state.tasks[i][k]=k==="hours"?num(t.value):t.value;render();return}
@@ -501,7 +678,7 @@ $("add").onclick=()=>{state.tasks.push({name:"New task",hours:5,place:"Assist"})
 $("sample").onclick=()=>{state.tasks=SAMPLE.map(t=>({...t}));$("team").value="Shared Services (HR, Payroll, AP)";renderTasks();render();$("importmsg").textContent="Sample loaded."};
 $("clear").onclick=()=>{state.tasks=[];renderTasks();render();$("importmsg").textContent="Tasks cleared."};
 $("import").onclick=()=>$("file").click();
-$("showev").onchange=render;
+$("stress").onchange=render;$("showev").onchange=render;
 
 function parseCSV(text){const rows=[];let row=[],cell="",q=false;
   for(let i=0;i<text.length;i++){const ch=text[i];
