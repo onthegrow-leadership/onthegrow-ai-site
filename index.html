@@ -129,6 +129,8 @@
   .callout{margin-top:64px;background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;
     font-size:1.28rem;font-weight:300;position:relative;overflow:hidden}
   .callout strong{color:#fff;font-weight:600}
+  .callout .callout-next{margin:18px 0 20px;max-width:none;color:#fff}
+  .callout .btn{position:relative;z-index:1}
   .callout::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;opacity:.12;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 4 90 27v46L50 96 10 73V27Z' fill='none' stroke='%2375cbc4' stroke-width='2'/%3E%3C/svg%3E");
     background-size:contain;background-repeat:no-repeat}
@@ -409,8 +411,8 @@
   section,.rung,.dlcard{scroll-margin-top:84px}
   .ways{background:var(--white);padding:64px 0}
   .ways h2{margin-bottom:28px}
-  .ways-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  @media(max-width:760px){.ways-grid{grid-template-columns:1fr}}
+  .ways-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  @media(max-width:960px){.ways-grid{grid-template-columns:1fr}}
   .way{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 26px;display:flex;flex-direction:column}
   .way h3{font-size:1.25rem;margin-bottom:8px}
   .way p{color:var(--muted);font-size:.98rem}
@@ -436,11 +438,13 @@
   .review-all{max-width:none;text-align:center;margin-top:26px;font-weight:600}
   .review-all a{color:var(--teal)}
   .review-all a:hover{color:var(--purple)}
-  /* Book section leads the page, reviews inside it */
+  /* Book section leads the page; the three reviews run in a row under the cover and the book text */
   .book-first{padding:56px 0 72px}
   @media(min-width:861px){.book-first .bgrid{grid-template-columns:minmax(0,.8fr) 1.2fr;align-items:start}}
   .book-reviews{margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
-  @media(max-width:1100px){.book .review-grid{grid-template-columns:1fr}}
+  .book .review-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:960px){.book .review-grid{grid-template-columns:1fr}}
+  .book .review h3{font-size:1rem;line-height:1.3;color:var(--deep);margin-bottom:10px}
   .book .review{padding:24px 24px 22px}
   .book .review blockquote{font-size:.93rem}
   .book .review-all{text-align:left}
@@ -449,16 +453,31 @@
   .thesis-main{padding-top:96px;padding-bottom:96px}
   .method{padding-bottom:0}
   .method-growth{margin-top:72px;padding:96px 0}
-  /* ROI strip between The Method and Two ways we work; card buttons; Book a call */
+  /* ROI strip between The Method and Three ways we work; card buttons; Book a call */
   .roi-strip{background:var(--deep);color:#cfc6e0;padding:30px 0}
   .roi-in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
   .roi-strip h2{color:#fff;font-size:clamp(1.3rem,2.2vw,1.6rem);font-weight:600}
   .roi-strip p{margin-top:4px;font-size:1rem;max-width:none}
   .way .price{margin:14px 0 20px}
   .way .btn{margin-top:auto;align-self:flex-start}
-  .ways-custom{max-width:68ch;margin:38px auto 0;text-align:center;font-size:1.02rem;color:var(--muted)}
-  .ways-custom b{color:var(--deep)}
-  .ways-call{max-width:none;text-align:center;margin-top:22px}
+  /* third card: an operator inside the business, with an expandable "where we plug in" panel under the row */
+  .way{scroll-margin-top:96px}
+  .way .way-sub{font-weight:600;color:var(--deep);margin-bottom:10px}
+  .way p:last-of-type{margin-bottom:20px}
+  .way .way-toggle{align-self:flex-start;margin-top:14px;padding:0;border:none;background:none;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--teal);text-decoration:underline;text-underline-offset:3px}
+  .way .way-toggle:hover{color:var(--purple)}
+  .way .way-toggle:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+  .way .way-toggle::after{content:"";display:inline-block;width:7px;height:7px;margin-left:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s ease}
+  .way .way-toggle[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .plug{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px}
+  .plug-label{display:block;font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+  .plug-grid{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px 36px}
+  @media(max-width:760px){.plug-grid{grid-template-columns:1fr}.plug{padding:24px 22px}}
+  .plug-grid li{color:var(--muted);font-size:.98rem}
+  .plug-grid b{color:var(--deep);font-weight:600}
+  .plug .plug-close{max-width:none;margin-top:20px;color:var(--muted);font-size:.98rem}
+  .plug .plug-close+.plug-close{margin-top:6px}
+  .plug .plug-close b{color:var(--deep)}
   /* About: north star, values, pledge, Grace + Grit, our mark, founder, kept compact */
   .about-sec{padding:0}
   .about-sec .northstar,.about-sec .ggsec,.about-sec .founder,.about-block{padding:56px 0}
@@ -496,6 +515,7 @@
       <a href="#book">The Book</a>
       <a href="#thesis">The Thesis</a>
       <a href="#method">The Method</a>
+      <a href="/calculator/">Calculator</a>
       <a href="#work">Work With Us</a>
       <a href="#about">About</a>
       <a href="/resources/">Resources</a>
@@ -521,23 +541,29 @@
           <a class="btn btn-outline" href="https://bookshop.org/p/books/ai-will-scale-good-leadership-and-bad-leadership-the-chro-s-method-for-redesigning-work-before-ai-scales-what-s-broken/304b945603a34d16" target="_blank" rel="noopener">Order on Bookshop.org</a>
         </p>
         <p class="note">Paperback $24.95. Kindle edition available. 238 pages.</p>
-        <div class="book-reviews" id="reviews">
-          <span class="eyebrow">First Reviews</span>
-        <div class="review-grid">
-          <figure class="review reveal">
-            <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
-            <blockquote>"Most books about AI and work are either hype or hand-wringing. This one is neither. Liz Corey does something genuinely useful: she gives leaders a clear, repeatable method for deciding what AI should and shouldn't do. If you're a leader, an HR professional, or anyone responsible for how AI enters your organization, read this. It's the rare business book you'll actually use."</blockquote>
-            <figcaption><b>Mark C. Ondash, CPTD, MPC</b><span>Co-founder, Cognistry</span></figcaption>
-          </figure>
-          <figure class="review reveal">
-            <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
-            <blockquote>"In my thirty-six year career as a leadership and executive coach I have read hundreds of business books. With few exceptions, most give you the why of the subject matter without giving you a proven method and the tools to implement it. Liz Corey has created a step-by-step process for scaling AI within your organization in the smartest, most effective way possible."</blockquote>
-            <figcaption><b>Rebecca Bradley</b><span>International Coach Federation Master Certified Coach</span></figcaption>
-          </figure>
-        </div>
-        <p class="review-all"><a href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Read all reviews on Amazon</a></p>
-        </div>
       </div>
+    </div>
+    <div class="book-reviews" id="reviews">
+      <span class="eyebrow">First Reviews</span>
+    <div class="review-grid">
+      <figure class="review reveal">
+        <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
+        <blockquote>"Most books about AI and work are either hype or hand-wringing. This one is neither. Liz Corey does something genuinely useful: she gives leaders a clear, repeatable method for deciding what AI should and shouldn't do. If you're a leader, an HR professional, or anyone responsible for how AI enters your organization, read this. It's the rare business book you'll actually use."</blockquote>
+        <figcaption><span>Amazon reader review</span></figcaption>
+      </figure>
+      <figure class="review reveal">
+        <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
+        <blockquote>"In my thirty-six year career as a leadership and executive coach I have read hundreds of business books. With few exceptions, most give you the why of the subject matter without giving you a proven method and the tools to implement it. Liz Corey has created a step-by-step process for scaling AI within your organization in the smartest, most effective way possible."</blockquote>
+        <figcaption><span>Amazon reader review</span></figcaption>
+      </figure>
+      <figure class="review reveal">
+        <div class="stars" role="img" aria-label="Five stars">★★★★★</div>
+        <h3>Practical work redesign, not another AI tool list</h3>
+        <blockquote>"The strongest parts are the practical details: the Agent Job Description makes decision rights, escalation and a named human owner explicit. Corey's insistence on understanding that real work before automating it makes this a useful book for HR leaders moving beyond AI pilots."</blockquote>
+        <figcaption><span>Amazon reader review</span></figcaption>
+      </figure>
+    </div>
+    <p class="review-all"><a href="https://a.co/d/0cgWKSJA" target="_blank" rel="noopener">Read all reviews on Amazon</a></p>
     </div>
   </div>
 </section>
@@ -631,6 +657,8 @@
     <div class="callout reveal">
       <span class="lead">Before you scale AI, know what you are scaling.</span>
       <strong>Leadership inconsistency has a balance sheet.</strong> It shows up as turnover, missed commitments, and decisions that don't hold. And AI is now scaling every one of your leadership standards separately, at machine speed, with your leaders' names attached.
+      <p class="callout-next">Start with a number. See what redesigning one team's work for AI is worth.</p>
+      <a class="btn btn-primary" href="/calculator/">Run your numbers</a>
     </div>
   </div>
 <div class="arch">
@@ -790,13 +818,13 @@
       <h2>Put a number on it.</h2>
       <p>Estimate the return before you commit. The ROI calculator takes two minutes.</p>
     </div>
-    <a class="btn btn-teal" href="/work-with-us/#calculator">Open the ROI calculator</a>
+    <a class="btn btn-teal" href="/calculator/">Open the ROI calculator</a>
   </div>
 </div>
 
 <section class="ways" id="work">
   <div class="wrap">
-    <h2>Two ways <strong>to start</strong></h2>
+    <h2>Three ways <strong>we work</strong></h2>
     <div class="ways-grid">
       <div class="way reveal">
         <h3>Workshop: Write Better Prompts. Coach People Better.</h3>
@@ -810,10 +838,28 @@
         <p class="price">Call for pricing</p>
         <a class="btn btn-primary" href="/work-with-us/#first-90-days">See the 90 days</a>
       </div>
+      <div class="way reveal" id="operator">
+        <h3>An operator inside the business</h3>
+        <p class="way-sub">Interim, fractional, or project based.</p>
+        <p>We take a small number of engagements each year, working alongside the CEO or CHRO. Each one is led personally by our founder, Liz Corey, a former Chief People Officer.</p>
+        <a class="btn btn-primary" href="https://api.leadconnectorhq.com/widget/bookings/onthegrow-intro" target="_blank" rel="noopener">Book a call</a>
+        <button class="way-toggle" id="operatorToggle" type="button" aria-expanded="false" aria-controls="operatorMore">See where we plug in</button>
+      </div>
+    </div>
+    <div class="plug" id="operatorMore" hidden>
+      <span class="plug-label">Where we plug in</span>
+      <ul class="plug-grid">
+        <li><b>Organization design.</b> Spans and layers analysis, future-state structure, and decision memos your executives can act on.</li>
+        <li><b>Interim and fractional people leadership.</b> A senior HR leader in the seat while you hire, integrate, or reset.</li>
+        <li><b>HR operating model.</b> Who does what across business partners, centers of excellence, and shared services, task by task.</li>
+        <li><b>AI readiness for a function.</b> What work goes away, what an agent does, and what stays with people, before you buy or build.</li>
+        <li><b>Acquisition integration.</b> People diligence, structure, pay, and incentives for the combined company.</li>
+        <li><b>Change leadership.</b> The plan, the communication, and the leader readiness to make a redesign hold.</li>
+      </ul>
+      <p class="plug-close">Defined scope. Clear deliverables. We work directly or through your staffing partner.</p>
+      <p class="plug-close"><b>Tell us what you are facing.</b></p>
     </div>
     <p class="built">Built for midsize companies, including private equity-backed ones, and the HR teams inside them.</p>
-    <p class="ways-custom"><b>Need an operator inside the business, or fractional support?</b> I take a small number of custom engagements each year, working alongside the CEO or CHRO. Let's talk about what you need.</p>
-    <p class="ways-call"><a class="btn btn-teal" href="#contact">Book a call</a></p>
   </div>
 </section>
 
@@ -956,6 +1002,12 @@
     for (const e of entries) if (e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  // Operator card: the link opens the "where we plug in" panel; arriving at #operator opens it too
+  const opToggle=document.getElementById('operatorToggle'),opMore=document.getElementById('operatorMore');
+  function setOperator(open){opMore.hidden=!open;opToggle.setAttribute('aria-expanded',String(open))}
+  opToggle.addEventListener('click',()=>setOperator(opMore.hidden));
+  function operatorFromHash(){if(location.hash==='#operator'){setOperator(true);document.getElementById('operator').scrollIntoView()}}
+  operatorFromHash();window.addEventListener('hashchange',operatorFromHash);
 
   // Mobile menu
   const navEl = document.querySelector('nav'), navToggle = document.getElementById('navToggle');

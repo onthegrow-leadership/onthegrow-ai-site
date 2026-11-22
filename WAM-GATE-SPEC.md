@@ -48,6 +48,8 @@ Place it at the top of the Resources page content, above the existing resources,
 
 ## Part 2: Work Redesign Value Calculator on the Work With Us page
 
+> Update, November 22, 2026: the calculator now lives on its own page at `/calculator/`. The file `calculator/index.html` is the only copy of the calculator code, and `roi-embed.html` has been retired. Work With Us carries a short teaser with the id `calculator`, so old links to `/work-with-us/#calculator` still land. The placement and paste rules below describe the original build.
+
 Also ship in this build. The file `roi-embed.html` (Liz will place it in the project folder) is a self-contained block: one `<div id="otg-roi">` with scoped styles and one script. No external dependencies beyond Google Fonts, which the site already loads.
 
 ### Placement
