@@ -131,7 +131,7 @@
 <div id="otg-roi">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: the five steps on the left, results pinned right; on phones the steps run in order and the results follow Step 5. All rules scoped to #otg-roi so they cannot touch the site chrome. */
+/* Layout: the five steps on the left, the results column on the right with the Your results box pinned. When the screen is too narrow for two columns, Your results sits above Step 1 and the rest of the results follow Step 5. All rules scoped to #otg-roi so they cannot touch the site chrome. */
 #otg-roi{
   --ink:#231B33;--muted:#6B6480;--bg:#F4F2F8;--surface:#FFFFFF;--line:#E2DDEB;
   --field:#B5ADC8;--shade:#E9E5F1;--brand:#36294F;--brand-ink:#FFFFFF;--brand-sub:#9FDCD7;--accent:#39989E;--accent-soft:#E2F1F1;--good:#2F7D5B;--warn:#8A3B2E;
@@ -153,7 +153,7 @@
 #otg-roi .purpose b{display:block;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:2px}
 #otg-roi .purpose p:first-child b{color:var(--brand)}
 #otg-roi .grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start}
-@media (max-width:920px){#otg-roi .grid{grid-template-columns:minmax(0,1fr);gap:18px}#otg-roi .grid>.stack{display:contents}#otg-roi .grid>.side{order:1}#otg-roi .grid details.method{order:2}} /* phones: steps in order, results after Step 5, then the math */
+@media (max-width:920px){#otg-roi .grid{grid-template-columns:minmax(0,1fr);gap:18px}#otg-roi .grid>.stack,#otg-roi .grid>.side{display:contents}#otg-roi .side>.bottom,#otg-roi .side>.savepdf,#otg-roi .side>.disclosure{order:-1}#otg-roi .side>.savepdf{margin-top:-8px}#otg-roi .side>.disclosure{margin-top:-10px}#otg-roi .side>.line,#otg-roi .side>.callout{order:1;margin-top:0}#otg-roi .grid details.method{order:2}} /* one column: Your results first, the steps in order, the rest of the results, then the math */
 #otg-roi .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
 #otg-roi .stack{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;min-width:0}
 #otg-roi h3{font-size:17px;margin:0 0 4px;font-weight:700;color:var(--ink)}
@@ -188,8 +188,10 @@
 #otg-roi button:hover{border-color:var(--accent)}
 #otg-roi button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #otg-roi button.x{padding:4px 8px;color:var(--muted);border-color:transparent;background:none}
-#otg-roi .side{position:sticky;top:88px;min-width:0} /* 88px clears the 72px sticky site nav */
-@media (max-width:920px){#otg-roi .side{position:static}}
+#otg-roi .side{min-width:0;align-self:stretch}
+#otg-roi .savepdf{display:block;width:100%;margin-top:10px;padding:10px 14px}
+#otg-roi .disclosure{font-size:12px;line-height:1.45;color:var(--muted);margin:8px 2px 0}
+@media (min-width:921px){#otg-roi .side>.bottom{position:sticky;top:88px;z-index:2;box-shadow:0 -16px 0 var(--bg)}} /* only the Your results box stays pinned; 88px clears the 72px sticky site nav */
 #otg-roi .bottom{background:var(--brand);color:var(--brand-ink);border-radius:10px;padding:22px}
 #otg-roi .bottom .eyebrow{color:var(--brand-sub)}
 #otg-roi .big{font-size:clamp(36px,6vw,48px);font-weight:700;line-height:1;margin:8px 0 4px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
@@ -212,6 +214,11 @@
 #otg-roi .legend div{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center}
 #otg-roi .legend i{width:12px;height:12px;border-radius:3px;display:block}
 #otg-roi .legend b{font-variant-numeric:tabular-nums}
+#otg-roi .legend .tot{border-top:1px solid var(--field);padding-top:8px;margin-top:2px;font-weight:700;color:var(--ink)}
+#otg-roi .legend .tot i{background:none}
+#otg-roi .legend .tot b{font-size:15px}
+#otg-roi .fields.even label.f{grid-template-rows:1fr auto}
+#otg-roi .fields.even label.f>span:first-child{align-self:end}
 #otg-roi .c-hire{background:var(--p-hire)}#otg-roi .c-spend{background:var(--p-spend)}#otg-roi .c-rev{background:var(--p-rev)}#otg-roi .c-none{background:var(--p-none)}
 #otg-roi .method{font-size:14px;color:var(--muted)}
 #otg-roi .method ol{padding-left:20px;margin:8px 0}
@@ -270,29 +277,30 @@
 #otg-roi .line .tbl-wrap{margin-top:12px}
 #otg-roi .line .yrs th,#otg-roi .line .yrs td{padding:7px 8px;font-size:13px}
 #otg-roi .cfo{font-weight:600;font-size:14px;color:var(--brand);margin:14px 0 10px!important}
-@media (min-width:921px){#otg-roi .side{max-height:calc(100vh - 104px);overflow-y:auto;scrollbar-width:thin}}
 @media (prefers-reduced-motion:reduce){#otg-roi *{transition:none!important}}
 /* The one page case. Built on demand as a direct child of body, so print can hide the rest of the page. */
 #otg-roi-sheet{display:none}
 @media print{
   body.otg-printing>*:not(#otg-roi-sheet){display:none!important}
+  html:has(body.otg-printing),body.otg-printing{width:auto!important;min-width:0!important;max-width:none!important;overflow:visible!important}
   body.otg-printing{background:#fff!important;margin:0!important;padding:0!important}
-  body.otg-printing #otg-roi-sheet{display:block}
+  body.otg-printing #otg-roi-sheet{display:block;width:100%;max-width:100%}
 }
 #otg-roi-sheet{font-family:"Work Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#231B33;font-size:10.5px;line-height:1.4;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-#otg-roi-sheet *{box-sizing:border-box}
+#otg-roi-sheet *{box-sizing:border-box;min-width:0}
+#otg-roi-sheet{overflow-wrap:break-word}
 #otg-roi-sheet .ph{border-bottom:3px solid #36294F;padding-bottom:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
 #otg-roi-sheet .ph h1{font-size:19px;line-height:1.15;margin:2px 0 0;color:#36294F;font-weight:700}
 #otg-roi-sheet .ph .ey{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#39989E;font-weight:600}
 #otg-roi-sheet .ph .meta{text-align:right;font-size:10px;color:#6B6480}
 #otg-roi-sheet .why{margin:0 0 12px;font-size:10.5px}
 #otg-roi-sheet .why b{color:#36294F}
-#otg-roi-sheet .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#otg-roi-sheet .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
 #otg-roi-sheet h2{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#39989E;margin:12px 0 4px;font-weight:700}
 #otg-roi-sheet h2:first-child{margin-top:0}
-#otg-roi-sheet table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+#otg-roi-sheet table{width:100%;max-width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 #otg-roi-sheet td,#otg-roi-sheet th{padding:3px 0;border-bottom:1px solid #E2DDEB;text-align:left;vertical-align:top;font-size:10.5px}
-#otg-roi-sheet td:not(:first-child),#otg-roi-sheet th:not(:first-child){text-align:right;padding-left:10px;white-space:nowrap}
+#otg-roi-sheet td:not(:first-child),#otg-roi-sheet th:not(:first-child){text-align:right;padding-left:10px}
 #otg-roi-sheet th{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#6B6480;font-weight:600}
 #otg-roi-sheet tr.tot td{font-weight:700}
 #otg-roi-sheet tr.net td{font-weight:700;background:#E2F1F1;padding-left:4px;padding-right:4px}
@@ -301,7 +309,8 @@
 #otg-roi-sheet .hero span{font-size:9.5px;opacity:.9}
 #otg-roi-sheet .memo{margin:12px 0 0;font-size:10.5px}
 #otg-roi-sheet .cfo{margin:10px 0 0;font-weight:700;font-size:12px;color:#36294F}
-#otg-roi-sheet .pf{margin-top:12px;padding-top:6px;border-top:1px solid #E2DDEB;font-size:9px;color:#6B6480;display:flex;justify-content:space-between;gap:12px}
+#otg-roi-sheet .disc{margin:6px 0 0;font-size:9px;line-height:1.4;color:#6B6480}
+#otg-roi-sheet .pf{margin-top:12px;padding-top:6px;border-top:1px solid #E2DDEB;font-size:9px;color:#6B6480;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px}
 </style>
 
 <div class="wrap">
@@ -312,7 +321,7 @@
     <p><b>What this is for</b>Before you spend on AI, know what redesigning the work is worth. This calculator takes one team, shows which tasks go away, which AI helps with, and which stay with people, and turns the freed hours into net value a year. It then discounts that number for the things that slow results down: adoption, readiness, leader review, and mistakes. You leave with a one-page case your CFO can check.</p>
     <p><b>Who it is for</b>CEOs, CHROs, CFOs, and operating leaders deciding where to start with AI.</p>
   </div>
-  <p class="key"><span><i class="w"></i>Type your numbers in the white boxes.</span><span><i class="s"></i>The shaded boxes calculate.</span></p>
+  <p class="key"><span><i class="w"></i>Most white boxes start with sample numbers from a shared services team. Change any of them to match your team.</span><span><i class="s"></i>The shaded boxes calculate.</span></p>
 
   <div class="grid">
     <div class="stack">
@@ -321,9 +330,9 @@
         <h3 id="roi-h-a"><span class="step">Step 1.</span> Your team: what an hour costs</h3>
         <p class="hint">What one hour of this team costs you: salary plus benefits and payroll taxes, divided by hours worked. Example: $85,000 in salary plus $25,000 in benefits and taxes, over 2,000 hours, is $55 an hour.</p>
         <div class="fields">
-          <label class="f"><span>Function being redesigned <i class="who in">You enter</i></span><input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
-          <label class="f"><span>Loaded cost per hour <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
-          <label class="f"><span>Working weeks a year <i class="who in">You enter</i></span><input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
+          <label class="f"><span>Function being redesigned <i class="who in">Your number</i></span><input id="roi-team" type="text" value="Shared Services (HR, Payroll, AP)"></label>
+          <label class="f"><span>Loaded cost per hour <i class="who in">Your number</i></span><div class="money"><span>$</span><input id="roi-rate" type="number" min="0" step="1" value="55"></div></label>
+          <label class="f"><span>Working weeks a year <i class="who in">Your number</i></span><input id="roi-weeks" type="number" min="1" max="52" step="1" value="48"></label>
         </div>
       </section>
 
@@ -332,7 +341,7 @@
         <p class="hint">Hours are per week for the whole team. Import the matrix CSV from the Work Assignment Agent, or enter tasks here.</p>
         <div class="tbl-wrap">
           <table class="tasks">
-            <thead><tr><th>Task <i class="who in">You enter</i></th><th class="num">Hrs / wk <i class="who in">You enter</i></th><th>Placement <i class="who in">You enter</i></th><th class="num">Freed / wk <i class="who calc">Calculated</i></th><th><span class="sr">Remove</span></th></tr></thead>
+            <thead><tr><th>Task <i class="who in">Your number</i></th><th class="num">Hrs / wk <i class="who in">Your number</i></th><th>Placement <i class="who in">Your number</i></th><th class="num">Freed / wk <i class="who calc">Calculated</i></th><th><span class="sr">Remove</span></th></tr></thead>
             <tbody id="roi-tasks"></tbody>
           </table>
         </div>
@@ -348,7 +357,7 @@
         <div class="sub">Time freed by placement, net of checking</div>
         <div class="tbl-wrap">
           <table class="rates">
-            <thead><tr><th>Placement</th><th class="num">Time saved <i class="who in">You enter</i></th><th class="num">Checking and oversight <i class="who in">You enter</i></th><th class="num">Net freed <i class="who calc">Calculated</i></th></tr></thead>
+            <thead><tr><th>Placement</th><th class="num">Time saved <i class="who in">Your number</i></th><th class="num">Checking and oversight <i class="who in">Your number</i></th><th class="num">Net freed <i class="who calc">Calculated</i></th></tr></thead>
             <tbody id="roi-rates"></tbody>
           </table>
         </div>
@@ -359,14 +368,14 @@
       <section class="panel" aria-labelledby="roi-h-c">
         <h3 id="roi-h-c"><span class="step">Step 3.</span> Where the freed hours go</h3>
         <p class="hint">Freed hours are not value until leadership decides where they go. Split them across three paths. Whatever is left has no destination and counts as zero.</p>
-        <div class="fields">
-          <label class="f"><span>Avoided hires already in the plan <i class="who in">You enter</i></span><div class="pct"><input id="roi-sh" type="number" min="0" max="100" step="5" value="40"><span>%</span></div></label>
-          <label class="f"><span>Cut spend (agencies, contractors, overtime) <i class="who in">You enter</i></span><div class="pct"><input id="roi-ss" type="number" min="0" max="100" step="5" value="15"><span>%</span></div></label>
-          <label class="f"><span>Revenue capacity <i class="who in">You enter</i></span><div class="pct"><input id="roi-sr" type="number" min="0" max="100" step="5" value="10"><span>%</span></div></label>
+        <div class="fields even">
+          <label class="f"><span>Avoided hires already in the plan <i class="who in">Your number</i></span><div class="pct"><input id="roi-sh" type="number" min="0" max="100" step="5" value="40"><span>%</span></div></label>
+          <label class="f"><span>Cut spend (agencies, contractors, overtime) <i class="who in">Your number</i></span><div class="pct"><input id="roi-ss" type="number" min="0" max="100" step="5" value="15"><span>%</span></div></label>
+          <label class="f"><span>Revenue capacity <i class="who in">Your number</i></span><div class="pct"><input id="roi-sr" type="number" min="0" max="100" step="5" value="10"><span>%</span></div></label>
         </div>
-        <div class="fields" style="margin-top:12px">
-          <label class="f"><span>Revenue per redirected hour <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-revhr" type="number" min="0" step="5" value="150"></div></label>
-          <label class="f"><span>Contribution margin on that revenue <i class="who in">You enter</i></span><div class="pct"><input id="roi-margin" type="number" min="0" max="100" step="5" value="35"><span>%</span></div></label>
+        <div class="fields even" style="margin-top:12px">
+          <label class="f"><span>Revenue per redirected hour <i class="who in">Your number</i></span><div class="money"><span>$</span><input id="roi-revhr" type="number" min="0" step="5" value="150"></div></label>
+          <label class="f"><span>Contribution margin on that revenue <i class="who in">Your number</i></span><div class="pct"><input id="roi-margin" type="number" min="0" max="100" step="5" value="35"><span>%</span></div></label>
         </div>
         <div class="calcbox"><i class="who calc">Calculated</i>
           <div class="split" id="roi-split" aria-hidden="true" style="margin-top:6px"></div>
@@ -380,7 +389,7 @@
         <h3 id="roi-h-r"><span class="step">Step 4.</span> Reality check: how much you will really get</h3>
         <p class="hint">Full value assumes everyone works the new way, everything is ready, and nothing goes wrong. These inputs take it down to what you can count on.</p>
         <div class="fields wide">
-          <div class="f span"><span>Adoption by year <i class="who in">You enter</i></span>
+          <div class="f span"><span>Adoption by year <i class="who in">Your number</i></span>
             <div class="trio">
               <div><small>Year 1</small><div class="pct"><input id="roi-a1" type="number" min="0" max="100" step="5" value="30" aria-label="Adoption in year 1, percent"><span>%</span></div></div>
               <div><small>Year 2</small><div class="pct"><input id="roi-a2" type="number" min="0" max="100" step="5" value="60" aria-label="Adoption in year 2, percent"><span>%</span></div></div>
@@ -388,14 +397,14 @@
             </div>
             <span class="note">The share of the redesigned work your team is doing the new way in each year.</span>
           </div>
-          <label class="f"><span>Readiness <i class="who in">You enter</i></span><div class="pct"><input id="roi-ready" type="number" min="0" max="100" step="5" value="70"><span>%</span></div>
+          <label class="f"><span>Readiness <i class="who in">Your number</i></span><div class="pct"><input id="roi-ready" type="number" min="0" max="100" step="5" value="70"><span>%</span></div>
             <span class="note">How much of the work is ready to move. Clean data, a clear process, and leaders prepared to run it.</span></label>
-          <label class="f"><span>Leader review time <i class="who in">You enter</i></span><div class="pct"><input id="roi-check" type="number" min="0" max="100" step="5" value="10"><span>%</span></div>
+          <label class="f"><span>Leader review time <i class="who in">Your number</i></span><div class="pct"><input id="roi-check" type="number" min="0" max="100" step="5" value="10"><span>%</span></div>
             <span class="note">Review beyond the task level checks already counted in the task list.</span></label>
-          <label class="f"><span>Cost of being wrong <i class="who in">You enter</i></span><div class="pct"><input id="roi-wrong" type="number" min="0" max="100" step="1" value="5"><span>%</span></div>
+          <label class="f"><span>Cost of being wrong <i class="who in">Your number</i></span><div class="pct"><input id="roi-wrong" type="number" min="0" max="100" step="1" value="5"><span>%</span></div>
             <span class="note">The share of value lost to errors that get through and have to be fixed.</span></label>
         </div>
-        <label class="switch"><input id="roi-stress" type="checkbox" role="switch">Stress test: six months late <em id="roi-stresslabel">Off</em> <i class="who in">You enter</i></label>
+        <label class="switch"><input id="roi-stress" type="checkbox" role="switch">Stress test: six months late <em id="roi-stresslabel">Off</em> <i class="who in">Your number</i></label>
         <span class="note">Shows the same plan landing six months late, next to the plan as written.</span>
         <div class="calcbox"><i class="who calc">Calculated</i><p id="roi-m4"></p></div>
       </section>
@@ -404,9 +413,9 @@
         <h3 id="roi-h-k"><span class="step">Step 5.</span> What it costs</h3>
         <p class="hint">Your own numbers. Both start blank.</p>
         <div class="fields wide">
-          <label class="f"><span>Annual upkeep <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-upkeep" type="number" min="0" step="1000" placeholder="Enter your cost"></div>
+          <label class="f"><span>Annual upkeep <i class="who in">Your number</i></span><div class="money"><span>$</span><input id="roi-upkeep" type="number" min="0" step="1000" placeholder="Enter your cost"></div>
             <span class="note">What you spend each year to keep this running. AI tools, agents, and maintenance.</span></label>
-          <label class="f"><span>Redesign engagement (one time) <i class="who in">You enter</i></span><div class="money"><span>$</span><input id="roi-fee" type="number" min="0" step="1000" placeholder="Enter your quote"></div>
+          <label class="f"><span>Redesign engagement (one time) <i class="who in">Your number</i></span><div class="money"><span>$</span><input id="roi-fee" type="number" min="0" step="1000" placeholder="Enter your quote"></div>
             <span class="note">Used only for payback and return. It does not change net value a year.</span></label>
         </div>
       </section>
@@ -430,6 +439,8 @@
           <div class="kpi"><b id="roi-khrs">0</b><span>Hours freed a week</span></div>
         </div>
       </div>
+      <button id="roi-pdf" type="button" class="primary savepdf">Save your one-page case as PDF</button>
+      <p class="disclosure">Estimates only. Results depend on the numbers entered and are not a guarantee of savings or financial, tax, or legal advice. Sample numbers describe a shared services team at a 600-person company and are for illustration. © 2026 OnTheGrow Leadership LLC. onthegrow.ai/calculator</p>
 
       <div class="line">
         <div class="eyebrow" style="margin-bottom:6px">Net value a year <i class="who calc">Calculated</i></div>
@@ -448,7 +459,7 @@
       <div class="line">
         <label class="evtoggle"><input id="roi-showev" type="checkbox"><span id="roi-evlabel">Show added company value at a 10x valuation multiple</span></label>
         <div class="evbox" id="roi-evbox" hidden>
-          <label class="f" id="roi-multwrap" hidden><span>Valuation multiple <i class="who in">You enter</i></span><div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div>
+          <label class="f" id="roi-multwrap" hidden><span>Valuation multiple <i class="who in">Your number</i></span><div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div>
             <span class="note">What a buyer or lender would pay for each dollar of profit. If you do not know yours, leave this off.</span></label>
           <div class="calcbox"><i class="who calc">Calculated</i><p><b id="roi-ev">$0</b> <span id="roi-evcap">Added company value</span></p></div>
         </div>
@@ -590,7 +601,7 @@ function render(){
   // split bar
   const parts=[["hire","Avoided hires",c.sh,c.vHire],["spend","Cut spend",c.ss,c.vSpend],["rev","Revenue capacity",c.sr,c.vRev],["none","No destination yet",c.none,0]];
   $("split").innerHTML=parts.map(p=>`<div class="c-${p[0]}" style="width:${(p[2]*100).toFixed(1)}%"></div>`).join("");
-  $("legend").innerHTML=parts.map(p=>`<div><i class="c-${p[0]}"></i><span>${p[1]} · ${Math.round(p[2]*100)}% · ${Math.round(c.hrs*p[2])} hrs/wk</span><b>${p[0]==="none"?"$0":fmt$(p[3])+" / yr"}</b></div>`).join("");
+  $("legend").innerHTML=parts.map(p=>`<div><i class="c-${p[0]}"></i><span>${p[1]} · ${Math.round(p[2]*100)}% · ${Math.round(c.hrs*p[2])} hrs/wk</span><b>${p[0]==="none"?"$0":fmt$(p[3])+" / yr"}</b></div>`).join("")+`<div class="tot"><i></i><span>Annual value at full run rate</span><b>${fmt$(c.gross)} / yr</b></div>`;
   const sm=$("sharemsg");sm.classList.toggle("err",c.over);sm.textContent=c.over?"The three paths add to more than 100%. They have been scaled down to fit. Lower one to set them exactly.":"";
   // step down, then the years
   $("steps").innerHTML=stepRows(c).map(r=>`<li class="${r.k}"><span>${r.l}</span><span${r.neg?' class="neg"':""}>${r.v}</span></li>`).join("");
@@ -601,7 +612,7 @@ function render(){
   $("summary").textContent=summaryText(c,team);
   // the math, shown where it happens
   $("m2").innerHTML=`Hours freed each week: <b>${n0(c.hrs)}</b>. Each task's hours x (time saved minus checking).`;
-  $("m3").innerHTML=`Annual value at full run rate: <b>${fmt$(c.gross)}</b>. Freed hours x working weeks, valued by where the hours go.`;
+  $("m3").textContent="Freed hours x working weeks, valued by where the hours go.";
   $("m4").innerHTML=`You keep <b>${pct2(c.keep)}</b> of full value in year 3. ${pctTxt(c.adopt[2])} x ${pctTxt(c.ready)} x (1 minus ${pctTxt(c.check)}) x (1 minus ${pctTxt(c.wrong)}).`;
   const yr=i=>`Year ${i+1}: ${fmt$(c.gross)} x ${pctTxt(c.adopt[i])} x ${pctTxt(c.ready)} x ${pctTxt(1-c.check)} x ${pctTxt(1-c.wrong)}, minus ${fmt$(c.upkeep)} upkeep, is ${fmt$(c.plan[i])}.`;
   const L=[
@@ -639,14 +650,17 @@ function sheetHTML(){
 <h2>Net value a year</h2><table><tr><th></th><th>On plan</th>${c.stress?"<th>Six months late</th>":""}</tr>${yearRows(c).map(r=>`<tr class="${r.k==="total"?"tot":""}"><td>${r.l}</td><td>${r.a}</td>${c.stress?`<td>${r.b}</td>`:""}</tr>`).join("")}</table>
 <h2>How full value steps down, year 3</h2><table>${stepRows(c).map(r=>`<tr class="${r.k}"><td>${esc(r.l)}</td><td>${r.v}</td></tr>`).join("")}</table>
 <p class="memo">Net, year 3: ${fmt$(c.exitE)}. ${netMath(c)}</p>
-${c.fee>0?`<h2>Return on the engagement</h2><table>${row("Payback",payTxt(c))}${row("Three year net over engagement cost",(c.sumE/c.fee).toFixed(1)+"x")}</table>`:""}
+<h2>Return on the engagement</h2><table>${row("Payback",c.fee>0?payTxt(c):"Shown when costs are entered")}${row("Three year net over engagement cost",c.fee>0?(c.sumE/c.fee).toFixed(1)+"x":"Shown when costs are entered")}</table>
 <p class="memo">${esc(summaryText(c,team))}</p>
 <p class="cfo">Every number here is one your CFO can change.</p>
 </div></div>
-<div class="pf"><span>© 2026 Elizabeth A. Corey. OnTheGrow Leadership · onthegrow.ai</span><span>Planning estimates. Results depend on the redesign actually being run.</span></div>`;
+<div class="pf"><span>© 2026 Elizabeth A. Corey. OnTheGrow Leadership · onthegrow.ai</span><span>Planning estimates. Results depend on the redesign actually being run.</span></div>
+<p class="disc">Estimates only. Results depend on the numbers entered and are not a guarantee of savings or financial, tax, or legal advice. Sample numbers describe a shared services team at a 600-person company and are for illustration. © 2026 OnTheGrow Leadership LLC. onthegrow.ai/calculator</p>`;
 }
 function clearSheet(){const o=document.getElementById("otg-roi-sheet");if(o)o.remove();document.body.classList.remove("otg-printing")}
-$("print").onclick=()=>{clearSheet();const d=document.createElement("div");d.id="otg-roi-sheet";d.innerHTML=sheetHTML();document.body.appendChild(d);document.body.classList.add("otg-printing");window.print()};
+function buildSheet(){clearSheet();const d=document.createElement("div");d.id="otg-roi-sheet";d.innerHTML=sheetHTML();document.body.appendChild(d);document.body.classList.add("otg-printing")}
+$("print").onclick=$("pdf").onclick=()=>{buildSheet();window.print()};
+window.addEventListener("beforeprint",buildSheet); // the browser's own Print command gets the one page case too
 window.addEventListener("afterprint",clearSheet);
 
 root.addEventListener("input",e=>{const t=e.target;
