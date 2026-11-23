@@ -305,7 +305,7 @@
 </style>
 
 <div class="wrap">
-  <div class="eyebrow">OnTheGrow Leadership · For PE-backed companies</div>
+  <div class="eyebrow">OnTheGrow Leadership · For leaders redesigning work with AI</div>
   <h1 class="title">Work Redesign Value Calculator</h1>
   <p class="lede">Most AI tools count hours saved. This one shows the net value a year the redesign delivers.</p>
   <div class="purpose">
@@ -378,7 +378,7 @@
 
       <section class="panel" aria-labelledby="roi-h-r">
         <h3 id="roi-h-r"><span class="step">Step 4.</span> Reality check: how much you will really get</h3>
-        <p class="hint">Full value assumes everyone works the new way, everything is ready, and nothing goes wrong. These inputs take it down to what holds up.</p>
+        <p class="hint">Full value assumes everyone works the new way, everything is ready, and nothing goes wrong. These inputs take it down to what you can count on.</p>
         <div class="fields wide">
           <div class="f span"><span>Adoption by year <i class="who in">You enter</i></span>
             <div class="trio">
@@ -446,10 +446,11 @@
       </div>
 
       <div class="line">
-        <label class="evtoggle"><input id="roi-showev" type="checkbox"><span id="roi-evlabel">Show value at a 10x exit multiple</span></label>
+        <label class="evtoggle"><input id="roi-showev" type="checkbox"><span id="roi-evlabel">Show added company value at a 10x valuation multiple</span></label>
         <div class="evbox" id="roi-evbox" hidden>
-          <label class="f" id="roi-multwrap" hidden><span>Exit multiple (EV / EBITDA) <i class="who in">You enter</i></span><div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div></label>
-          <div class="calcbox"><i class="who calc">Calculated</i><p><b id="roi-ev">$0</b> <span id="roi-evcap">Enterprise value at exit</span></p></div>
+          <label class="f" id="roi-multwrap" hidden><span>Valuation multiple <i class="who in">You enter</i></span><div class="mult"><input id="roi-mult" type="number" min="0" step="0.5" value="10"><span>x</span></div>
+            <span class="note">What a buyer or lender would pay for each dollar of profit. If you do not know yours, leave this off.</span></label>
+          <div class="calcbox"><i class="who calc">Calculated</i><p><b id="roi-ev">$0</b> <span id="roi-evcap">Added company value</span></p></div>
         </div>
       </div>
 
@@ -564,11 +565,11 @@ function stepRows(c){
 }
 function yearRows(c){
   return c.plan.map((p,i)=>({l:`Year ${i+1} net`,a:fmt$(p),b:fmt$(c.late[i]),an:p<0,bn:c.late[i]<0,k:""}))
-    .concat(c.showEv?[{l:"Value at exit",a:short$(c.ev),b:short$(c.lateEv),an:c.ev<0,bn:c.lateEv<0,k:"total"}]:[]);
+    .concat(c.showEv?[{l:"Added company value",a:short$(c.ev),b:short$(c.lateEv),an:c.ev<0,bn:c.lateEv<0,k:"total"}]:[]);
 }
 function summaryText(c,team){
   const conv=Math.round((1-c.none)*100),art=artFor(c.mult);
-  let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the annual value at full run rate is ${fmt$(c.gross)}. After adoption, readiness, leader review time, the cost of being wrong, and upkeep, the redesign delivers ${fmt$(c.exitE)} in net value a year by year ${c.hold}${c.showEv?`, worth ${short$(c.ev)} in enterprise value at ${art} ${c.mult}x exit multiple`:""}.`;
+  let s=`Redesigning ${team} frees ${Math.round(c.hrs)} hours a week, net of the time it takes to check AI's work. With ${conv}% of that time converted into avoided hires, cut spend, and revenue capacity, the annual value at full run rate is ${fmt$(c.gross)}. After adoption, readiness, leader review time, the cost of being wrong, and upkeep, the redesign delivers ${fmt$(c.exitE)} in net value a year by year ${c.hold}${c.showEv?`, worth ${short$(c.ev)} in added company value at ${art} ${c.mult}x valuation multiple`:""}.`;
   if(c.stress)s+=c.showEv?` Six months late, those numbers are ${fmt$(c.late[2])} and ${short$(c.lateEv)}.`:` Six months late, that number is ${fmt$(c.late[2])}.`;
   if(c.fee>0)s+=c.pay?` On a ${fmt$(c.fee)} engagement, it pays back in ${c.pay} month${c.pay===1?"":"s"}.`:` On a ${fmt$(c.fee)} engagement, it does not pay back within three years.`;
   return s;
@@ -578,9 +579,9 @@ function render(){
   const c=calc();const team=$("team").value.trim()||"the function";
   const art=artFor(c.mult);
   $("stresslabel").textContent=c.stress?"On":"Off";
-  $("evlabel").textContent=`Show value at ${art} ${c.mult}x exit multiple`;$("evbox").hidden=!c.showEv;$("multwrap").hidden=!c.showEv;
+  $("evlabel").textContent=`Show added company value at ${art} ${c.mult}x valuation multiple`;$("evbox").hidden=!c.showEv;$("multwrap").hidden=!c.showEv;
   $("ev").textContent=short$(c.ev);$("ev").classList.toggle("neg",c.ev<0);
-  $("evcap").textContent=`in enterprise value at ${art} ${c.mult}x exit multiple${c.stress?`, or ${short$(c.lateEv)} six months late`:""}. Year 3 net, as EBITDA added, x the exit multiple.`;
+  $("evcap").textContent=`in added company value at ${art} ${c.mult}x valuation multiple${c.stress?`, or ${short$(c.lateEv)} six months late`:""}. Year 3 net x the valuation multiple.`;
   $("ebitda").textContent=fmt$(c.exitE);$("ebitda").classList.toggle("neg",c.exitE<0);
   $("ebitdacap").textContent=`Net, year 3: ${fmt$(c.exitE)}. ${netMath(c)}`;
   $("kmult").textContent=c.fee>0?(c.sumE/c.fee).toFixed(1)+"x":"Add cost";
@@ -608,14 +609,14 @@ function render(){
     ["Annual value at full run rate.","Freed hours x working weeks, valued by where the hours go. Avoided hires and cut spend at loaded cost. Revenue capacity at revenue per hour x contribution margin. Hours with no destination count as zero.",`${c.hrs.toFixed(1)} freed hours x ${c.weeks} weeks is ${n0(c.annual)} hours a year. Avoided hires ${fmt$(c.vHire)}, plus cut spend ${fmt$(c.vSpend)}, plus revenue capacity ${fmt$(c.vRev)}, is ${fmt$(c.gross)}.`],
     ["Net by year.","Full value x adoption x readiness x (1 minus leader review) x (1 minus cost of being wrong), minus annual upkeep.",[0,1,2].map(yr).join("</span><span>")],
     ["Six months late.","The delay applies to the benefit before upkeep. Year 1 is half of year 1. Year 2 is the average of years 1 and 2. Year 3 is the average of years 2 and 3. Upkeep is charged in full every year.",`Year 1 is ${fmt$(c.late[0])}. Year 2 is ${fmt$(c.late[1])}. Year 3 is ${fmt$(c.late[2])}.`],
-    c.showEv?["Value at exit.","Year 3 net, as EBITDA added, x the exit multiple.",`${fmt$(c.exitE)} x ${c.mult} is ${short$(c.ev)} on plan. ${fmt$(c.late[2])} x ${c.mult} is ${short$(c.lateEv)} six months late.`]:null,
+    c.showEv?["Added company value.","Year 3 net, as EBITDA added, x the valuation multiple.",`${fmt$(c.exitE)} x ${c.mult} is ${short$(c.ev)} on plan. ${fmt$(c.late[2])} x ${c.mult} is ${short$(c.lateEv)} six months late.`]:null,
     ["Payback.","The month when net value to date covers the engagement cost. Return is three years of net divided by the engagement cost.",c.fee>0?(c.pay?`${fmt$(c.fee)} is covered in ${c.pay} month${c.pay===1?"":"s"}.`:`${fmt$(c.fee)} is not covered within three years.`)+` ${fmt$(c.sumE)} over ${fmt$(c.fee)} is ${(c.sumE/c.fee).toFixed(1)}x.`:"Enter the engagement cost in Step 5 to see it."]
   ].filter(Boolean);
   $("math").innerHTML=L.map(r=>`<li><b>${r[0]}</b> ${r[1]}<span>${r[2]}</span></li>`).join("");
   // callout
   $("callout").innerHTML=c.none>0.001
     ?`<b>${Math.round(c.none*100)}% of the freed time has no destination yet.</b> That is ${Math.round(c.hrs*c.none)} hours a week, worth ${fmt$(c.vNone)} a year at loaded cost before any of the reductions above. Deciding where it goes is a leadership decision, not a technology one.`
-    :`<b>Every freed hour has a destination.</b> That is reinvestment discipline, and it is why this number holds up in diligence.`;
+    :`<b>Every freed hour has a destination.</b> That is reinvestment discipline, and it is why this number stands up to scrutiny.`;
   save();
 }
 
@@ -634,7 +635,7 @@ function sheetHTML(){
 <h2>Step 4. Reality check</h2><table>${row("Adoption, years 1, 2, and 3",c.adopt.map(pctTxt).join(", "))}${row("Readiness",pctTxt(c.ready))}${row("Leader review time",pctTxt(c.check))}${row("Cost of being wrong",pctTxt(c.wrong))}${row("Share of full value kept in year 3",pct2(c.keep))}</table>
 <h2>Step 5. What it costs</h2><table>${row("Annual upkeep",c.upkeep>0?fmt$(c.upkeep):"Not entered")}${row("Redesign engagement, one time",c.fee>0?fmt$(c.fee):"Not entered")}</table>
 </div><div>
-<div class="hero"><div><b>${fmt$(c.exitE)}</b><span>Net value a year, by year 3</span></div>${c.showEv?`<div><b>${short$(c.ev)}</b><span>Enterprise value at ${art} ${c.mult}x exit multiple</span></div>`:""}</div>
+<div class="hero"><div><b>${fmt$(c.exitE)}</b><span>Net value a year, by year 3</span></div>${c.showEv?`<div><b>${short$(c.ev)}</b><span>Added company value at ${art} ${c.mult}x valuation multiple</span></div>`:""}</div>
 <h2>Net value a year</h2><table><tr><th></th><th>On plan</th>${c.stress?"<th>Six months late</th>":""}</tr>${yearRows(c).map(r=>`<tr class="${r.k==="total"?"tot":""}"><td>${r.l}</td><td>${r.a}</td>${c.stress?`<td>${r.b}</td>`:""}</tr>`).join("")}</table>
 <h2>How full value steps down, year 3</h2><table>${stepRows(c).map(r=>`<tr class="${r.k}"><td>${esc(r.l)}</td><td>${r.v}</td></tr>`).join("")}</table>
 <p class="memo">Net, year 3: ${fmt$(c.exitE)}. ${netMath(c)}</p>
