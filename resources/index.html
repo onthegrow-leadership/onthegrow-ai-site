@@ -75,7 +75,7 @@
 
   .form-err{flex-basis:100%;font-size:.88rem;color:#f5b8c4;margin-top:8px;display:none}
 
-  /* free downloads: the same cards as the home page */
+  /* gated downloads: the same cards as the home page */
   .dlsec{padding:48px 0 0}
   .dlcard{background:var(--deep);color:#e9e3f2;border-radius:12px;padding:44px 48px;position:relative;overflow:hidden}
   .dlsec .wrap>*+*{margin-top:20px}
@@ -83,6 +83,8 @@
   .dlcard h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:600;margin:10px 0 12px}
   .dlcard h3:first-child{margin-top:0}
   .dlcard p{color:#cfc6e0}
+  .dlcard .detail{margin-top:10px;font-size:.92rem;font-weight:600;color:var(--teal-hi)}
+  #agent-sourcing{scroll-margin-top:72px}
   .dlcard .opener{margin-top:24px}
   .dlcard .form-err{color:#f5b8c4;margin-top:0}
   .dlcard .dl-ok{display:none;margin-top:24px}
@@ -166,13 +168,35 @@
 <header class="wrap page-head">
   <span class="eyebrow">Resources</span>
   <h1>Ideas worth taking into<br><strong>your next leadership conversation.</strong></h1>
-  <p class="intro">Free tools from the book. Download any of them below.</p>
+  <p class="intro">Complimentary tools from the book. Download any of them below.</p>
 </header>
+
+<section class="dlsec" id="agent-sourcing">
+  <div class="wrap">
+    <div class="dlcard" id="sourcing">
+      <h3>Own, Buy, or Build: The Agent Sourcing Decision</h3>
+      <p>You redesigned the work. Now someone says, make the tool we already own work. Score what you own, what you could buy, and what you could build on five questions. If the owned tool falls short, the numbers are your business case.</p>
+      <p class="detail">Complimentary. One page. Fillable.</p>
+      <p class="opener"><button class="btn" type="button" id="sourcingOpen">Complimentary download</button></p>
+      <form class="fgrid2 closed" id="sourcingForm" novalidate>
+        <div><label for="as-first">First name</label><input type="text" id="as-first" name="firstName" autocomplete="given-name" required></div>
+        <div><label for="as-last">Last name</label><input type="text" id="as-last" name="lastName" autocomplete="family-name" required></div>
+        <div><label for="as-email">Email</label><input type="email" id="as-email" name="email" autocomplete="email" required></div>
+        <div><label for="as-company">Company</label><input type="text" id="as-company" name="company" autocomplete="organization" required></div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="actions"><button class="btn" type="submit">Send me the worksheet</button><p class="form-err"></p></div>
+      </form>
+      <div class="dl-ok" id="sourcingOk">
+        <p>Your worksheet is ready. <a href="/assets/Agent-Sourcing-Decision-OnTheGrow-v1.pdf" target="_blank" rel="noopener">Download Own, Buy, or Build: The Agent Sourcing Decision.</a></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="dlsec" id="matrix">
   <div class="wrap">
     <div class="dlcard">
-      <span class="eyebrow">Free tool from the book</span>
+      <span class="eyebrow">Complimentary tool from the book</span>
       <h3>The Work Assignment Matrix</h3>
       <p>The tool from Chapter 6. One page. List the tasks in one process and decide, task by task, what stays human, what AI assists, and what AI does with a named owner. Most AI rollouts skip this. It takes an afternoon.</p>
       <form class="fgrid2" id="wamForm" novalidate>
@@ -371,6 +395,7 @@ function wireDownload(id, tag, source, extra){
 wireDownload('summary', 'book-launch-notify', 'onthegrow.ai/resources', {resource:'book-summary'});
 wireDownload('journey', 'journey', 'journey-resources');
 wireDownload('overview', 'growth-overview', 'growth-overview-resources');
+wireDownload('sourcing', 'resource-agent-sourcing', 'agent-sourcing-resources', {tags:'resource-agent-sourcing'});
 
 // Work Assignment Matrix gate (#matrix). Unlike the downloads above, the button appears only
 // after the webhook accepts the submission. Success is remembered per device in localStorage.

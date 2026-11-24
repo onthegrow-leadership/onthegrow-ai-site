@@ -153,7 +153,7 @@
 #otg-roi .purpose b{display:block;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:2px}
 #otg-roi .purpose p:first-child b{color:var(--brand)}
 #otg-roi .grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start}
-@media (max-width:920px){#otg-roi .grid{grid-template-columns:minmax(0,1fr);gap:18px}#otg-roi .grid>.stack,#otg-roi .grid>.side{display:contents}#otg-roi .side>.bottom,#otg-roi .side>.savepdf,#otg-roi .side>.disclosure{order:-1}#otg-roi .side>.savepdf{margin-top:-8px}#otg-roi .side>.disclosure{margin-top:-10px}#otg-roi .side>.line,#otg-roi .side>.callout{order:1;margin-top:0}#otg-roi .grid details.method{order:2}} /* one column: Your results first, the steps in order, the rest of the results, then the math */
+@media (max-width:920px){#otg-roi .grid{grid-template-columns:minmax(0,1fr);gap:18px}#otg-roi .grid>.stack,#otg-roi .grid>.side{display:contents}#otg-roi .side>.bottom,#otg-roi .side>.savepdf,#otg-roi .side>.disclosure{order:-1}#otg-roi .side>.savepdf{margin-top:-8px}#otg-roi .side>.disclosure{margin-top:-10px}#otg-roi .side>.line,#otg-roi .side>.callout,#otg-roi .side>.morelink{order:1;margin-top:0}#otg-roi .grid details.method{order:2}} /* one column: Your results first, the steps in order, the rest of the results, then the math */
 #otg-roi .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
 #otg-roi .stack{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;min-width:0}
 #otg-roi h3{font-size:17px;margin:0 0 4px;font-weight:700;color:var(--ink)}
@@ -205,6 +205,8 @@
 #otg-roi .copied{font-size:12px;color:var(--good);margin-left:8px}
 #otg-roi .callout{margin-top:14px;font-size:13px;color:var(--muted);padding:12px 14px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0}
 #otg-roi .callout b{color:var(--ink)}
+#otg-roi .morelink{margin:14px 2px 0;font-size:14px;font-weight:600}
+#otg-roi .morelink a{color:#256C71}
 #otg-roi .yrs td:first-child{font-weight:600}
 #otg-roi .yrs tr.total td{font-weight:700;background:var(--accent-soft)}
 #otg-roi .neg{color:var(--warn)!important}
@@ -472,6 +474,7 @@
       </div>
 
       <div class="callout" id="roi-callout"></div>
+      <p class="morelink"><a href="/resources/#agent-sourcing">Deciding where the agent comes from? Get the one-page Own, Buy, or Build worksheet.</a></p>
     </aside>
   </div>
 
